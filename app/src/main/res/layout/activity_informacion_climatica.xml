@@ -5,13 +5,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity">
-
-    <Button
-        android:id="@+id/pruebas1"
+    tools:context=".InformacionClimatica"
+    android:padding="10dp">
+    <TextView
+        android:id="@+id/lblClimaMadrid"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="pruebaClima"
-        android:text="Ver Clima" />
+        android:gravity="center"
+        android:text="Pronóstico Madrid" />
+
+    <WebView
+        android:id="@+id/wbvClimaMadrid"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
 
 </LinearLayout>
