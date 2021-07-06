@@ -21,10 +21,10 @@ public class MainActivity extends AppCompatActivity {
     }//Fin onCreate()------------
 
 
-    //Método para poder ir a ver la información climática:
+    //Método para poder ir al menú principal:
 
-    public  void pruebaClima(View view){
-        Intent intent = new Intent(this, InformacionClimatica.class);
+    public  void pruebaMenuPrincipal(View view){
+        Intent intent = new Intent(this, MenuPrincipal.class);
 
         startActivity(intent);
     }
