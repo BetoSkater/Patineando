@@ -21,4 +21,18 @@ public class MenuPrincipal extends AppCompatActivity {
         Intent intent = new Intent(this, InformacionClimatica.class);
         startActivity(intent);
     }
+    //-----Función para acceder a MisCursos.java
+
+    public void irAMisCursos(View view){
+        Intent intent = new Intent(this, MisCursos.class);
+        startActivity(intent);
+    }
+    //-----Función para acceder a MiPerfil.java
+
+    public void irAMiPerfil(View view){
+        Intent intent = new Intent(this, MiPerfil.class);
+        startActivity(intent);
+    }
+
+
 }

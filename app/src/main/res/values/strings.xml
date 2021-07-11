@@ -1,3 +1,25 @@
 <resources>
     <string name="app_name">Patineando</string>
+
+    <!-- MenuPrincipal.java -->
+    <string name="btnMisCursos">Mis Cursos</string>
+    <string name="btnMiPerfil">Mi Perfil</string>
+
+    <!--InformacionClimatica.java-->
+    <string name="lblClimaMadrid">Pronóstico Madrid</string>
+
+    <!--MiPerfil.java-->
+    <string name="lblNombreUsuario">Nombre: </string>
+    <string name="lblApodoUsuario">Apodo: </string>
+    <string name="lblPatinesUsuario">Modelo de patines</string>
+    <string name="lblDescripcionUsuario">Descripción</string>
+    <string name="btnVolverMiPerfil">Volver</string>
+
+    <!--listado_mis_cursos_recycler.xml-->
+    <string name="lblNivelCardMisCursos">Nivel: </string>
+
+    <!--MisCursos -->
+    <string name="lblCursosAlumnoMisCursos">Mis cursos: </string>
+
+
 </resources>

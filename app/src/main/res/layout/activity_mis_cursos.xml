@@ -5,13 +5,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    android:padding="15dp"
+    tools:context=".MisCursos">
 
-    <Button
-        android:id="@+id/pruebas1"
+    <TextView
+        android:id="@+id/lblCursosAlumnoMisCursos"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="pruebaMenuPrincipal"
-        android:text="Ver Clima" />
+        android:gravity="center"
+        android:text="@string/lblCursosAlumnoMisCursos" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rcvListadoMisCursos"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 </LinearLayout>

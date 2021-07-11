@@ -23,7 +23,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Nombre:" />
+            android:text="@string/lblNombreUsuario" />
 
         <TextView
             android:id="@+id/lblNombreUsuarioResultado"
@@ -43,14 +43,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Apodo: " />
+            android:text="@string/lblApodoUsuario" />
 
         <TextView
             android:id="@+id/lblApodoUsuarioResultado"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Yo" />
+            android:text="yo"/>
 
     </LinearLayout>
 
@@ -64,7 +64,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Modelo Patines: " />
+            android:text="@string/lblPatinesUsuario" />
 
         <TextView
             android:id="@+id/lblPatinesUsuarioResultado"
@@ -78,12 +78,12 @@
         android:id="@+id/lblDescripcionUsuario"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="DESCRIPCION" />
+        android:text="@string/lblDescripcionUsuario" />
 
     <ScrollView
         android:id="@+id/srlDescripcion"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="321dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -97,5 +97,10 @@
                 android:text="Ejemplo de Descripción" />
         </LinearLayout>
     </ScrollView>
-
+    <Button
+        android:id="@+id/btnVolverMiPerfil"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="volverAMenuPrincipal"
+        android:text="@string/btnVolverMiPerfil" />
 </LinearLayout>
