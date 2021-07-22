@@ -14,6 +14,7 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables.useSupportLibrary = true //Para poder cargar imagenes vectoriales en los imageView
     }
 
     buildTypes {
@@ -36,4 +37,6 @@ dependencies {
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+
+    implementation 'com.github.Lukle:ClickableAreaImages:v0.1' //Necesaria para el uso de las librerias CLickedArea
 }
