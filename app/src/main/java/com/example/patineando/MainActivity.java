@@ -1,12 +1,20 @@
 package com.example.patineando;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Context;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.Signature;
 import android.os.Bundle;
 
 import androidx.appcompat.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Base64;
 import android.view.View;
+
+import java.security.MessageDigest;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -18,6 +26,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         //actionbar.hide(); //TODO casca
+
+
+        //Llamada al método que devuelve el SHA-1 de la aplicación:
+        printHashKey(this);
     }//Fin onCreate()------------
 
 
@@ -27,5 +39,22 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, MenuPrincipal.class);
 
         startActivity(intent);
-    }
+    }//Fin método pruebaMenuPrincipal(View view)
+
+
+    //Método para obtener el SHA-1:
+    public  void printHashKey(Context pContext) {
+        try {
+            PackageInfo info = getPackageManager().getPackageInfo(getPackageName(), PackageManager.GET_SIGNATURES);
+            for (Signature signature : info.signatures) {
+                MessageDigest md = MessageDigest.getInstance("SHA");
+                md.update(signature.toByteArray());
+                String hashKey = new String(Base64.encode(md.digest(), 0));
+                System.out.println("printHashKey() Hash Key: " + hashKey);
+            }
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }
+
+    }//Fin método obtención SHA-1
 }

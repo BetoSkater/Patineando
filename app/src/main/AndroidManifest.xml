@@ -12,7 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Patineando"
         android:usesCleartextTraffic="true">
-        <activity android:name=".MisCursos"></activity>
+        <activity android:name=".Acceso"></activity>
+        <activity android:name=".MisCursos" />
         <activity android:name=".MiPerfil" />
         <activity android:name=".MenuPrincipal" /> <!-- https://stackoverflow.com/questions/52707918/webview-showing-err-cleartext-not-permitted-although-site-is-https -->
         <activity android:name=".InformacionClimatica" />

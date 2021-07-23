@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "678360797170",
+    "project_id": "patineando",
+    "storage_bucket": "patineando.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:678360797170:android:307ea38edb315ff406a56b",
+        "android_client_info": {
+          "package_name": "com.example.patineando"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "678360797170-mev8fctgsgrruul4cutbbaalo4pfmki8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.patineando",
+            "certificate_hash": "9125033611a678be155c5427ffa6bbf0951394d6"
+          }
+        },
+        {
+          "client_id": "678360797170-qpj0mv6e15r46tj9cherjtu5vk3diuvc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBEuLieaE9SEH0k4jJ6z2yo2nxUjFu9LOA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "678360797170-qpj0mv6e15r46tj9cherjtu5vk3diuvc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,6 +1,15 @@
 <resources>
     <string name="app_name">Patineando</string>
 
+    <!--Acceso-->
+    <string name="lblAccede">Accede para continuar</string>
+    <string name="txtCorreoAcceso">Correo electrónico</string>
+    <string name="txtContrasenaAcceso">Contraseña</string>
+    <string name="btnAccederAcceso">Acceder</string>
+    <string name="btnOlvidoAceso">¿Has olvidado la contraseña?</string>
+    <string name="btnRegistroAcceso">¡Registrate!</string>
+
+
     <!-- MenuPrincipal.java -->
     <string name="btnMisCursos">Mis Cursos</string>
     <string name="btnMiPerfil">Mi Perfil</string>
