@@ -9,6 +9,16 @@
     <string name="btnOlvidoAceso">¿Has olvidado la contraseña?</string>
     <string name="btnRegistroAcceso">¡Registrate!</string>
 
+    <!-- Registro -->
+    <string name="lblNombreRegistro">Nombre: </string>
+    <string name="lblApellidosRegistro">Apellido: </string>
+    <string name="lblApodoRegistro">Apodo: </string>
+    <string name="lblCorreoRegistro">Correo: </string>
+    <string name="lblConfirmarCorreoRegistro">Confirmar Correo: </string>
+    <string name="lblContraseñaRegistro">Contraseña: </string>
+    <string name="btnRegistrarRegistro">Registrar: </string>
+
+
 
     <!-- MenuPrincipal.java -->
     <string name="btnMisCursos">Mis Cursos</string>

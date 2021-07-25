@@ -37,18 +37,21 @@
         android:id="@+id/btnAccederAcceso"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:onClick="accederConCorreo"
         android:text="@string/btnAccederAcceso" />
 
     <Button
         android:id="@+id/btnOlvidoAceso"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:onClick="restablecerContrasena"
         android:text="@string/btnOlvidoAceso" />
 
     <Button
         android:id="@+id/btnRegistroAcceso"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:onClick="registrarUsuario"
         android:text="@string/btnRegistroAcceso" />
 
 </LinearLayout>
