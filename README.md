@@ -14,6 +14,8 @@ Ninguna
 Editor de textos en línea: https://stackedit.io/app#
                            https://gauge.org
                            
+                           
+# Añadir informacion usuaios firebase: https://stackoverflow.com/questions/39076988/add-extra-user-information-with-firebase
 # Importante
 * **Al poner el proyecto en el mac, me ha saltado un error de que la version android en la que estaba creado el proyecto era diferente a 
         la version de AS del Mac, he seguido esta respuesta para solucionarlo (la tercera, la del cambio de versiones): 
