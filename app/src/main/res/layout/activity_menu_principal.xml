@@ -45,6 +45,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@color/transparente"
+            android:onClick="irAImagenCursosImpartidos"
             app:srcCompat="@drawable/ic_menu_picasa" />
     </LinearLayout>
 

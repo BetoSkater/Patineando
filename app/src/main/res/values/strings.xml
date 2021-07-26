@@ -17,7 +17,7 @@
     <string name="lblContrasenaConfirmarRegistro">Confirmar Contraseña: </string>
     <string name="btnRegistrarRegistro">Registrar </string>
 
-            <!--Los Toast-->
+
     <string name="toastCorreosNoCoinciden">Los correos no coinciden</string>
     <string name="toastContrasenasNoCoinciden">Las contraseñas no coinciden</string>
     <string name="toastFaltaCorreo">Debes introducir y confirmar un correo</string>
@@ -25,6 +25,8 @@
     <string name="toastRegistrandoUsuario">Registrando, este proceso puede tardar unos minutos.</string>
     <string name="toastRegistroExitoso">Te has registrado satisfactoriamente.</string>
     <string name="toastRegistroFallido">El registro ha fallado, por favor, inténtelo de nuevo</string>
+
+    <string name="logErrorAccesoGoogle">Resultado del acceso: Fallido, código: </string>
 
     <!-- MenuPrincipal.java -->
     <string name="btnMisCursos">Mis Cursos</string>
@@ -39,6 +41,7 @@
     <string name="lblPatinesUsuario">Modelo de patines</string>
     <string name="lblDescripcionUsuario">Descripción</string>
     <string name="btnVolverMiPerfil">Volver</string>
+    <string name="btnCerrarSesionMiPerfil">Cerrar Sesión</string>
 
     <!--listado_mis_cursos_recycler.xml-->
     <string name="lblNivelCardMisCursos">Nivel: </string>

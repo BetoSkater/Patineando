@@ -48,6 +48,6 @@ dependencies {
 
     //Necesario apra la autenticacion con Firebase:
     implementation 'com.firebaseui:firebase-ui-auth:7.2.0'
-    implementation 'com.google.firebase:firebase-auth:19.2.0' //Siguiendo el tutorial desde dentro de AS -> Tools --> Firebase
+    implementation 'com.google.firebase:firebase-auth:21.0.1' //Siguiendo el tutorial desde dentro de AS -> Tools --> Firebase para el acceso con Google
 
 }

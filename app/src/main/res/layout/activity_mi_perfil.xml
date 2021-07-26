@@ -103,4 +103,11 @@
         android:layout_height="wrap_content"
         android:onClick="volverAMenuPrincipal"
         android:text="@string/btnVolverMiPerfil" />
+
+    <Button
+        android:id="@+id/btnCerrarSesionMiPerfil"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="cerrarSesion"
+        android:text="@string/btnCerrarSesionMiPerfil" />
 </LinearLayout>

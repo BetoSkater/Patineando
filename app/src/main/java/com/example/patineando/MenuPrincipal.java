@@ -21,6 +21,10 @@ public class MenuPrincipal extends AppCompatActivity {
         Intent intent = new Intent(this, InformacionClimatica.class);
         startActivity(intent);
     }
+    public void irAImagenCursosImpartidos(View view){
+        Intent intent = new Intent(this, ImagenCursosImpartidos.class);
+        startActivity(intent);
+    }
     //-----Función para acceder a MisCursos.java
 
     public void irAMisCursos(View view){
