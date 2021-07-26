@@ -10,15 +10,21 @@
     <string name="btnRegistroAcceso">¡Registrate!</string>
 
     <!-- Registro -->
-    <string name="lblNombreRegistro">Nombre: </string>
-    <string name="lblApellidosRegistro">Apellido: </string>
-    <string name="lblApodoRegistro">Apodo: </string>
+
     <string name="lblCorreoRegistro">Correo: </string>
     <string name="lblConfirmarCorreoRegistro">Confirmar Correo: </string>
-    <string name="lblContraseñaRegistro">Contraseña: </string>
-    <string name="btnRegistrarRegistro">Registrar: </string>
+    <string name="lblContrasenaRegistro">Contraseña: </string>
+    <string name="lblContrasenaConfirmarRegistro">Confirmar Contraseña: </string>
+    <string name="btnRegistrarRegistro">Registrar </string>
 
-
+            <!--Los Toast-->
+    <string name="toastCorreosNoCoinciden">Los correos no coinciden</string>
+    <string name="toastContrasenasNoCoinciden">Las contraseñas no coinciden</string>
+    <string name="toastFaltaCorreo">Debes introducir y confirmar un correo</string>
+    <string name="toastFaltaContra">Debes introducir y validar una contraseña</string>
+    <string name="toastRegistrandoUsuario">Registrando, este proceso puede tardar unos minutos.</string>
+    <string name="toastRegistroExitoso">Te has registrado satisfactoriamente.</string>
+    <string name="toastRegistroFallido">El registro ha fallado, por favor, inténtelo de nuevo</string>
 
     <!-- MenuPrincipal.java -->
     <string name="btnMisCursos">Mis Cursos</string>

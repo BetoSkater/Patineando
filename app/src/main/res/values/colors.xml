@@ -10,4 +10,5 @@
 
     <!--Colores  personalizados -->
     <color name="transparente">#00FFFFFF</color>
+    <color name="rojoError">#FF0000</color>
 </resources>

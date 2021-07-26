@@ -2,6 +2,7 @@ package com.example.patineando;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -33,7 +34,7 @@ public class Acceso extends AppCompatActivity {
     public void onStart(){
         super.onStart();
         FirebaseUser usuarioActual = mAuth.getCurrentUser();
-        updateUI(usuarioActual);
+        //updateUI(usuarioActual); //TODO ver que hacer con esto
     }
     //Método para ejecutar el acceso con correo y contraseña. Asignado al botón btnAccederAcceso
 
@@ -53,7 +54,8 @@ public class Acceso extends AppCompatActivity {
     //Método para registrarse. Asignado al botón btnRegistroAcceso
 
     public void registrarUsuario(View view){
-
+        Intent intent = new Intent(this, Registro.class);
+        startActivity(intent);
     }//Fin método registrarUsuario()
 
 

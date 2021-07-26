@@ -14,4 +14,11 @@
         android:onClick="pruebaMenuPrincipal"
         android:text="Ver Clima" />
 
+    <Button
+        android:id="@+id/pruebaAcceso"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="pruebaAcceso"
+        android:text="ir a acceso" />
+
 </LinearLayout>

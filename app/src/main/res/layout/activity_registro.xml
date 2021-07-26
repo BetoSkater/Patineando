@@ -14,44 +14,11 @@
         android:layout_height="wrap_content"
         app:srcCompat="@drawable/ic_menu_happy" />
 
-    <TextView
-        android:id="@+id/lblNombreRegistro"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/lblNombreRegistro" />
 
-    <EditText
-        android:id="@+id/txtNombreRegistro"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName" />
 
-    <TextView
-        android:id="@+id/lblApellidosRegistro"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/lblApellidosRegistro" />
 
-    <EditText
-        android:id="@+id/txtApellidosRegistro"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName" />
 
-    <TextView
-        android:id="@+id/lblApodoRegistro"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/lblApodoRegistro" />
 
-    <EditText
-        android:id="@+id/txtApodoRegistro"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName" />
 
     <TextView
         android:id="@+id/lblCorreoRegistro"
@@ -83,10 +50,23 @@
         android:id="@+id/lblContrasenaRegistro"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/lblContraseñaRegistro" />
+        android:text="@string/lblContrasenaRegistro" />
 
     <EditText
         android:id="@+id/txtContrasenaRegistro"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPassword" />
+
+    <TextView
+        android:id="@+id/lblContrasenaConfirmarRegistro"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/lblContrasenaConfirmarRegistro" />
+
+    <EditText
+        android:id="@+id/txtContrasenaConfirmarRegistro"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"

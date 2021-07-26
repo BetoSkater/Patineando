@@ -28,33 +28,21 @@ public class MainActivity extends AppCompatActivity {
         //actionbar.hide(); //TODO casca
 
 
-        //Llamada al método que devuelve el SHA-1 de la aplicación:
-        printHashKey(this);
     }//Fin onCreate()------------
 
 
     //Método para poder ir al menú principal:
-
     public  void pruebaMenuPrincipal(View view){
         Intent intent = new Intent(this, MenuPrincipal.class);
 
         startActivity(intent);
     }//Fin método pruebaMenuPrincipal(View view)
 
+    //Método para poder acceder al acceso:
+    public void pruebaAcceso(View view){
+        Intent intent = new Intent(this,Acceso.class);
+        startActivity(intent);
+    }
 
-    //Método para obtener el SHA-1:
-    public  void printHashKey(Context pContext) {
-        try {
-            PackageInfo info = getPackageManager().getPackageInfo(getPackageName(), PackageManager.GET_SIGNATURES);
-            for (Signature signature : info.signatures) {
-                MessageDigest md = MessageDigest.getInstance("SHA");
-                md.update(signature.toByteArray());
-                String hashKey = new String(Base64.encode(md.digest(), 0));
-                System.out.println("printHashKey() Hash Key: " + hashKey);
-            }
-        } catch (Exception e) {
-            System.out.println(e.toString());
-        }
 
-    }//Fin método obtención SHA-1
 }
