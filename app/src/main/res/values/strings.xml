@@ -8,6 +8,9 @@
     <string name="btnAccederAcceso">Acceder</string>
     <string name="btnOlvidoAceso">¿Has olvidado la contraseña?</string>
     <string name="btnRegistroAcceso">¡Registrate!</string>
+    <string name="logErrorAccesoGoogle">Resultado del acceso: Fallido, código: </string>
+    <string name="logExitoAccesoGoogle">Acceso con credenciales exitóso</string>
+    <string name="autenticacionFallidaAcceso">Autenticación fallida.</string>
 
     <!-- Registro -->
 
@@ -26,7 +29,7 @@
     <string name="toastRegistroExitoso">Te has registrado satisfactoriamente.</string>
     <string name="toastRegistroFallido">El registro ha fallado, por favor, inténtelo de nuevo</string>
 
-    <string name="logErrorAccesoGoogle">Resultado del acceso: Fallido, código: </string>
+
 
     <!-- MenuPrincipal.java -->
     <string name="btnMisCursos">Mis Cursos</string>

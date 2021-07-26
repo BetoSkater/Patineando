@@ -13,7 +13,8 @@ Ninguna
     Acceso: 
 Editor de textos en línea: https://stackedit.io/app#
                            https://gauge.org
-                           
+ #Ojo, he usado este acceso de google, pero no tenia union a la base de datos, por lo que dep en paz, arreglar con la autenticacion de google de la documentación de AS 
+ *https://developers.google.com/identity/sign-in/android/sign-in?utm_source=studio                 
                            
 # Añadir informacion usuaios firebase: https://stackoverflow.com/questions/39076988/add-extra-user-information-with-firebase
 # Importante

@@ -1,5 +1,6 @@
 package com.example.patineando;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -10,15 +11,21 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.gms.auth.GoogleAuthException;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.GoogleAuthProvider;
 
 public class Acceso extends AppCompatActivity {
 
@@ -44,7 +51,7 @@ public class Acceso extends AppCompatActivity {
             public void onClick(View v) {
                 switch (v.getId()){
                     case R.id.sign_in_button:
-                        accesoGoogle();
+                        firebaseAuthConGoogle();//TODO aqui va lo del token, arreglar
                 }//Fin switch
             }
         });
@@ -60,12 +67,14 @@ public class Acceso extends AppCompatActivity {
 
 
 
-        //Comprobación de que el usuario ya ha accedido previamente con su cuenta de Google:
+        //Comprobación de que el usuario ya ha accedido previamente con su cuenta de Google: //Todo esto igual lo ntengo que quitar ya que esta realizado con
+        //TODO esto, que no tiene lo de firebase: https://developers.google.com/identity/sign-in/android/sign-in?utm_source=studio
         GoogleSignInAccount cuenta = GoogleSignIn.getLastSignedInAccount(this);
         updateUIGoogle(cuenta);
     }//Fin método onStart()
     
     //Sobreescritura del método onActivityResult
+    /*
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data){
         super.onActivityResult(requestCode,resultCode,data);
@@ -78,6 +87,8 @@ public class Acceso extends AppCompatActivity {
         }
         
     }//Fin método onActivityResult()
+
+     */
     
     
     
@@ -110,7 +121,7 @@ public class Acceso extends AppCompatActivity {
     //Método para el acceso mediante una cuenta de Google (Google Sign-In)
     public void accesoGoogle(){
 
-
+/*
         //Paso 1: Enlazar
         //Paso 2: añadir el Gradle (app) la dependencia de firebase de acceso con google
         //Paso 3:
@@ -120,9 +131,12 @@ public class Acceso extends AppCompatActivity {
         GoogleSignInClient mGoogleSignInClient = GoogleSignIn.getClient(this,gso);
 
         //Nota: creo que la primera parte del flujo de código mo me hace falta, ya que lo que yo quiero es poner el acceso con el View, pero igual tengo que pasar por el aro:
-        Intent signInIntent = mGoogleSignInClient.getSignInIntent();
+       /* Intent signInIntent = mGoogleSignInClient.getSignInIntent();
         startActivityForResult(signInIntent, RC_SIGN_IN);
         //https://stackoverflow.com/questions/34852846/what-does-the-rc-sign-in-means-in-googleplus-login
+
+        */
+
     }//Fin método accesoGoogle
 
 
@@ -134,6 +148,8 @@ public class Acceso extends AppCompatActivity {
             //TODO hacer esto, no me queda claro que poner ni en este ni en el de Google, lo dejo asi para que no salten errores,
             //en el siguiente enlace hay información que puede que sea interesante:
             //https://stackoverflow.com/questions/44491418/can-not-resolve-updateui-firebase
+            Intent intent = new Intent(this,MenuPrincipal.class);
+            startActivity(intent); //En teoría, se tiene que saltar el login e ir directamente al menú principal.
         }
     }//Fin Método updateUI(...) con Firebase
 
@@ -152,7 +168,7 @@ public class Acceso extends AppCompatActivity {
     }//Fin método updateUI(...) para google
 
     //Método handleSignInResult() Necesario para la sobreescritura del método onActivityResult
-    
+    /*
     private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
         try{
             GoogleSignInAccount cuenta = completedTask.getResult(ApiException.class);
@@ -163,4 +179,29 @@ public class Acceso extends AppCompatActivity {
             updateUIGoogle(null);
         }
     }//Fin método handleSignInResult
+
+     */
+
+
+    private void firebaseAuthConGoogle(String idToken){
+        AuthCredential credencial = GoogleAuthProvider.getCredential(idToken, null);
+        mAuth.signInWithCredential(credencial).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if(task.isSuccessful()){
+                    //Exito al entrar: se actualiza el updateUI con la información del usuario que ha accedido:
+                    Log.d(TAG, getResources().getString(R.string.logExitoAccesoGoogle));
+                    FirebaseUser usuario = mAuth.getCurrentUser();
+                    updateUIFirebase(usuario);
+                }else{
+                    //Si el acceso falla, se informa al usuario:
+
+                    Log.w(TAG, getResources().getString(R.string.logErrorAccesoGoogle),task.getException());
+                    Snackbar.make(botonGoogle.getRootView(), getResources().getString(R.string.autenticacionFallidaAcceso),Snackbar.LENGTH_SHORT).show();
+                    updateUIFirebase(null);
+
+                }
+            }
+        });
+    }//Fin método firebaseAuthConGoogle
 }

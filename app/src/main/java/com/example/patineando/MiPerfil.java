@@ -28,8 +28,8 @@ public class MiPerfil extends AppCompatActivity {
         //Cerrar la sesión de Firebase
         FirebaseAuth.getInstance().signOut();
 
-        //Cerrar la sesión con google
-        mGoogle
+
+
 
         //TODO no tiene mucho sentido, no s esupone que una vez se accede con Google, deberia estar el propio FirebaseAuth???
 
