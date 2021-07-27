@@ -13,8 +13,12 @@ Ninguna
     Acceso: 
 Editor de textos en línea: https://stackedit.io/app#
                            https://gauge.org
- #Ojo, he usado este acceso de google, pero no tenia union a la base de datos, por lo que dep en paz, arreglar con la autenticacion de google de la documentación de AS 
- *https://developers.google.com/identity/sign-in/android/sign-in?utm_source=studio                 
+ #Ojo, he usado este acceso de google, expone las diferencias con lo del acceso de Google normal sin tener en cuenta lo de firebase, esta guia es de las de firebase:
+ * https://firebase.google.com/docs/auth/android/google-signin?hl=es   
+ https://firebase.google.com/docs/auth/android/google-signin?hl=es#java_6
+ * **Pendiente por hacer el que un mismo usuario pueda acceder tanto por correo y contraseña como con Google, es decir, que las cuentas estén vinculadas**
+   *   https://firebase.google.com/docs/auth/android/account-linking?hl=es
+            
                            
 # Añadir informacion usuaios firebase: https://stackoverflow.com/questions/39076988/add-extra-user-information-with-firebase
 # Importante
@@ -67,11 +71,17 @@ https://github.com/Baseflow/PhotoView
 	* https://stackoverflow.com/questions/8909835/android-how-do-i-get-the-x-y-coordinates-within-an-image-imageview  
 	* https://stackoverflow.com/questions/17190576/how-to-get-all-x-and-y-coordinates-of-an-imageview-in-android         
 	
-	
+*Poner **bombilla de error** en una caja EditText para indicar que falta algo:
+    * https://stackoverflow.com/questions/6290531/how-do-i-check-if-my-edittext-fields-are-empty
 	
 * **FIREBASE**:
+    * **Autentica con Firebase mediante cuentas con contraseña en Android**:https://firebase.google.com/docs/auth/android/password-auth?hl=es  
     * **Guias de Firebase**: https://firebase.google.com/docs/guides?authuser=0 
     * **Primeros pasos con las reglas de seguridad de Firebase**: https://firebase.google.com/docs/database/security/get-started?authuser=0 
     
-    
-    
+    * **Estructura tu base de datos**: https://firebase.google.com/docs/database/web/structure-data?hl=es
+    * **Lee y escribe datos en Android**: https://firebase.google.com/docs/database/android/read-and-write?hl=es
+    * **Indexa tus datos** : https://firebase.google.com/docs/database/security/indexing-data 
+    * **Primeros pasos con las reglas de seguridad de Firebase** : https://firebase.google.com/docs/database/security/get-started
+    * **Explicación de las reglas de Firebase Realtime Database**: https://firebase.google.com/docs/database/security#:~:text=Firebase%20Realtime%20Database%20Security%20Rules,if%20your%20rules%20allow%20it.
+    * **Cómo funcionan las reglas de seguridad**: https://firebase.google.com/docs/rules/rules-behavior

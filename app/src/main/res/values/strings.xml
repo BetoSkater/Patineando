@@ -11,6 +11,15 @@
     <string name="logErrorAccesoGoogle">Resultado del acceso: Fallido, código: </string>
     <string name="logExitoAccesoGoogle">Acceso con credenciales exitóso</string>
     <string name="autenticacionFallidaAcceso">Autenticación fallida.</string>
+    <string name="AutenticacionFirebaseConGoogle">Autenticacion en Firebase con Google</string>
+    <string name="AccesoConGoogleFallido">Acceso con Google fallido</string>
+    <string name="AccesoConCorreoExitoso">Has accedido con tu correo</string>
+    <string name="AccesoConCorreoFallido">Acceso con correo fallido</string>
+    <string name="AccesoFaltaCorreo">Error:El campo correo no puede estar vacío</string>
+    <string name="AccesoFaltaContrasena">Error: Debes introducir una contraseña</string>
+
+
+
 
     <!-- Registro -->
 
@@ -45,6 +54,7 @@
     <string name="lblDescripcionUsuario">Descripción</string>
     <string name="btnVolverMiPerfil">Volver</string>
     <string name="btnCerrarSesionMiPerfil">Cerrar Sesión</string>
+    <string name="sesionCerradaMiPerfil">Ha cerrado sesión.</string>
 
     <!--listado_mis_cursos_recycler.xml-->
     <string name="lblNivelCardMisCursos">Nivel: </string>

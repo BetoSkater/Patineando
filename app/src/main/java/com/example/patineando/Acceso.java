@@ -29,12 +29,15 @@ import com.google.firebase.auth.GoogleAuthProvider;
 
 public class Acceso extends AppCompatActivity {
 
-    private static final String TAG = ""; //TODO lo mismo, revisar, esto sale de la guia de acceso con Gooogle
+    private static final String TAG = "AutenticacionGoogle"; //TODO lo mismo, revisar, esto sale de la guia de acceso con Gooogle
     private static  int RC_SIGN_IN = 123456789; //TODO mucho ojo, revisar, pone que es un numero que tengo que asignar yo , imagino que por seguridad
+
     EditText cajaCorreo, cajaContrasena;
     SignInButton botonGoogle;
-    private FirebaseAuth mAuth;
 
+    private FirebaseAuth mAuth;
+    private GoogleSignInClient mGoogleSignInClient;
+    private String idTokenWebApiGoogleCredenciales = "678360797170-uarh5m0pnnronjumerj6nr9qfqdm1h8k.apps.googleusercontent.com";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,7 +54,15 @@ public class Acceso extends AppCompatActivity {
             public void onClick(View v) {
                 switch (v.getId()){
                     case R.id.sign_in_button:
-                        firebaseAuthConGoogle();//TODO aqui va lo del token, arreglar
+                        GoogleSignInOptions gso = new GoogleSignInOptions
+                                .Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                                .requestIdToken(getString(R.string.default_web_client_id))
+                                .requestEmail()
+                                .build();
+
+                        mGoogleSignInClient = GoogleSignIn.getClient(Acceso.this,gso); //Todo en la guia pone solo this
+                        accesoGoogle(); //TODO creo que va aqui
+                        firebaseAuthConGoogle(idTokenWebApiGoogleCredenciales);//TODO aqui va lo del token, arreglar
                 }//Fin switch
             }
         });
@@ -69,47 +80,60 @@ public class Acceso extends AppCompatActivity {
 
         //Comprobación de que el usuario ya ha accedido previamente con su cuenta de Google: //Todo esto igual lo ntengo que quitar ya que esta realizado con
         //TODO esto, que no tiene lo de firebase: https://developers.google.com/identity/sign-in/android/sign-in?utm_source=studio
-        GoogleSignInAccount cuenta = GoogleSignIn.getLastSignedInAccount(this);
-        updateUIGoogle(cuenta);
+       // GoogleSignInAccount cuenta = GoogleSignIn.getLastSignedInAccount(this);
+        //updateUIGoogle(cuenta);
     }//Fin método onStart()
-    
-    //Sobreescritura del método onActivityResult
-    /*
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data){
-        super.onActivityResult(requestCode,resultCode,data);
-        
-        //Resultado obtenido de lazar el Intent desde GoogleSignInClient.getSignInIntent(...);
-        if(requestCode == RC_SIGN_IN){
-            //COmo la tarea de esta llamada simepre se completa, no hace falta añadir un listener
-            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
-            handleSignInResult(task);
-        }
-        
-    }//Fin método onActivityResult()
 
-     */
-    
-    
-    
     
     //Método para ejecutar el acceso con correo y contraseña. Asignado al botón btnAccederAcceso
 
     public void accederConCorreo(View view){
+        //Nota: con el try catch y los if con los return de las cajas de texto, se evita que salte el error de las cajas de texto vacias, ya que se está forzando al usuario a que introduzca un correo y una contraseña para continuar, de no hacerlo, vuelve (deja de ejecutar el metodo del boton).
+            try {
+                 String correoAcceso = cajaCorreo.getText().toString().trim();
+                String contrasenaAcceso = cajaContrasena.getText().toString().trim();
+                //https://stackoverflow.com/questions/6290531/how-do-i-check-if-my-edittext-fields-are-empty
+                if (cajaCorreo.getText().toString().trim().isEmpty()) {
+                    cajaCorreo.setError(getResources().getString(R.string.AccesoFaltaCorreo));
+                    //cajaCorreo.setError("String", getResources().getDrawable(R.drawable.ic_menu_umbrella)); //TODo con icono no funciona, debe ser que no admite el formato o algo. Si tengo tiempo personalizar la exclamación del error.
+                    return;
+                }
+                if (cajaContrasena.getText().toString().trim().isEmpty()) {
+                    cajaContrasena.setError(getResources().getString(R.string.AccesoFaltaContrasena));
+                    return;
+                }
+                mAuth.signInWithEmailAndPassword(correoAcceso, contrasenaAcceso).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            Log.d(TAG, getResources().getString(R.string.AccesoConCorreoExitoso));
+                            FirebaseUser usuario = mAuth.getCurrentUser();
+                            System.out.println("OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO " + usuario.getEmail()); //TODO Borrar, es una simple comprobación
+                            updateUIFirebase(usuario);
+                        } else {
+                            Log.w(TAG, getResources().getString(R.string.AccesoConCorreoFallido), task.getException());
+                            Toast.makeText(Acceso.this, getResources().getString(R.string.autenticacionFallidaAcceso), Toast.LENGTH_SHORT).show();
+                            updateUIFirebase(null);
+                        }
+                    }
+                });
+
+            }catch(IllegalStateException e){
+                System.out.println(e);
+            }//fin try..catch
 
     }//Fin método accederConCorreo()
+
 
 
     //Método para activar el recuperar contraseña. Asignado al botón btnOlvidoAcceso
 
     public void restablecerContrasena(View view){
-
     }//Fin método restablecerContrasena
 
 
 
     //Método para registrarse. Asignado al botón btnRegistroAcceso
-
     public void registrarUsuario(View view){
         Intent intent = new Intent(this, Registro.class);
         startActivity(intent);
@@ -117,27 +141,6 @@ public class Acceso extends AppCompatActivity {
 
 
 
-
-    //Método para el acceso mediante una cuenta de Google (Google Sign-In)
-    public void accesoGoogle(){
-
-/*
-        //Paso 1: Enlazar
-        //Paso 2: añadir el Gradle (app) la dependencia de firebase de acceso con google
-        //Paso 3:
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestEmail().build();
-        //Paso 4: Construcción de un objeto GoogleSignInClient con los parametros especificados en el paso 3
-        GoogleSignInClient mGoogleSignInClient = GoogleSignIn.getClient(this,gso);
-
-        //Nota: creo que la primera parte del flujo de código mo me hace falta, ya que lo que yo quiero es poner el acceso con el View, pero igual tengo que pasar por el aro:
-       /* Intent signInIntent = mGoogleSignInClient.getSignInIntent();
-        startActivityForResult(signInIntent, RC_SIGN_IN);
-        //https://stackoverflow.com/questions/34852846/what-does-the-rc-sign-in-means-in-googleplus-login
-
-        */
-
-    }//Fin método accesoGoogle
 
 
 
@@ -167,8 +170,40 @@ public class Acceso extends AppCompatActivity {
 
     }//Fin método updateUI(...) para google
 
-    //Método handleSignInResult() Necesario para la sobreescritura del método onActivityResult
+
+    //Método para el acceso mediante una cuenta de Google (Google Sign-In)
+    public void accesoGoogle(){
+        Intent signInIntent = mGoogleSignInClient.getSignInIntent();
+        startActivityForResult(signInIntent, RC_SIGN_IN);
+        //https://stackoverflow.com/questions/34852846/what-does-the-rc-sign-in-means-in-googleplus-login
+
+    }//Fin método accesoGoogle
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data){
+        super.onActivityResult(requestCode,resultCode,data);
+
+        //Resultado obtenido de lazar el Intent desde GoogleSignInClient.getSignInIntent(...);
+        if(requestCode == RC_SIGN_IN){
+            //COmo la tarea de esta llamada simepre se completa, no hace falta añadir un listener
+            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
+            try{
+                //Acceso con Google exitoso, autenticar con Firebase
+                GoogleSignInAccount cuenta = task.getResult(ApiException.class);
+                Log.d(TAG,getResources().getString(R.string.AutenticacionFirebaseConGoogle)+cuenta.getId());
+                firebaseAuthConGoogle(cuenta.getIdToken());
+            }catch(ApiException e){
+                //Acceso fallido
+                Log.w(TAG, getResources().getString(R.string.AccesoConGoogleFallido),e);
+                //Poner el usuario como null con updateUIGoogle()??? //TODO
+            }
+            //handleSignInResult(task);
+        }
+
+    }//Fin método onActivityResult()
+
     /*
+    //Método handleSignInResult() Necesario para la sobreescritura del método onActivityResult
     private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
         try{
             GoogleSignInAccount cuenta = completedTask.getResult(ApiException.class);
@@ -179,8 +214,8 @@ public class Acceso extends AppCompatActivity {
             updateUIGoogle(null);
         }
     }//Fin método handleSignInResult
-
      */
+
 
 
     private void firebaseAuthConGoogle(String idToken){
@@ -192,12 +227,15 @@ public class Acceso extends AppCompatActivity {
                     //Exito al entrar: se actualiza el updateUI con la información del usuario que ha accedido:
                     Log.d(TAG, getResources().getString(R.string.logExitoAccesoGoogle));
                     FirebaseUser usuario = mAuth.getCurrentUser();
+                    System.out.println("oooooooooooooooooo "+ usuario.getEmail());
                     updateUIFirebase(usuario);
                 }else{
                     //Si el acceso falla, se informa al usuario:
 
                     Log.w(TAG, getResources().getString(R.string.logErrorAccesoGoogle),task.getException());
                     Snackbar.make(botonGoogle.getRootView(), getResources().getString(R.string.autenticacionFallidaAcceso),Snackbar.LENGTH_SHORT).show();
+                    //TODO no sé por que no funciona correctamente, siempre salta este toast al hacer el acceso
+
                     updateUIFirebase(null);
 
                 }
