@@ -91,7 +91,7 @@ public class Acceso extends AppCompatActivity {
         //Nota: con el try catch y los if con los return de las cajas de texto, se evita que salte el error de las cajas de texto vacias, ya que se está forzando al usuario a que introduzca un correo y una contraseña para continuar, de no hacerlo, vuelve (deja de ejecutar el metodo del boton).
             try {
                  String correoAcceso = cajaCorreo.getText().toString().trim();
-                String contrasenaAcceso = cajaContrasena.getText().toString().trim();
+                 String contrasenaAcceso = cajaContrasena.getText().toString().trim();
                 //https://stackoverflow.com/questions/6290531/how-do-i-check-if-my-edittext-fields-are-empty
                 if (cajaCorreo.getText().toString().trim().isEmpty()) {
                     cajaCorreo.setError(getResources().getString(R.string.AccesoFaltaCorreo));

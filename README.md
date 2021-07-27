@@ -40,7 +40,7 @@ Editor de textos en línea: https://stackedit.io/app#
          Solucion a que no salga task en el gradle (deshabilitado por defecto desde la 4.2)
             * https://stackoverflow.com/questions/67405791/gradle-tasks-are-not-showing-in-the-gradle-tool-window-in-android-studio-4-2
             *https://stackoverflow.com/questions/27609442/how-to-get-the-sha-1-fingerprint-certificate-in-android-studio-for-debug-mode
-            
+            **27/07/21** Al ejecutar el aplicativo desde casa, no se podía acceder con Google, el error era algo de "invalid token", se ha solucionado al obtener el SHA-1 en esta máquina, y añadirlo a la lista de SHA-1 permitidos en la pestaña de COnfiguracion de Proyecto de Firebase 
             
 # Enlaces de interés:
 
