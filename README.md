@@ -87,7 +87,7 @@ https://github.com/Baseflow/PhotoView
     * **Administrar Usuarios**: Son cosas como crear un usuario, mandar un mail de verificación o cambio de contraseá, etc.
         *   https://firebase.google.com/docs/auth/android/manage-users?hl=es-419 
     * **Firebase: User Sign Up, Login & Data Management**: https://medium.com/@felicity.johnson.mail/firebase-user-sign-up-login-data-management-992d778b167
-    
+    * **Comprobar si un correo ya está en uso. etc** : https://stackoverflow.com/questions/51562995/how-can-i-check-if-user-exists-in-firebase
 #Notas importantes de interés:
     * **Clases llamadas tPalabra** : Estas Clases hacen referencia a los objetos que se quieren introducir en las tablas de la base de datos.
         así, la clase tUsuarios hace referencia a la tablaUsuarios, la clase tCursos a los cursos que imparte la escuela (sin alumnos, no son grupos ni nada de eso), etc.

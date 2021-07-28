@@ -27,11 +27,16 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.time.Instant;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.TimeZone;
 
 public class Acceso extends AppCompatActivity {
@@ -265,27 +270,82 @@ public class Acceso extends AppCompatActivity {
 
         //Creacion de un objeto usuario con el constructor vacio, se le pondrán los valores de la tabal Auth, el resto los deberá poner más adelante el usuario:
 
-        Tusuario tUsuario = new Tusuario();
-
         FirebaseUser usuario = mAuth.getCurrentUser();
 
-        tUsuario.setIdUsuario(usuario.getUid()); //Nota: Se pone el UID de la tabla Auth ya que independientemente de que el acceso sea con correo/contraseña o con Google, se crea el UID, por lo que se entiende que siempre van a ser unicos independientemente de la forma de acceso.
-        tUsuario.setCorreoUsuario(usuario.getEmail());
-        tUsuario.setFechaCreacionUsuario(longTimeStampALocalDateTime(usuario.getMetadata().getCreationTimestamp()));
-        tUsuario.setTipoUsuario("Alumno");
-        tUsuario.setMatriculaActivaUsuario(false);
+        //TODO aqui tengo que escribir el código para comprobar que el UId del usuario no tiene un registro en la base de datos, si ya existe el resto del có
+        //No funciona como debería, tengo que encontrar la forma de hacer un Select uid from Usuarios where ID = usuario.getUID
+        boolean existeUsuario = (mDatabase.child("Usuarios").child(usuario.getUid()).toString()).isEmpty();
+        if(!existeUsuario){
+            //Si el usuario nunca ha accedido, su id no estará en la tabla de usuarios, por lo que la primera vez que se accede no lo encuentra, al no encontrarse, se crea el registro:
+            Tusuario tUsuario = new Tusuario();
 
-        //Parametros vacios, el usuario los tendrá que modificar desde su perfil mas adelante:
-        tUsuario.setImagenUsuario(""); //Poner el url al recurso alojado en CloudFireStore
-        tUsuario.setNombreUsuario("");
-        tUsuario.setApellidosUsuario("");
-        tUsuario.setApodoUsuario("");
-        tUsuario.setPatinesUsuario("");
-        tUsuario.setDescripcionUsuario("");
+            tUsuario.setIdUsuario(usuario.getUid()); //Nota: Se pone el UID de la tabla Auth ya que independientemente de que el acceso sea con correo/contraseña o con Google, se crea el UID, por lo que se entiende que siempre van a ser unicos independientemente de la forma de acceso.
+            tUsuario.setCorreoUsuario(usuario.getEmail());
+            tUsuario.setFechaCreacionUsuario(longTimeStampALocalDateTime(usuario.getMetadata().getCreationTimestamp()));
+            tUsuario.setTipoUsuario("Alumno");
+            tUsuario.setMatriculaActivaUsuario(false);
 
-        //insercción del objeto en la base de datos:
-        mDatabase.child("Usuarios").child(usuario.getUid()).setValue(tUsuario); //Nota: setValues borra todo y pome el nuevo, por lo que lo mejor es poner el objeto entero, con los campos que no sean de autenticacion para posteriormente modificar los campos marcados
-        //Una de las razones para meter el objeto entero aqui, es que así en la base de datos apareceran los nombres de los notdos, por lo que será más sencillo editar dichos campos.
+            //Parametros vacios, el usuario los tendrá que modificar desde su perfil mas adelante:
+            tUsuario.setImagenUsuario(""); //Poner el url al recurso alojado en CloudFireStore
+            tUsuario.setNombreUsuario("");
+            tUsuario.setApellidosUsuario("");
+            tUsuario.setApodoUsuario("");
+            tUsuario.setPatinesUsuario("");
+            tUsuario.setDescripcionUsuario("");
+
+            //insercción del objeto en la base de datos:
+            mDatabase.child("Usuarios").child(usuario.getUid()).setValue(tUsuario); //Nota: setValues borra todo y pome el nuevo, por lo que lo mejor es poner el objeto entero, con los campos que no sean de autenticacion para posteriormente modificar los campos marcados
+            //Una de las razones para meter el objeto entero aqui, es que así en la base de datos apareceran los nombres de los notdos, por lo que será más sencillo editar dichos campos.
+
+        }
+        /*
+        //TODO no funciona. ha vuelto a borrar los datos, creo que lo que no funciona es el onDataChange, tengo que poner otra cosa
+        mDatabase.child("Usuarios").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull  DataSnapshot snapshot) {
+                boolean usuarioRegistrado = false;
+                for(DataSnapshot child: snapshot.getChildren()){
+                    List<String> listadoIDUsuarios = new ArrayList<>();
+                    listadoIDUsuarios.add(snapshot.getKey());
+
+                    if(listadoIDUsuarios.contains(String.valueOf(usuario.getUid()))){
+                        usuarioRegistrado = true;
+                        break;
+                    }
+                }//Fin for
+                if(!usuarioRegistrado){
+                    //Si el usuario nunca ha accedido, su id no estará en la tabla de usuarios, por lo que la primera vez que se accede no lo encuentra, al no encontrarse, se crea el registro:
+                    Tusuario tUsuario = new Tusuario();
+
+                    tUsuario.setIdUsuario(usuario.getUid()); //Nota: Se pone el UID de la tabla Auth ya que independientemente de que el acceso sea con correo/contraseña o con Google, se crea el UID, por lo que se entiende que siempre van a ser unicos independientemente de la forma de acceso.
+                    tUsuario.setCorreoUsuario(usuario.getEmail());
+                    tUsuario.setFechaCreacionUsuario(longTimeStampALocalDateTime(usuario.getMetadata().getCreationTimestamp()));
+                    tUsuario.setTipoUsuario("Alumno");
+                    tUsuario.setMatriculaActivaUsuario(false);
+
+                    //Parametros vacios, el usuario los tendrá que modificar desde su perfil mas adelante:
+                    tUsuario.setImagenUsuario(""); //Poner el url al recurso alojado en CloudFireStore
+                    tUsuario.setNombreUsuario("");
+                    tUsuario.setApellidosUsuario("");
+                    tUsuario.setApodoUsuario("");
+                    tUsuario.setPatinesUsuario("");
+                    tUsuario.setDescripcionUsuario("");
+
+                    //insercción del objeto en la base de datos:
+                    mDatabase.child("Usuarios").child(usuario.getUid()).setValue(tUsuario); //Nota: setValues borra todo y pome el nuevo, por lo que lo mejor es poner el objeto entero, con los campos que no sean de autenticacion para posteriormente modificar los campos marcados
+                    //Una de las razones para meter el objeto entero aqui, es que así en la base de datos apareceran los nombres de los notdos, por lo que será más sencillo editar dichos campos.
+                }else{
+                    //Si el usuario ya tiene registro en la tabla, no se hace nada;
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull  DatabaseError error) {
+            }
+        });//Fin valueEventListener. Idea sacada de aqui: https://stackoverflow.com/questions/39260729/how-to-check-if-data-already-exists-in-firebase-realtime-database-with-android
+
+
+         */
     }//Fin método agregarUsuarioATablaUsuarios
 
 
