@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.patineando"
-        minSdkVersion 19
+        minSdkVersion 26
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
@@ -50,5 +50,8 @@ dependencies {
     implementation 'com.google.firebase:firebase-auth'
     implementation 'com.firebaseui:firebase-ui-auth:7.2.0'
     implementation 'com.google.firebase:firebase-auth:21.0.1' //Siguiendo el tutorial desde dentro de AS -> Tools --> Firebase para el acceso con Google
+
+    //Necesario para el uso de la base de datos:
+    implementation 'com.google.firebase:firebase-database:19.2.0' //https://stackoverflow.com/questions/39394502/databasereference-and-firebasedatabase-cannot-resolve-symbol
 
 }

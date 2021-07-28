@@ -1,5 +1,6 @@
 package com.example.patineando;
 
+import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -26,6 +27,12 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.util.TimeZone;
 
 public class Acceso extends AppCompatActivity {
 
@@ -149,7 +156,12 @@ public class Acceso extends AppCompatActivity {
     public void updateUIFirebase(FirebaseUser usuario){
         if(usuario!=null){
             //TODO hacer esto, no me queda claro que poner ni en este ni en el de Google, lo dejo asi para que no salten errores,
-            //en el siguiente enlace hay información que puede que sea interesante:
+            //En el siguiente enlace hay información que puede que sea interesante:
+
+            //TODO: Lo que se quiere hacer aqui es que, en caso de que un usuario acceda por primera vez, se cree una instancia en la tbala usuarios con la información de e-mail, fecha de registro, tipo de usuario (por defecto, alumno)y el identificador de usuario (no se si es conveniente crear un UID nuevo automatico o poner el de la tabalde Authentication.
+            //hacer una llamada al método:
+            agregarUsuarioATablaUsuarios(); //Todo comprobar que en el segundo acceso no tira los datos que se hayan puesto una vez actualizado el perfil. Es decir, este código solo se deberia ejecutar una vez, en el momento de creación del registro en la base de datos
+
             //https://stackoverflow.com/questions/44491418/can-not-resolve-updateui-firebase
             Intent intent = new Intent(this,MenuPrincipal.class);
             startActivity(intent); //En teoría, se tiene que saltar el login e ir directamente al menú principal.
@@ -157,7 +169,7 @@ public class Acceso extends AppCompatActivity {
     }//Fin Método updateUI(...) con Firebase
 
 
-    //Método updateUI  para el acceso con Google
+    //Método updateUI  para el acceso con Google //TODO en teoría esto no se está usando (el método updateUIGoogle):
         //Recurso: https://developers.google.com/identity/sign-in/android/sign-in?utm_source=studio
     public void updateUIGoogle(GoogleSignInAccount usuario){
 
@@ -242,4 +254,48 @@ public class Acceso extends AppCompatActivity {
             }
         });
     }//Fin método firebaseAuthConGoogle
+
+    //---------Métodos para la creación de usuarios en la tabla de usuarios.
+
+    private void agregarUsuarioATablaUsuarios(){
+        //Para leer o escribir, lo primero es obtener una referencia a la base de datos:
+
+             DatabaseReference mDatabase; //TODO debería ser private, pero no lo permite ya que la clase original es pública. Debo cambiar esto?
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+
+        //Creacion de un objeto usuario con el constructor vacio, se le pondrán los valores de la tabal Auth, el resto los deberá poner más adelante el usuario:
+
+        Tusuario tUsuario = new Tusuario();
+
+        FirebaseUser usuario = mAuth.getCurrentUser();
+
+        tUsuario.setIdUsuario(usuario.getUid()); //Nota: Se pone el UID de la tabla Auth ya que independientemente de que el acceso sea con correo/contraseña o con Google, se crea el UID, por lo que se entiende que siempre van a ser unicos independientemente de la forma de acceso.
+        tUsuario.setCorreoUsuario(usuario.getEmail());
+        tUsuario.setFechaCreacionUsuario(longTimeStampALocalDateTime(usuario.getMetadata().getCreationTimestamp()));
+        tUsuario.setTipoUsuario("Alumno");
+        tUsuario.setMatriculaActivaUsuario(false);
+
+        //Parametros vacios, el usuario los tendrá que modificar desde su perfil mas adelante:
+        tUsuario.setImagenUsuario(""); //Poner el url al recurso alojado en CloudFireStore
+        tUsuario.setNombreUsuario("");
+        tUsuario.setApellidosUsuario("");
+        tUsuario.setApodoUsuario("");
+        tUsuario.setPatinesUsuario("");
+        tUsuario.setDescripcionUsuario("");
+
+        //insercción del objeto en la base de datos:
+        mDatabase.child("Usuarios").child(usuario.getUid()).setValue(tUsuario); //Nota: setValues borra todo y pome el nuevo, por lo que lo mejor es poner el objeto entero, con los campos que no sean de autenticacion para posteriormente modificar los campos marcados
+        //Una de las razones para meter el objeto entero aqui, es que así en la base de datos apareceran los nombres de los notdos, por lo que será más sencillo editar dichos campos.
+    }//Fin método agregarUsuarioATablaUsuarios
+
+
+
+    //Método para obtener un LocalDateTime desde un long TimeStamp (es tipo long)
+    //Pasar de long timeStamp a LocalDateTime: https://stackoverflow.com/questions/44883432/long-timestamp-to-localdatetime
+    public LocalDateTime longTimeStampALocalDateTime(long timestampACambiar){
+        LocalDateTime fecha = LocalDateTime.ofInstant(Instant.ofEpochMilli(timestampACambiar),
+                TimeZone.getDefault().toZoneId());
+
+        return fecha;
+    }//Fin método longTimeStampALocalDateTime
 }

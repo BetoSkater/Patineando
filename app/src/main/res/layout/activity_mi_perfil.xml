@@ -83,12 +83,12 @@
     <ScrollView
         android:id="@+id/srlDescripcion"
         android:layout_width="match_parent"
-        android:layout_height="321dp">
+        android:layout_height="251dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/lblDescripcionUsuarioResultado"
@@ -103,6 +103,13 @@
         android:layout_height="wrap_content"
         android:onClick="volverAMenuPrincipal"
         android:text="@string/btnVolverMiPerfil" />
+
+    <Button
+        android:id="@+id/btnModificarMiPerfil"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="modificarMiPerfil"
+        android:text="@string/btnModificarMiPerfil" />
 
     <Button
         android:id="@+id/btnCerrarSesionMiPerfil"

@@ -30,6 +30,10 @@ public class MiPerfil extends AppCompatActivity {
         finish();
     }
 
+    public void modificarMiPerfil(View view){
+        Intent intent = new Intent(this,ModificarMiPerfil.class);
+        startActivity(intent);
+    }
 
     public void cerrarSesion(View view){
 

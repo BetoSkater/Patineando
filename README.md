@@ -3,14 +3,9 @@ Ninguna
 # Pendiente:
    Me pongo con esto para crear la autenticacion:
     **Agrega acceso a tu app para Android fácilmente con FirebaseUI** https://firebase.google.com/docs/auth/android/firebaseui?authuser=0
-        * Paso 1: Ok:
-        * Paso 2: Ok:
-        * Paso 3: nota: importante par aque el usuario no tenga que poner la contraseña todo el rato:
-                    https://firebase.google.com/docs/auth/android/email-link-auth?authuser=0
-        * Paso 4: ok, el SHa ya está metido:
-        * Paso 5:no me hace falta ya que no se quiere crear un acceso con Facebook o twitter
+       
         
-    Acceso: 
+  
 Editor de textos en línea: https://stackedit.io/app#
                            https://gauge.org
  #Ojo, he usado este acceso de google, expone las diferencias con lo del acceso de Google normal sin tener en cuenta lo de firebase, esta guia es de las de firebase:
@@ -43,7 +38,7 @@ Editor de textos en línea: https://stackedit.io/app#
             **27/07/21** Al ejecutar el aplicativo desde casa, no se podía acceder con Google, el error era algo de "invalid token", se ha solucionado al obtener el SHA-1 en esta máquina, y añadirlo a la lista de SHA-1 permitidos en la pestaña de COnfiguracion de Proyecto de Firebase 
             
 # Enlaces de interés:
-
+* **Cajas de Texto bonitas** : https://material.io/components/text-fields/android#filled-text-field
 * https://proandroiddev.com/make-elegant-apps-with-palette-api-c1ca094190eb  
 * https://developer.android.com/guide/topics/appwidgets/overview  
   
@@ -73,7 +68,10 @@ https://github.com/Baseflow/PhotoView
 	
 *Poner **bombilla de error** en una caja EditText para indicar que falta algo:
     * https://stackoverflow.com/questions/6290531/how-do-i-check-if-my-edittext-fields-are-empty
-	
+
+* **Capturar imagen o seleccionar una de la galeria** : https://medium.com/@hasangi/capture-image-or-choose-from-gallery-photos-implementation-for-android-a5ca59bc6883
+    * Nota: Esto lo dejo sim implementar ya que en mi base de datos va un enlace que referencia al CloudStore, por lo que aqui tengo un lio y no sé como hacerlo, igual las imagenes de los usuarios si que las debería meter en RealTimeDatabase
+
 * **FIREBASE**:
     * **Autentica con Firebase mediante cuentas con contraseña en Android**:https://firebase.google.com/docs/auth/android/password-auth?hl=es  
     * **Guias de Firebase**: https://firebase.google.com/docs/guides?authuser=0 
@@ -81,7 +79,15 @@ https://github.com/Baseflow/PhotoView
     
     * **Estructura tu base de datos**: https://firebase.google.com/docs/database/web/structure-data?hl=es
     * **Lee y escribe datos en Android**: https://firebase.google.com/docs/database/android/read-and-write?hl=es
+        *https://firebase.google.com/docs/database/android/read-and-write?hl=es
     * **Indexa tus datos** : https://firebase.google.com/docs/database/security/indexing-data 
     * **Primeros pasos con las reglas de seguridad de Firebase** : https://firebase.google.com/docs/database/security/get-started
     * **Explicación de las reglas de Firebase Realtime Database**: https://firebase.google.com/docs/database/security#:~:text=Firebase%20Realtime%20Database%20Security%20Rules,if%20your%20rules%20allow%20it.
     * **Cómo funcionan las reglas de seguridad**: https://firebase.google.com/docs/rules/rules-behavior
+    * **Administrar Usuarios**: Son cosas como crear un usuario, mandar un mail de verificación o cambio de contraseá, etc.
+        *   https://firebase.google.com/docs/auth/android/manage-users?hl=es-419 
+    * **Firebase: User Sign Up, Login & Data Management**: https://medium.com/@felicity.johnson.mail/firebase-user-sign-up-login-data-management-992d778b167
+    
+#Notas importantes de interés:
+    * **Clases llamadas tPalabra** : Estas Clases hacen referencia a los objetos que se quieren introducir en las tablas de la base de datos.
+        así, la clase tUsuarios hace referencia a la tablaUsuarios, la clase tCursos a los cursos que imparte la escuela (sin alumnos, no son grupos ni nada de eso), etc.

@@ -19,8 +19,6 @@
     <string name="AccesoFaltaContrasena">Error: Debes introducir una contraseña</string>
 
 
-
-
     <!-- Registro -->
 
     <string name="lblCorreoRegistro">Correo: </string>
@@ -39,7 +37,6 @@
     <string name="toastRegistroFallido">El registro ha fallado, por favor, inténtelo de nuevo</string>
 
 
-
     <!-- MenuPrincipal.java -->
     <string name="btnMisCursos">Mis Cursos</string>
     <string name="btnMiPerfil">Mi Perfil</string>
@@ -50,11 +47,23 @@
     <!--MiPerfil.java-->
     <string name="lblNombreUsuario">Nombre: </string>
     <string name="lblApodoUsuario">Apodo: </string>
-    <string name="lblPatinesUsuario">Modelo de patines</string>
+    <string name="lblPatinesUsuario">Patines</string>
     <string name="lblDescripcionUsuario">Descripción</string>
     <string name="btnVolverMiPerfil">Volver</string>
+    <string name="btnModificarMiPerfil">Modificar mi perfil</string>
     <string name="btnCerrarSesionMiPerfil">Cerrar Sesión</string>
     <string name="sesionCerradaMiPerfil">Ha cerrado sesión.</string>
+
+    <!--ModificarMiPerfil.java-->
+    <string name="lblNombreModificarMiPerfil">Nombre: </string>
+    <string name="lblApellidosModificarMiPerfil">Apellidos: </string>
+    <string name="lblApodoModificarMiPerfil">Apodo: </string>
+    <string name="lblPatinesModificarMiPerfil">Patines: </string>
+    <string name="lblDescripcionModificarMiPerfil">Descripción: </string>
+    <string name="btnGuardarCambiosModificarMiPerfil">Guardar cambios</string>
+
+    <string name="logFirebase">Firebase</string>
+    <string name="logErrorObtencionDatos">Error al obtener la información</string>
 
     <!--listado_mis_cursos_recycler.xml-->
     <string name="lblNivelCardMisCursos">Nivel: </string>
