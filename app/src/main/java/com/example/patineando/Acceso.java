@@ -31,6 +31,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.time.Instant;
@@ -219,22 +220,6 @@ public class Acceso extends AppCompatActivity {
 
     }//Fin método onActivityResult()
 
-    /*
-    //Método handleSignInResult() Necesario para la sobreescritura del método onActivityResult
-    private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
-        try{
-            GoogleSignInAccount cuenta = completedTask.getResult(ApiException.class);
-            //Entrada exitosa, mostrar el usuario autenticado:
-            updateUIGoogle(cuenta);
-        }catch(ApiException e){
-            Log.w(TAG,getResources().getString(R.string.logErrorAccesoGoogle) + e.getStatusMessage());
-            updateUIGoogle(null);
-        }
-    }//Fin método handleSignInResult
-     */
-
-
-
     private void firebaseAuthConGoogle(String idToken){
         AuthCredential credencial = GoogleAuthProvider.getCredential(idToken, null);
         mAuth.signInWithCredential(credencial).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -271,44 +256,21 @@ public class Acceso extends AppCompatActivity {
         //Creacion de un objeto usuario con el constructor vacio, se le pondrán los valores de la tabal Auth, el resto los deberá poner más adelante el usuario:
 
         FirebaseUser usuario = mAuth.getCurrentUser();
-
-        //TODO aqui tengo que escribir el código para comprobar que el UId del usuario no tiene un registro en la base de datos, si ya existe el resto del có
-        //No funciona como debería, tengo que encontrar la forma de hacer un Select uid from Usuarios where ID = usuario.getUID
-        boolean existeUsuario = (mDatabase.child("Usuarios").child(usuario.getUid()).toString()).isEmpty();
-        if(!existeUsuario){
-            //Si el usuario nunca ha accedido, su id no estará en la tabla de usuarios, por lo que la primera vez que se accede no lo encuentra, al no encontrarse, se crea el registro:
-            Tusuario tUsuario = new Tusuario();
-
-            tUsuario.setIdUsuario(usuario.getUid()); //Nota: Se pone el UID de la tabla Auth ya que independientemente de que el acceso sea con correo/contraseña o con Google, se crea el UID, por lo que se entiende que siempre van a ser unicos independientemente de la forma de acceso.
-            tUsuario.setCorreoUsuario(usuario.getEmail());
-            tUsuario.setFechaCreacionUsuario(longTimeStampALocalDateTime(usuario.getMetadata().getCreationTimestamp()));
-            tUsuario.setTipoUsuario("Alumno");
-            tUsuario.setMatriculaActivaUsuario(false);
-
-            //Parametros vacios, el usuario los tendrá que modificar desde su perfil mas adelante:
-            tUsuario.setImagenUsuario(""); //Poner el url al recurso alojado en CloudFireStore
-            tUsuario.setNombreUsuario("");
-            tUsuario.setApellidosUsuario("");
-            tUsuario.setApodoUsuario("");
-            tUsuario.setPatinesUsuario("");
-            tUsuario.setDescripcionUsuario("");
-
-            //insercción del objeto en la base de datos:
-            mDatabase.child("Usuarios").child(usuario.getUid()).setValue(tUsuario); //Nota: setValues borra todo y pome el nuevo, por lo que lo mejor es poner el objeto entero, con los campos que no sean de autenticacion para posteriormente modificar los campos marcados
-            //Una de las razones para meter el objeto entero aqui, es que así en la base de datos apareceran los nombres de los notdos, por lo que será más sencillo editar dichos campos.
-
-        }
-        /*
-        //TODO no funciona. ha vuelto a borrar los datos, creo que lo que no funciona es el onDataChange, tengo que poner otra cosa
+        //El siguiente fragmento de código busca si en la tabla usuarios existe el child con el id del usuario que tiene sesión iniciada. En caso de no existir, se crea el registro
+            //con los datos que el usuario alumno predeterminados (algunos sacados de la tabla Auth, otros impuestos, es decir, nada mas crear una cuenta, se
+            //fuerza a que sea una cuenta alumno, ademas se pone que no está cursando ningún curso (ya que se acaba de registrar). Algunos campos como nombre, imagen, etc
+            //los podrá cambiar el alumno desde su perfil.
         mDatabase.child("Usuarios").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull  DataSnapshot snapshot) {
                 boolean usuarioRegistrado = false;
-                for(DataSnapshot child: snapshot.getChildren()){
-                    List<String> listadoIDUsuarios = new ArrayList<>();
-                    listadoIDUsuarios.add(snapshot.getKey());
+                List<String> listadoIDUsuarios = new ArrayList<>();
 
-                    if(listadoIDUsuarios.contains(String.valueOf(usuario.getUid()))){
+                for(DataSnapshot child: snapshot.getChildren()){
+                    String identificadorUsuario = child.getKey();
+                    listadoIDUsuarios.add(identificadorUsuario);
+
+                    if(listadoIDUsuarios.contains(usuario.getUid())){ //El if dentro del bucle, asi en cuento se encuentre el IDusuario se dejan de cagar los datos de la base de datos, ya que solo nos interesa saber si dicho registro existe o no, no se necesitan ni sus valores ni nada.
                         usuarioRegistrado = true;
                         break;
                     }
@@ -319,7 +281,7 @@ public class Acceso extends AppCompatActivity {
 
                     tUsuario.setIdUsuario(usuario.getUid()); //Nota: Se pone el UID de la tabla Auth ya que independientemente de que el acceso sea con correo/contraseña o con Google, se crea el UID, por lo que se entiende que siempre van a ser unicos independientemente de la forma de acceso.
                     tUsuario.setCorreoUsuario(usuario.getEmail());
-                    tUsuario.setFechaCreacionUsuario(longTimeStampALocalDateTime(usuario.getMetadata().getCreationTimestamp()));
+                    tUsuario.setFechaCreacionUsuario(usuario.getMetadata().getCreationTimestamp());
                     tUsuario.setTipoUsuario("Alumno");
                     tUsuario.setMatriculaActivaUsuario(false);
 
@@ -344,18 +306,14 @@ public class Acceso extends AppCompatActivity {
             }
         });//Fin valueEventListener. Idea sacada de aqui: https://stackoverflow.com/questions/39260729/how-to-check-if-data-already-exists-in-firebase-realtime-database-with-android
 
-
-         */
     }//Fin método agregarUsuarioATablaUsuarios
 
-
-
+    //TODO: crear una clase con todos los métodos de modificación y formateo de fechas. Solo se necesita modificar el timestamp de long a legible por humanos en la parte de FRONT!!!!
     //Método para obtener un LocalDateTime desde un long TimeStamp (es tipo long)
     //Pasar de long timeStamp a LocalDateTime: https://stackoverflow.com/questions/44883432/long-timestamp-to-localdatetime
     public LocalDateTime longTimeStampALocalDateTime(long timestampACambiar){
         LocalDateTime fecha = LocalDateTime.ofInstant(Instant.ofEpochMilli(timestampACambiar),
                 TimeZone.getDefault().toZoneId());
-
         return fecha;
     }//Fin método longTimeStampALocalDateTime
 }

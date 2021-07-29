@@ -9,7 +9,7 @@ public class Tusuario implements Serializable {
     //Propiedades que no pueden ser nulas (practicamente todas se extraen de la tabla Authentication de Firebase).
     private String idUsuario;
     private String correoUsuario;
-    private LocalDateTime fechaCreacionUsuario;
+    private long fechaCreacionUsuario;
     private String tipoUsuario; //Esta es la unica propiedad que no se extrae de la tabla Auth. Por defecto tendrá un valor de "alumno". Esta propiedad podrá ser cambaiada por usuarios superiores para dar permisos de administracion(de la escuela, no administracion de la app y profesorado.
     private boolean matriculaActivaUsuario; //Esta tampoco se extrae de la tabla Auth. Cuando se registra un usuario, obviamente no está matriculado de nada, por lo que por defecto en la creación tomará el valor de "false".
 
@@ -29,7 +29,7 @@ public class Tusuario implements Serializable {
     public Tusuario() {
     }
 
-    public Tusuario(String idUsuario, String correoUsuario, LocalDateTime fechaCreacionUsuario, String tipoUsuario, boolean matriculaActivaUsuario, String nombreUsuario, String apellidosUsuario, String apodoUsuario, String patinesUsuario, String imagenUsuario, String descripcionUsuario) {
+    public Tusuario(String idUsuario, String correoUsuario, long fechaCreacionUsuario, String tipoUsuario, boolean matriculaActivaUsuario, String nombreUsuario, String apellidosUsuario, String apodoUsuario, String patinesUsuario, String imagenUsuario, String descripcionUsuario) {
         this.idUsuario = idUsuario;
         this.correoUsuario = correoUsuario;
         this.fechaCreacionUsuario = fechaCreacionUsuario;
@@ -62,11 +62,11 @@ public class Tusuario implements Serializable {
         this.correoUsuario = correoUsuario;
     }
 
-    public LocalDateTime getFechaCreacionUsuario() {
+    public long getFechaCreacionUsuario() {
         return fechaCreacionUsuario;
     }
 
-    public void setFechaCreacionUsuario(LocalDateTime fechaCreacionUsuario) {
+    public void setFechaCreacionUsuario(long fechaCreacionUsuario) {
         this.fechaCreacionUsuario = fechaCreacionUsuario;
     }
 
