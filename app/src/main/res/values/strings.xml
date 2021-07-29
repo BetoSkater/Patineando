@@ -70,6 +70,32 @@
 
     <!--MisCursos -->
     <string name="lblCursosAlumnoMisCursos">Mis cursos: </string>
+    <string name="title_activity_menu_navigator_drawer">MenuNavigatorDrawer</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
 
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- Menú Navigator Drawer -->
+    <string name="menuNavigatorDrawer">Menú principal</string>
+    <string name="opcionesNavigatorDrawer">Opciones</string>
+
+    <string name="MisAlumnosNavigatorDrawer">Mis grupos</string>
+
+    <string name="gestionarCursosNavigatorDrawer">Gestionar Cursos</string>
+    <string name="gestionarNoticiasNavigatorDrawer">Gestionar Noticias</string>
+    <string name="gestionarPermisosNavigatorDrawer">Gestionar Permisos</string>
+    <string name="gestionarUsuariosNavigatorDrawer">Gestionar Usuarios</string>
+    <string name="gestionarRutasNavigatorDrawer">Gestionar Rutas</string>
 
 </resources>

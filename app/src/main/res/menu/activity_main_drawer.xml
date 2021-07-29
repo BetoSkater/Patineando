@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+    <!--Forma parte del Navigator Drawer-->
+
+        <item
+            android:id="@+id/nav_menu_principal"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="@string/menuNavigatorDrawer" />
+        <item
+            android:id="@+id/nav_opciones"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="@string/opcionesNavigatorDrawer" />
+
+        <!--Profesores-->
+        <item
+            android:id="@+id/nav_admin_cursos"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="@string/gestionarCursosNavigatorDrawer" />
+
+        <!--Administración-->
+        <item
+            android:id="@+id/nav_admin_noticias"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="@string/gestionarNoticiasNavigatorDrawer" />
+        <item
+            android:id="@+id/nav_admin_rutas"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="@string/gestionarRutasNavigatorDrawer" />
+        <item
+            android:id="@+id/nav_admin_permisos"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="@string/gestionarPermisosNavigatorDrawer" />
+        <item
+            android:id="@+id/nav_admin_usuarios"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="@string/gestionarUsuariosNavigatorDrawer" />
+
+
+</menu>

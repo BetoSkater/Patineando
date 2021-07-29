@@ -269,7 +269,7 @@ public class Acceso extends AppCompatActivity {
                 for(DataSnapshot child: snapshot.getChildren()){
                     String identificadorUsuario = child.getKey();
                     listadoIDUsuarios.add(identificadorUsuario);
-
+                    //https://stackoverflow.com/questions/46651782/retrieve-data-of-all-user-id-from-firebase este enlace es el que me ha encendido no mucho
                     if(listadoIDUsuarios.contains(usuario.getUid())){ //El if dentro del bucle, asi en cuento se encuentre el IDusuario se dejan de cagar los datos de la base de datos, ya que solo nos interesa saber si dicho registro existe o no, no se necesitan ni sus valores ni nada.
                         usuarioRegistrado = true;
                         break;

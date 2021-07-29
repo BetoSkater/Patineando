@@ -72,6 +72,19 @@ https://github.com/Baseflow/PhotoView
 * **Capturar imagen o seleccionar una de la galeria** : https://medium.com/@hasangi/capture-image-or-choose-from-gallery-photos-implementation-for-android-a5ca59bc6883
     * Nota: Esto lo dejo sim implementar ya que en mi base de datos va un enlace que referencia al CloudStore, por lo que aqui tengo un lio y no sé como hacerlo, igual las imagenes de los usuarios si que las debería meter en RealTimeDatabase
 
+* **Navigator Drawer**: Nota, el tutorial del documento del profesor tiene fragments, justo es lo que necesito que en vez de que el fragment del menú cambie con botones, cambie con un booleano 
+            en funcion de si el usuario tiene rango de alumno, profesor o personal administrativo.
+            
+    * How to have two different navigation drawer activities in one android studio project for two different types of users?: 
+        https://stackoverflow.com/questions/58158440/how-to-have-two-different-navigation-drawer-activities-in-one-android-studio-pro
+    * Navigation Drawer con Fragments – Android Design Support Library: 
+        https://desarrollador-android.com/material-design/desarrollo-material-design/pautas-desarrollo/navigation-drawer-con-fragments/
+    * Android Custom Navigation Drawer: 
+        https://web.archive.org/web/20171208103611/http://www.tutecentral.com/android-custom-navigation-drawer/
+    * https://www.youtube.com/watch?v=fGcMLu1GJEc 
+    * **Añadir campos al menú de forma dinámica, creo que me puede servir**: https://pick8chu.github.io/android_navigation_drawer.html
+    * **Drawer Navigation - Change list of items dynamically after creation**: https://stackoverflow.com/questions/27152645/drawer-navigation-change-list-of-items-dynamically-after-creation
+    
 * **FIREBASE**:
     * **Autentica con Firebase mediante cuentas con contraseña en Android**:https://firebase.google.com/docs/auth/android/password-auth?hl=es  
     * **Guias de Firebase**: https://firebase.google.com/docs/guides?authuser=0 
@@ -88,6 +101,9 @@ https://github.com/Baseflow/PhotoView
         *   https://firebase.google.com/docs/auth/android/manage-users?hl=es-419 
     * **Firebase: User Sign Up, Login & Data Management**: https://medium.com/@felicity.johnson.mail/firebase-user-sign-up-login-data-management-992d778b167
     * **Comprobar si un correo ya está en uso. etc** : https://stackoverflow.com/questions/51562995/how-can-i-check-if-user-exists-in-firebase
+    * **Trabaja con listas de datos en Android**: https://firebase.google.com/docs/database/android/lists-of-data#java_6 
+    * **Retrieve data of all user id from firebase**: https://stackoverflow.com/questions/46651782/retrieve-data-of-all-user-id-from-firebase
+    
 #Notas importantes de interés:
     * **Clases llamadas tPalabra** : Estas Clases hacen referencia a los objetos que se quieren introducir en las tablas de la base de datos.
         así, la clase tUsuarios hace referencia a la tablaUsuarios, la clase tCursos a los cursos que imparte la escuela (sin alumnos, no son grupos ni nada de eso), etc.

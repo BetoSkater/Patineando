@@ -12,7 +12,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Patineando"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ModificarMiPerfil"></activity>
+        <activity
+            android:name=".MenuNavigatorDrawer"
+            android:label="@string/title_activity_menu_navigator_drawer"
+            android:theme="@style/Theme.Patineando.NoActionBar"></activity>
+        <activity android:name=".ModificarMiPerfil" />
         <activity android:name=".Registro" /> <!-- https://stackoverflow.com/questions/52707918/webview-showing-err-cleartext-not-permitted-although-site-is-https -->
         <activity android:name=".ImagenCursosImpartidos" />
         <activity android:name=".Acceso" />
