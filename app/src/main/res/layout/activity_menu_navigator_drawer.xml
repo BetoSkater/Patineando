@@ -8,6 +8,7 @@
     android:fitsSystemWindows="true"
     tools:openDrawer="start">
     <!--Forma parte del Navigator Drawer-->
+    <!--Este es el codigo que tengo que poner en el activity_menu_principal, en el include, poner el código que yo tengo en el  menuprincipal.xml-->
     <include
         android:id="@+id/app_bar_menu_navigator_drawer"
         layout="@layout/app_bar_menu_navigator_drawer"
@@ -21,5 +22,5 @@
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_header_menu_navigator_drawer"
-        app:menu="@menu/activity_main_drawer" />
+        app:menu="@menu/activity_main_drawer" /><!--este-->
 </androidx.drawerlayout.widget.DrawerLayout>
