@@ -84,7 +84,11 @@ https://github.com/Baseflow/PhotoView
     * https://www.youtube.com/watch?v=fGcMLu1GJEc 
     * **Añadir campos al menú de forma dinámica, creo que me puede servir**: https://pick8chu.github.io/android_navigation_drawer.html
     * **Drawer Navigation - Change list of items dynamically after creation**: https://stackoverflow.com/questions/27152645/drawer-navigation-change-list-of-items-dynamically-after-creation
-    
+    * **Navigation Drawer in Android**: https://www.geeksforgeeks.org/navigation-drawer-in-android/
+    * **Tutorial Para Crear Un Navigation Drawer En Android**: https://www.develou.com/android-navigation-drawer-tutorial/
+    * **How to Create and Edit NAVIGATION DRAWER ACTIVITY 2021 | EASIEST WAY | Android Studio Latest Version**:https://www.youtube.com/watch?v=Mr__NdcIxqs
+    * **Dynamic Menus in NavigationView**: https://stackoverflow.com/questions/31064483/dynamic-menus-in-navigationview
+    * **Menus de navegacion para la parte superior e inferior (!= a los nagigation drawer)**:https://developer.android.com/guide/navigation/navigation-ui?hl=es#java
 * **FIREBASE**:
     * **Autentica con Firebase mediante cuentas con contraseña en Android**:https://firebase.google.com/docs/auth/android/password-auth?hl=es  
     * **Guias de Firebase**: https://firebase.google.com/docs/guides?authuser=0 
