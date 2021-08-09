@@ -9,6 +9,13 @@
     <color name="white">#FFFFFFFF</color>
 
     <!--Colores  personalizados -->
+
+    <!--Colores principales-->
+    <color name="principalBlanco">#FFFFFF</color>
+    <color name="principalPurpura">#29132A</color>
+    <color name="principalNavajoWhite">#FEDC97</color>
+
     <color name="transparente">#00FFFFFF</color>
     <color name="rojoError">#FF0000</color>
+
 </resources>

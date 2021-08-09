@@ -3,7 +3,7 @@
     package="com.example.patineando">
 
     <uses-permission android:name="android.permission.INTERNET" />
-
+    <!--Nota, para quitar el action bar, en theme, poner Theme.Patineando.NoActionBar o algo asi-->
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"

@@ -2,42 +2,77 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:showIn="navigation_view"
+
     >
+    <!--de la parte de arriba he quitado la linea del min 16 del video hindú-->
     <!--Forma parte del Navigator Drawer-->
+    <!-- Se han añadido los elementos dentro de un group, para que solo uno de ellospueda ser seleccionado-->
+    <group android:checkableBehavior="single">
 
-        <item
-            android:id="@+id/nav_menu_principal"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="@string/menuNavigatorDrawer" />
-        <item
-            android:id="@+id/nav_opciones"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="@string/opcionesNavigatorDrawer" />
+        <item android:title="@string/usuarioAlumno"
+            android:id="@+id/menuAlumnoND">
+            <menu>
+                <item
+                    android:id="@+id/nav_menu_principal"
+                    android:icon="@drawable/ic_menu_camera"
+                    android:title="@string/menuNavigatorDrawer"
+                    android:menuCategory="secondary"/>
+                <item
+                    android:id="@+id/nav_opciones"
+                    android:icon="@drawable/ic_menu_gallery"
+                    android:title="@string/opcionesNavigatorDrawer"
+                    android:menuCategory="secondary"/>
 
-        <!--Profesores-->
-        <item
-            android:id="@+id/nav_admin_cursos"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="@string/gestionarCursosNavigatorDrawer" />
+            </menu>
 
-        <!--Administración-->
-        <item
-            android:id="@+id/nav_admin_noticias"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="@string/gestionarNoticiasNavigatorDrawer" />
-        <item
-            android:id="@+id/nav_admin_rutas"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="@string/gestionarRutasNavigatorDrawer" />
-        <item
-            android:id="@+id/nav_admin_permisos"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="@string/gestionarPermisosNavigatorDrawer" />
-        <item
-            android:id="@+id/nav_admin_usuarios"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="@string/gestionarUsuariosNavigatorDrawer" />
+        </item>
+
+        <item android:title="@string/usuarioProfesor"
+            android:id="@+id/menuProfesorND"
+            android:visible="false">
+            <menu>
+                <!--Profesores-->
+                <item
+                    android:id="@+id/nav_admin_cursos"
+                    android:icon="@drawable/ic_menu_slideshow"
+                    android:title="@string/gestionarCursosNavigatorDrawer"
+                    android:menuCategory="secondary"/>
+
+            </menu>
+
+        </item>
+        <item android:title="@string/usuarioAdministrador"
+            android:id="@+id/menuAdministracionND"
+            android:visible="false">
+            <menu>
+                <!--Administración-->
+                <item
+                    android:id="@+id/nav_admin_noticias"
+                    android:icon="@drawable/ic_menu_slideshow"
+                    android:title="@string/gestionarNoticiasNavigatorDrawer"
+                    android:menuCategory="secondary"/>
+                <item
+                    android:id="@+id/nav_admin_rutas"
+                    android:icon="@drawable/ic_menu_slideshow"
+                    android:title="@string/gestionarRutasNavigatorDrawer"
+                    android:menuCategory="secondary"/>
+                <item
+                    android:id="@+id/nav_admin_permisos"
+                    android:icon="@drawable/ic_menu_slideshow"
+                    android:title="@string/gestionarPermisosNavigatorDrawer"
+                    android:menuCategory="secondary"/>
+                <item
+                    android:id="@+id/nav_admin_usuarios"
+                    android:icon="@drawable/ic_menu_slideshow"
+                    android:title="@string/gestionarUsuariosNavigatorDrawer"
+                    android:menuCategory="secondary"/>
+
+            </menu>
+
+        </item>
+
+
+    </group>
 
 
 </menu>

@@ -3,23 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_home">
-    <!--Forma parte del Navigator Drawer-->
-    <fragment
-        android:id="@+id/nav_home"
-        android:name="com.example.patineando.ui.home.HomeFragment"
-        android:label="@string/menu_home"
-        tools:layout="@layout/fragment_home" />
+    app:startDestination="@id/fragmentito_menu_principal">
 
     <fragment
-        android:id="@+id/nav_gallery"
+        android:id="@+id/gallery_fragment"
         android:name="com.example.patineando.ui.gallery.GalleryFragment"
         android:label="@string/menu_gallery"
         tools:layout="@layout/fragment_gallery" />
-
     <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="com.example.patineando.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
+        android:id="@+id/fragmentito_menu_principal"
+        android:name="com.example.patineando.FragmentsND.FragmentMenuPrincipal"
+        android:label="@string/menu_gallery"
+        tools:layout="@layout/fragment_menu_principal" />
+
 </navigation>

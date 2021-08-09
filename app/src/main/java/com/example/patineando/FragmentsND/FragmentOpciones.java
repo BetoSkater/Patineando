@@ -1,4 +1,4 @@
-package com.example.patineando;
+package com.example.patineando.FragmentsND;
 
 import android.os.Bundle;
 
@@ -8,12 +8,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.patineando.R;
+
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link FragmentAdministradorMenuDrawer#newInstance} factory method to
+ * Use the {@link FragmentOpciones#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class FragmentAdministradorMenuDrawer extends Fragment {
+public class FragmentOpciones extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -24,7 +26,7 @@ public class FragmentAdministradorMenuDrawer extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public FragmentAdministradorMenuDrawer() {
+    public FragmentOpciones() {
         // Required empty public constructor
     }
 
@@ -34,11 +36,11 @@ public class FragmentAdministradorMenuDrawer extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment FragmentAdministradorMenuDrawer.
+     * @return A new instance of fragment FragmentOpciones.
      */
     // TODO: Rename and change types and number of parameters
-    public static FragmentAdministradorMenuDrawer newInstance(String param1, String param2) {
-        FragmentAdministradorMenuDrawer fragment = new FragmentAdministradorMenuDrawer();
+    public static FragmentOpciones newInstance(String param1, String param2) {
+        FragmentOpciones fragment = new FragmentOpciones();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -59,6 +61,6 @@ public class FragmentAdministradorMenuDrawer extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_administrador_menu_drawer, container, false);
+        return inflater.inflate(R.layout.fragment_opciones, container, false);
     }
 }

@@ -72,14 +72,12 @@ public class Acceso extends AppCompatActivity {
                                 .requestIdToken(getString(R.string.default_web_client_id))
                                 .requestEmail()
                                 .build();
-
                         mGoogleSignInClient = GoogleSignIn.getClient(Acceso.this,gso); //Todo en la guia pone solo this
                         accesoGoogle(); //TODO creo que va aqui
                         firebaseAuthConGoogle(idTokenWebApiGoogleCredenciales);//TODO aqui va lo del token, arreglar
                 }//Fin switch
             }
         });
-
     }//Fin onCrete
 
     //Comprobación de que el usuario ha accedido en el onStart()
@@ -88,18 +86,13 @@ public class Acceso extends AppCompatActivity {
         super.onStart();
        FirebaseUser usuarioActual = mAuth.getCurrentUser();
         updateUIFirebase(usuarioActual); //TODO ver que hacer con esto
-
-
-
         //Comprobación de que el usuario ya ha accedido previamente con su cuenta de Google: //Todo esto igual lo ntengo que quitar ya que esta realizado con
         //TODO esto, que no tiene lo de firebase: https://developers.google.com/identity/sign-in/android/sign-in?utm_source=studio
        // GoogleSignInAccount cuenta = GoogleSignIn.getLastSignedInAccount(this);
         //updateUIGoogle(cuenta);
     }//Fin método onStart()
 
-    
     //Método para ejecutar el acceso con correo y contraseña. Asignado al botón btnAccederAcceso
-
     public void accederConCorreo(View view){
         //Nota: con el try catch y los if con los return de las cajas de texto, se evita que salte el error de las cajas de texto vacias, ya que se está forzando al usuario a que introduzca un correo y una contraseña para continuar, de no hacerlo, vuelve (deja de ejecutar el metodo del boton).
             try {
@@ -130,32 +123,20 @@ public class Acceso extends AppCompatActivity {
                         }
                     }
                 });
-
             }catch(IllegalStateException e){
                 System.out.println(e);
             }//fin try..catch
-
     }//Fin método accederConCorreo()
-
-
-
     //Método para activar el recuperar contraseña. Asignado al botón btnOlvidoAcceso
 
     public void restablecerContrasena(View view){
     }//Fin método restablecerContrasena
-
-
 
     //Método para registrarse. Asignado al botón btnRegistroAcceso
     public void registrarUsuario(View view){
         Intent intent = new Intent(this, Registro.class);
         startActivity(intent);
     }//Fin método registrarUsuario()
-
-
-
-
-
 
 
     //Método updateUI para el acceso con Correo y Contraseña
@@ -169,7 +150,7 @@ public class Acceso extends AppCompatActivity {
             agregarUsuarioATablaUsuarios(); //Todo comprobar que en el segundo acceso no tira los datos que se hayan puesto una vez actualizado el perfil. Es decir, este código solo se deberia ejecutar una vez, en el momento de creación del registro en la base de datos
 
             //https://stackoverflow.com/questions/44491418/can-not-resolve-updateui-firebase
-            Intent intent = new Intent(this,MenuPrincipal.class);
+            Intent intent = new Intent(this,MenuNavigatorDrawer.class);
             startActivity(intent); //En teoría, se tiene que saltar el login e ir directamente al menú principal.
         }
     }//Fin Método updateUI(...) con Firebase
@@ -180,14 +161,11 @@ public class Acceso extends AppCompatActivity {
     public void updateUIGoogle(GoogleSignInAccount usuario){
 
         if(usuario!=null){
-
             //TODO entiendo que obtene la informacion de la ultima sesión, y por tanto aqui tengo que poner un intent al menú principal?
-            Intent intent = new Intent(this,MenuPrincipal.class);
+            Intent intent = new Intent(this,MenuNavigatorDrawer.class);
             startActivity(intent); //En teoría, se tiene que saltar el login e ir directamente al menú principal.
         }
-
     }//Fin método updateUI(...) para google
-
 
     //Método para el acceso mediante una cuenta de Google (Google Sign-In)
     public void accesoGoogle(){
