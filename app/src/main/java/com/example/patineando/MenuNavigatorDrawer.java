@@ -5,12 +5,15 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
+import android.widget.Toast;
 
 import com.example.patineando.databinding.ActivityMainBinding;
 import com.example.patineando.databinding.ActivityMenuPrincipalBinding;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
+import androidx.annotation.NonNull;
+import androidx.core.view.GravityCompat;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -82,37 +85,38 @@ public class MenuNavigatorDrawer extends AppCompatActivity {
 
 
 
-        /*
+
         //Versionando el tutorial de youtube: https://www.youtube.com/watch?v=3SHLg2isKi4
-        NavigationView vistaNavegacion = findViewById(R.id.nav_view);
+        //Funcionalidad de los botones del navigator Medrawer:
+        NavigationView vistaNavegacion = findViewById(R.id.vista_navegacion_ND);
         vistaNavegacion.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener(){
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch(item.getItemId()){
                     case (R.id.nav_menu_principal):
-                        Toast.makeText(MenuPrincipal.this, "Menu Principal", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MenuNavigatorDrawer.this, "Menu Principal", Toast.LENGTH_SHORT).show();
                         break;
                     case (R.id.nav_opciones):
-                        Toast.makeText(MenuPrincipal.this, "Opciones", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MenuNavigatorDrawer.this, "Opciones", Toast.LENGTH_SHORT).show();
                         break;
                     case (R.id.nav_admin_cursos):
-                        Toast.makeText(MenuPrincipal.this, "Gestionar Cursos", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MenuNavigatorDrawer.this, "Gestionar Cursos", Toast.LENGTH_SHORT).show();
                         break;
                     case (R.id.nav_admin_noticias):
-                        Toast.makeText(MenuPrincipal.this, "Gestionar Noticias", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MenuNavigatorDrawer.this, "Gestionar Noticias", Toast.LENGTH_SHORT).show();
                         break;
                     case (R.id.nav_admin_rutas):
-                        Toast.makeText(MenuPrincipal.this, "Gestionar Rutas", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MenuNavigatorDrawer.this, "Gestionar Rutas", Toast.LENGTH_SHORT).show();
                         break;
                     case (R.id.nav_admin_permisos):
-                        Toast.makeText(MenuPrincipal.this, "Gestionar Permisos", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MenuNavigatorDrawer.this, "Gestionar Permisos", Toast.LENGTH_SHORT).show();
                         break;
                     case (R.id.nav_admin_usuarios):
-                        Toast.makeText(MenuPrincipal.this, "Gestionar Usuarios", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MenuNavigatorDrawer.this, "Gestionar Usuarios", Toast.LENGTH_SHORT).show();
                         break;
                 }
 
-                DrawerLayout drawerLayout = findViewById(R.id.drawer_layout);
+                DrawerLayout drawerLayout = findViewById(R.id.menu_drawer_layout);
                 drawerLayout.closeDrawer(GravityCompat.START);
                 return true;
             }
@@ -120,7 +124,7 @@ public class MenuNavigatorDrawer extends AppCompatActivity {
         });
 
 
-         */
+
 
     }//fin onCreate
 

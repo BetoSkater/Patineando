@@ -3,17 +3,39 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@id/fragmentito_menu_principal">
+    app:startDestination="@id/fragmento_menu_principal">
 
+    <!--Alumnos-->
     <fragment
-        android:id="@+id/gallery_fragment"
-        android:name="com.example.patineando.ui.gallery.GalleryFragment"
-        android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
-    <fragment
-        android:id="@+id/fragmentito_menu_principal"
+        android:id="@+id/fragmento_menu_principal"
         android:name="com.example.patineando.FragmentsND.FragmentMenuPrincipal"
-        android:label="@string/menu_gallery"
+
         tools:layout="@layout/fragment_menu_principal" />
+    <fragment
+        android:id="@+id/fragmento_opciones"
+        android:name="com.example.patineando.FragmentsND.FragmentOpciones"
+        tools:layout="@layout/fragment_opciones" />
+    <!--Profesores-->
+    <fragment
+        android:id="@+id/fragmento_gestionar_cursos"
+        android:name="com.example.patineando.FragmentsND.FragmentGestionarCursos"
+        tools:layout="@layout/fragment_gestionar_cursos" />
+    <!--Administración-->
+    <fragment
+        android:id="@+id/fragmento_gestionar_noticias"
+        android:name="com.example.patineando.FragmentsND.FragmentGestionarNoticias"
+        tools:layout="@layout/fragment_gestionar_noticias" />
+    <fragment
+        android:id="@+id/fragmento_gestionar_rutas"
+        android:name="com.example.patineando.FragmentsND.FragmentGestionarRutas"
+        tools:layout="@layout/fragment_gestionar_rutas" />
+    <fragment
+        android:id="@+id/fragmento_gestionar_permisos"
+        android:name="com.example.patineando.FragmentsND.FragmentGestionarPermisos"
+        tools:layout="@layout/fragment_gestionar_permisos" />
+    <fragment
+        android:id="@+id/fragmento_gestionar_usuarios"
+        android:name="com.example.patineando.FragmentsND.FragmentGestionarUsuarios"
+        tools:layout="@layout/fragment_gestionar_usuarios" />
 
 </navigation>
