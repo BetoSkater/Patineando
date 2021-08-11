@@ -110,11 +110,23 @@
     <string name="signature_title">Your signature</string>
     <string name="reply_title">Default reply action</string>
 
-    <!-- Sync Preferences -->
+    <!-- Sync Preferences --><!--Creo que esto es de cuando cree el fragment de opciones genericas, el cual eliminé y no usé-->
     <string name="sync_title">Sync email periodically</string>
     <string name="attachment_title">Download incoming attachments</string>
     <string name="attachment_summary_on">Automatically download attachments for incoming emails
     </string>
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
 
+
+    <!-- Fragment Gestión de Permisos-->
+    <string name="fragmento_gestionar_permisos">Gestión de permisos de usuario</string>
+    <string name="fragmento_gestionar_permisos_buscar">Busqueda por apellidos del usuario al que le quiere cambiar los permisos:</string>
+    <string name="boton_fragmento_permisos_buscar">Buscar</string>
+
+    <!-- Fragment Gestión de Permisos-->
+    <string name="etiqueta_nombre_fragmento_usuario_permisos">Nombre:</string>
+    <string name="etiqueta_correo_fragmento_usuario_permisos">Correo:</string>
+    <string name="etiqueta_tipo_usuario_fragmento_usuario_permisos">Tipo de Usuario:</string>
+    <string name="etiqueta_cambiar_fragmento_usuario_permisos">Seleccione el permiso que debería tener este usuario.</string>
+    <string name="btn_guardar_cambios_usuario_permisos">Actualizar permisos</string>
 </resources>

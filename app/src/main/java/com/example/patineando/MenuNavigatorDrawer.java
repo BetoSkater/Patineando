@@ -1,12 +1,23 @@
 package com.example.patineando;
 
 
+
+
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
 import android.widget.Toast;
 
+import com.example.patineando.FragmentsND.FragmentGestionarCursos;
+import com.example.patineando.FragmentsND.FragmentGestionarNoticias;
+import com.example.patineando.FragmentsND.FragmentGestionarPermisos;
+import com.example.patineando.FragmentsND.FragmentGestionarRutas;
+import com.example.patineando.FragmentsND.FragmentGestionarUsuarios;
+import com.example.patineando.FragmentsND.FragmentMenuPrincipal;
+import com.example.patineando.FragmentsND.FragmentOpciones;
 import com.example.patineando.databinding.ActivityMainBinding;
 import com.example.patineando.databinding.ActivityMenuPrincipalBinding;
 import com.google.android.material.snackbar.Snackbar;
@@ -14,6 +25,7 @@ import com.google.android.material.navigation.NavigationView;
 
 import androidx.annotation.NonNull;
 import androidx.core.view.GravityCompat;
+import android.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -92,27 +104,48 @@ public class MenuNavigatorDrawer extends AppCompatActivity {
         vistaNavegacion.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener(){
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                Fragment fragmentoND;
+                FragmentManager fragmentManager = getFragmentManager();
+                //Se crea una nueva transacción:
+                FragmentTransaction transaccion = fragmentManager.beginTransaction();
                 switch(item.getItemId()){
                     case (R.id.nav_menu_principal):
-                        Toast.makeText(MenuNavigatorDrawer.this, "Menu Principal", Toast.LENGTH_SHORT).show();
+                        //FragmentMenuPrincipal fragmentMenuPrincipal = new FragmentMenuPrincipal(); con esto tambien tira
+                   //     fragmentoND = new FragmentMenuPrincipal(); //Nota: el fragment tiene que importar import android.app.Fragment;, no la de androidX
+                     //   transaccion.replace(R.id.contenedor_fragments_ND,fragmentoND); //TODO nota, no se si es mejor usar transaccion replace o transaccion.add
+                        //transaccion.add(R.id.contenedor_fragments_ND,fragmentoND);
+                        //Validacion del cambio:
+                        transaccion.commit();
                         break;
                     case (R.id.nav_opciones):
-                        Toast.makeText(MenuNavigatorDrawer.this, "Opciones", Toast.LENGTH_SHORT).show();
+                        fragmentoND = new FragmentOpciones();
+                        transaccion.replace(R.id.contenedor_fragments_ND,fragmentoND);
+                        transaccion.commit();
                         break;
                     case (R.id.nav_admin_cursos):
-                        Toast.makeText(MenuNavigatorDrawer.this, "Gestionar Cursos", Toast.LENGTH_SHORT).show();
+                        fragmentoND = new FragmentGestionarCursos();
+                        transaccion.replace(R.id.contenedor_fragments_ND,fragmentoND);
+                        transaccion.commit();
                         break;
                     case (R.id.nav_admin_noticias):
-                        Toast.makeText(MenuNavigatorDrawer.this, "Gestionar Noticias", Toast.LENGTH_SHORT).show();
+                        fragmentoND = new FragmentGestionarNoticias();
+                        transaccion.replace(R.id.contenedor_fragments_ND,fragmentoND);
+                        transaccion.commit();
                         break;
                     case (R.id.nav_admin_rutas):
-                        Toast.makeText(MenuNavigatorDrawer.this, "Gestionar Rutas", Toast.LENGTH_SHORT).show();
+                        fragmentoND = new FragmentGestionarRutas();
+                        transaccion.replace(R.id.contenedor_fragments_ND,fragmentoND);
+                        transaccion.commit();
                         break;
                     case (R.id.nav_admin_permisos):
-                        Toast.makeText(MenuNavigatorDrawer.this, "Gestionar Permisos", Toast.LENGTH_SHORT).show();
+                        fragmentoND = new FragmentGestionarPermisos();
+                        transaccion.replace(R.id.contenedor_fragments_ND,fragmentoND);
+                        transaccion.commit();
                         break;
                     case (R.id.nav_admin_usuarios):
-                        Toast.makeText(MenuNavigatorDrawer.this, "Gestionar Usuarios", Toast.LENGTH_SHORT).show();
+                        fragmentoND = new FragmentGestionarUsuarios();
+                        transaccion.replace(R.id.contenedor_fragments_ND,fragmentoND);
+                        transaccion.commit();
                         break;
                 }
 

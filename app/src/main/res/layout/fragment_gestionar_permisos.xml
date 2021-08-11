@@ -5,11 +5,40 @@
     android:layout_height="match_parent"
     tools:context=".FragmentsND.FragmentGestionarPermisos">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="Gestionar permisos" />
+        android:orientation="vertical"
+        android:padding="10dp">
 
+        <TextView
+            android:id="@+id/lblFragmentoGestionarPermisos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/fragmento_gestionar_permisos" />
+
+        <TextView
+            android:id="@+id/lblFragmentoGestionPermisosBuscar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/fragmento_gestionar_permisos_buscar" />
+
+        <EditText
+            android:id="@+id/txtFragmentoGestionarPermisosBusqueda"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName" />
+
+        <Button
+            android:id="@+id/btnFragmentoPermisosBuscar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/boton_fragmento_permisos_buscar" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rcvListadoPermisos"
+            android:layout_width="match_parent"
+            android:layout_height="523dp" />
+    </LinearLayout>
 </FrameLayout>

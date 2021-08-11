@@ -2,13 +2,21 @@ package com.example.patineando.FragmentsND;
 
 import android.os.Bundle;
 
-import androidx.fragment.app.Fragment;
+import android.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.patineando.AdaptadorGestionPermisos;
+import com.example.patineando.AuxAdaptadorGestionPermisos;
 import com.example.patineando.R;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -16,6 +24,9 @@ import com.example.patineando.R;
  * create an instance of this fragment.
  */
 public class FragmentGestionarPermisos extends Fragment {
+
+    //Declaracion de las variables a nivel de clase:
+    private RecyclerView listadoPermisos;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -61,6 +72,28 @@ public class FragmentGestionarPermisos extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_gestionar_permisos, container, false);
+        View vista = inflater.inflate(R.layout.fragment_gestionar_permisos, container, false);
+        listadoPermisos = vista.findViewById(R.id.rcvListadoPermisos);
+        listadoPermisos.setHasFixedSize(true);
+        listadoPermisos.setLayoutManager(new LinearLayoutManager(vista.getContext()));
+        listadoPermisos.setAdapter(new AdaptadorGestionPermisos(ListadoGestionPermisos()));
+
+        return vista;
+    }
+
+    //Listado para comprobar que el Adaptador funciona bien:
+
+    public List<AuxAdaptadorGestionPermisos> ListadoGestionPermisos(){
+        List<AuxAdaptadorGestionPermisos> Listado = new ArrayList<>();
+
+        Listado.add(new AuxAdaptadorGestionPermisos("adsda", "correo", R.drawable.ic_menu_gallery, "Alumno", "Benito", "Floro"));
+        Listado.add(new AuxAdaptadorGestionPermisos("asda2", "correo2", R.drawable.ic_menu_gallery, "Alumno", "Claudia", "Martinez Lopez"));
+        Listado.add(new AuxAdaptadorGestionPermisos("adsda3", "correo3", R.drawable.ic_menu_gallery, "Alumno", "Pepe", "Moreno"));
+        Listado.add(new AuxAdaptadorGestionPermisos("adsda4", "correo4", R.drawable.ic_menu_gallery, "Alumno", "Raquel", "Perez"));
+        Listado.add(new AuxAdaptadorGestionPermisos("adsda5", "correo5", R.drawable.ic_menu_gallery, "Alumno", "Ben", "Flo"));
+
+
+
+        return Listado;
     }
 }
