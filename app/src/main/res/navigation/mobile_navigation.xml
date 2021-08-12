@@ -34,6 +34,10 @@
         android:name="com.example.patineando.FragmentsND.FragmentGestionarPermisos"
         tools:layout="@layout/fragment_gestionar_permisos" />
     <fragment
+        android:id="@+id/fragmento_gestionar_permisos_usuario_permisos"
+        android:name="com.example.patineando.FragmentsND.FragmentUsuarioPermisos"
+        tools:layout="@layout/fragment_usuario_permisos" />
+    <fragment
         android:id="@+id/fragmento_gestionar_usuarios"
         android:name="com.example.patineando.FragmentsND.FragmentGestionarUsuarios"
         tools:layout="@layout/fragment_gestionar_usuarios" />

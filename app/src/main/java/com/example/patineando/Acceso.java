@@ -260,7 +260,7 @@ public class Acceso extends AppCompatActivity {
                     tUsuario.setIdUsuario(usuario.getUid()); //Nota: Se pone el UID de la tabla Auth ya que independientemente de que el acceso sea con correo/contraseña o con Google, se crea el UID, por lo que se entiende que siempre van a ser unicos independientemente de la forma de acceso.
                     tUsuario.setCorreoUsuario(usuario.getEmail());
                     tUsuario.setFechaCreacionUsuario(usuario.getMetadata().getCreationTimestamp());
-                    tUsuario.setTipoUsuario("Alumno");
+                    tUsuario.setTipoUsuario("Alumnado");
                     tUsuario.setMatriculaActivaUsuario(false);
 
                     //Parametros vacios, el usuario los tendrá que modificar desde su perfil mas adelante:

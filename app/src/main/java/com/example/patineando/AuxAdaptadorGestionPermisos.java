@@ -1,6 +1,8 @@
 package com.example.patineando;
 
-public class AuxAdaptadorGestionPermisos {
+import java.io.Serializable;
+
+public class AuxAdaptadorGestionPermisos implements Serializable {
     private String idUsuario;
     private String correoUsuario;
     private int imagenUsuario;

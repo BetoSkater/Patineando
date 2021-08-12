@@ -1,5 +1,6 @@
 package com.example.patineando.FragmentsND;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import android.app.Fragment;
@@ -71,12 +72,14 @@ public class FragmentGestionarPermisos extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         // Inflate the layout for this fragment
         View vista = inflater.inflate(R.layout.fragment_gestionar_permisos, container, false);
         listadoPermisos = vista.findViewById(R.id.rcvListadoPermisos);
         listadoPermisos.setHasFixedSize(true);
         listadoPermisos.setLayoutManager(new LinearLayoutManager(vista.getContext()));
         listadoPermisos.setAdapter(new AdaptadorGestionPermisos(ListadoGestionPermisos()));
+
 
         return vista;
     }
