@@ -24,11 +24,12 @@ import java.util.List;
 public class AdaptadorGestionPermisos extends RecyclerView.Adapter<AdaptadorGestionPermisos.ViewHolder> {
     //Variables:
     private List<AuxAdaptadorGestionPermisos> listadoUsuariosPermisos;
+    private ItemClickListener clickListener;
 
     //Constructor:
-    public AdaptadorGestionPermisos(List<AuxAdaptadorGestionPermisos> listadoUsuariosPermisos){
+    public AdaptadorGestionPermisos(List<AuxAdaptadorGestionPermisos> listadoUsuariosPermisos, ItemClickListener clickListener){
         this.listadoUsuariosPermisos = listadoUsuariosPermisos;
-
+        this.clickListener = clickListener;
     }
 
     //2º) Sobrescritura onCreate():
@@ -54,7 +55,7 @@ public class AdaptadorGestionPermisos extends RecyclerView.Adapter<AdaptadorGest
         holder.tarjetaRecycler.setOnClickListener(new View.OnClickListener(){
            @Override
            public void onClick(View v){
-
+                /*
                FragmentUsuarioPermisos fragmentoND = new FragmentUsuarioPermisos();
                FragmentManager fragmentManager = getFragmentManager(); //TODO me quedo aqui
                //Se crea una nueva transacción:
@@ -62,6 +63,9 @@ public class AdaptadorGestionPermisos extends RecyclerView.Adapter<AdaptadorGest
 
                transaccion.replace(R.id.contenedor_fragments_ND,fragmentoND);
                transaccion.commit();
+
+                 */
+               clickListener.onItemClick(listadoUsuariosPermisos.get(position));
            }
         });
     }
@@ -78,7 +82,7 @@ public class AdaptadorGestionPermisos extends RecyclerView.Adapter<AdaptadorGest
         private ImageView imgUsuarioPermisos;
         private TextView txtTipoUsuarioPermisos, txtNombreApellidoPermisos;
         private CardView tarjetaRecycler;
-        private Context contextito;
+        //private Context contextito;
         public ViewHolder(View vista){
             super(vista);
             //Asignacion de las variables con los campos:
@@ -86,7 +90,12 @@ public class AdaptadorGestionPermisos extends RecyclerView.Adapter<AdaptadorGest
             txtTipoUsuarioPermisos = (TextView) vista.findViewById(R.id.lblListadoGPPermiso);
             txtNombreApellidoPermisos = (TextView) vista.findViewById(R.id.lblListadoGPNombreApe);
             tarjetaRecycler = (CardView) vista.findViewById(R.id.crdTarjetaRVFraGestionarPermisos);
-            contextito = tarjetaRecycler.getContext();
+            //contextito = tarjetaRecycler.getContext();
         }
+    }//Fin ViewHolder
+
+    //Se crea la interfaz para el ItemClickListener
+    public interface ItemClickListener{
+        public void onItemClick(AuxAdaptadorGestionPermisos modeloDatos);
     }
 }

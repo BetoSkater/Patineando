@@ -8,9 +8,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.example.patineando.AuxAdaptadorGestionPermisos;
 import com.example.patineando.R;
 //TODO Fragment al que se accede desde el fragment FragmentGestionarPermisos
 /**
@@ -22,15 +24,19 @@ public class FragmentUsuarioPermisos extends Fragment {
 
     private Spinner spinnerPermisos;
     private TextView txtNombreUsuarioPermisos, txtCorreoUsuarioPermisos, txtPermisosUsuarioPermisos;
+    private ImageView imgUsuarioPermisos;
+
+
+    //
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    private static final AuxAdaptadorGestionPermisos ARG_PARAM1 = new AuxAdaptadorGestionPermisos();
+    //private static final String ARG_PARAM2 = "param2";
 
     // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private AuxAdaptadorGestionPermisos mParam1;
+    //private String mParam2;
 
     public FragmentUsuarioPermisos() {
         // Required empty public constructor
@@ -41,15 +47,15 @@ public class FragmentUsuarioPermisos extends Fragment {
      * this fragment using the provided parameters.
      *
      * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
+
      * @return A new instance of fragment FragmentUsuarioPermisos.
      */
     // TODO: Rename and change types and number of parameters
-    public static FragmentUsuarioPermisos newInstance(String param1, String param2) {
+    public static FragmentUsuarioPermisos newInstance(AuxAdaptadorGestionPermisos param1) {
         FragmentUsuarioPermisos fragment = new FragmentUsuarioPermisos();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+        args.putSerializable("DatosUsuario", ARG_PARAM1);
+        //args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
     }
@@ -60,8 +66,8 @@ public class FragmentUsuarioPermisos extends Fragment {
 
 
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            mParam1 = (AuxAdaptadorGestionPermisos) getArguments().getSerializable("DatosUsuario");
+            //mParam2 = getArguments().getString(ARG_PARAM2);
         }
 
     }
@@ -73,9 +79,28 @@ public class FragmentUsuarioPermisos extends Fragment {
         View vista = inflater.inflate(R.layout.fragment_usuario_permisos, container, false);
         //Asignación de las variables con los controladores:
         spinnerPermisos = (Spinner) vista.findViewById(R.id.sprDesplegablePermisos);
+        imgUsuarioPermisos = (ImageView) vista.findViewById(R.id.imgImagenFraUsuarioPermisos);
         txtNombreUsuarioPermisos = (TextView) vista.findViewById(R.id.txtNombreFraUsuarioPermisos);
         txtCorreoUsuarioPermisos = (TextView) vista.findViewById(R.id.txtCorreoFraUsuarioPermisos);
         txtPermisosUsuarioPermisos = (TextView) vista.findViewById(R.id.txtTipoUsuarioFraUsuarioPermisos);
+
+
+        //Extracción de los valores recibidos:
+
+         String idUsuarioObtenido = mParam1.getIdUsuario();
+         String correoUsuarioObtenido = mParam1.getCorreoUsuario();
+         int imagenUsuarioObtenido = mParam1.getImagenUsuario();
+         String tipoUsuarioObtenido = mParam1.getTipoUsuario();
+         String nombreUsuarioObtenido = mParam1.getNombreUsuario();
+         String apellidosUsuarioObtenido = mParam1.getApellidosUsuario();
+
+         imgUsuarioPermisos.setImageResource(imagenUsuarioObtenido);
+         txtNombreUsuarioPermisos.setText(nombreUsuarioObtenido+" "+apellidosUsuarioObtenido);
+         txtCorreoUsuarioPermisos.setText(correoUsuarioObtenido);
+         txtPermisosUsuarioPermisos.setText(tipoUsuarioObtenido);
+
+
+
 
         //Array con los valores de las opciones  que se van a mostrar en el Spinner:
         String [] opcionesPermisos = {"Alumnado","Profesorado","Administración"};
