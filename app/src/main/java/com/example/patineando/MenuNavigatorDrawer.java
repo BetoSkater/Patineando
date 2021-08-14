@@ -104,10 +104,9 @@ public class MenuNavigatorDrawer extends AppCompatActivity {
         vistaNavegacion.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener(){
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                Fragment fragmentoND;
-                FragmentManager fragmentManager = getFragmentManager();
+                Fragment fragmentoND = new FragmentOpciones();;
                 //Se crea una nueva transacción:
-                FragmentTransaction transaccion = fragmentManager.beginTransaction();
+                FragmentTransaction transaccion = getFragmentManager().beginTransaction();
                 switch(item.getItemId()){
                     case (R.id.nav_menu_principal):
                         //FragmentMenuPrincipal fragmentMenuPrincipal = new FragmentMenuPrincipal(); con esto tambien tira
@@ -115,40 +114,30 @@ public class MenuNavigatorDrawer extends AppCompatActivity {
                      //   transaccion.replace(R.id.contenedor_fragments_ND,fragmentoND); //TODO nota, no se si es mejor usar transaccion replace o transaccion.add
                         //transaccion.add(R.id.contenedor_fragments_ND,fragmentoND);
                         //Validacion del cambio:
-                        transaccion.commit();
+                        //transaccion.commit();
                         break;
                     case (R.id.nav_opciones):
                         fragmentoND = new FragmentOpciones();
-                        transaccion.replace(R.id.contenedor_fragments_ND,fragmentoND);
-                        transaccion.commit();
                         break;
                     case (R.id.nav_admin_cursos):
                         fragmentoND = new FragmentGestionarCursos();
-                        transaccion.replace(R.id.contenedor_fragments_ND,fragmentoND);
-                        transaccion.commit();
                         break;
                     case (R.id.nav_admin_noticias):
                         fragmentoND = new FragmentGestionarNoticias();
-                        transaccion.replace(R.id.contenedor_fragments_ND,fragmentoND);
-                        transaccion.commit();
                         break;
                     case (R.id.nav_admin_rutas):
                         fragmentoND = new FragmentGestionarRutas();
-                        transaccion.replace(R.id.contenedor_fragments_ND,fragmentoND);
-                        transaccion.commit();
                         break;
                     case (R.id.nav_admin_permisos):
                         fragmentoND = new FragmentGestionarPermisos();
-                        transaccion.replace(R.id.contenedor_fragments_ND,fragmentoND);
-                        transaccion.commit();
                         break;
                     case (R.id.nav_admin_usuarios):
                         fragmentoND = new FragmentGestionarUsuarios();
-                        transaccion.replace(R.id.contenedor_fragments_ND,fragmentoND);
-                        transaccion.commit();
                         break;
                 }
-
+                transaccion.replace(R.id.contenedor_fragments_ND,fragmentoND);
+                transaccion.addToBackStack(null);
+                transaccion.commit();
                 DrawerLayout drawerLayout = findViewById(R.id.menu_drawer_layout);
                 drawerLayout.closeDrawer(GravityCompat.START);
                 return true;

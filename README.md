@@ -116,6 +116,17 @@ https://github.com/Baseflow/PhotoView
     * **Trabaja con listas de datos en Android**: https://firebase.google.com/docs/database/android/lists-of-data#java_6 
     * **Retrieve data of all user id from firebase**: https://stackoverflow.com/questions/46651782/retrieve-data-of-all-user-id-from-firebase
     
+    
+    14/08/2021
+    * **How to retrieve user from firebase:** :https://stackoverflow.com/questions/60155498/how-to-retrieve-a-username-from-firebase-realtime-database?rq=1 
+    * **java.util.HashMap cannot be cast to Object**: https://stackoverflow.com/questions/45795656/java-util-hashmap-cannot-be-cast-to-object
+    * **How to update the listview when i click the button?**: https://stackoverflow.com/questions/14598197/how-to-update-the-listview-when-i-click-the-button/14598358 
+    * **How to convert a Map to List in Java?**: https://stackoverflow.com/questions/1026723/how-to-convert-a-map-to-list-in-java
+    * **java.util.HashMap cannot be cast to java.util.ArrayList** : https://stackoverflow.com/questions/42089524/java-util-hashmap-cannot-be-cast-to-java-util-arraylist/42089578
+    * **How to check if data already exists in Firebase Realtime Database with Android? [duplicate]**: https://stackoverflow.com/questions/39260729/how-to-check-if-data-already-exists-in-firebase-realtime-database-with-android
+    * **Checking if a user already exists at firebase realtime database**: https://stackoverflow.com/questions/51772812/checking-if-a-user-already-exists-at-firebase-realtime-database
+    
+    
 #Notas importantes de interés:
     * **Clases llamadas tPalabra** : Estas Clases hacen referencia a los objetos que se quieren introducir en las tablas de la base de datos.
         así, la clase tUsuarios hace referencia a la tablaUsuarios, la clase tCursos a los cursos que imparte la escuela (sin alumnos, no son grupos ni nada de eso), etc.

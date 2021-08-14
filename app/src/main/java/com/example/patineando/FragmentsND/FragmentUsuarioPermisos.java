@@ -46,7 +46,7 @@ public class FragmentUsuarioPermisos extends Fragment {
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @param param1 Parameter 1.
+     * @param param1 Parameter 1.onCreate
 
      * @return A new instance of fragment FragmentUsuarioPermisos.
      */
@@ -54,7 +54,7 @@ public class FragmentUsuarioPermisos extends Fragment {
     public static FragmentUsuarioPermisos newInstance(AuxAdaptadorGestionPermisos param1) {
         FragmentUsuarioPermisos fragment = new FragmentUsuarioPermisos();
         Bundle args = new Bundle();
-        args.putSerializable("DatosUsuario", ARG_PARAM1);
+        args.putSerializable("DatosUsuario", param1);
         //args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;

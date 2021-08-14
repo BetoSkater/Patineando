@@ -95,7 +95,7 @@ public class FragmentGestionarPermisos extends Fragment implements AdaptadorGest
         botonBusquedaApellido.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                crearListaUsuariosApellido();
+                ListadoGestionPermisos();
             }
         });
         listadoPermisos = vista.findViewById(R.id.rcvListadoPermisos);
@@ -129,9 +129,10 @@ public class FragmentGestionarPermisos extends Fragment implements AdaptadorGest
 
         Fragment fragmento = FragmentUsuarioPermisos.newInstance(auxiliarModeloDatos);
         //Fragment fragmento = FragmentUsuarioPermisos.newInstance(auxiliarModeloDatos.getIdUsuario());
-        FragmentTransaction transaction = getActivity().getFragmentManager().beginTransaction();
-        transaction.hide(getActivity().getFragmentManager().findFragmentByTag("fragment_gestionar_permisos")); //TODO igual el tag está mal, ya que po lo que parece no es el id, entiendo que es el nobre del xml
-        transaction.add(R.id.fragmento_gestionar_permisos_usuario_permisos,fragmento);
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        //transaction.hide(getActivity().getFragmentManager().findFragmentByTag("fragment_gestionar_permisos")); //TODO igual el tag está mal, ya que po lo que parece no es el id, entiendo que es el nobre del xml
+       // transaction.add(R.id.fragmento_gestionar_permisos_usuario_permisos,fragmento);
+        transaction.replace(R.id.contenedor_fragments_ND,fragmento);
         transaction.addToBackStack(null); //Esto no entiendo que hace
         transaction.commit();
     //TODO creo que el error Attempt to invoke virtual method 'void android.app.Fragment.setNextAnim(int)' on a null object reference salta por algo de esta interfaz
@@ -139,7 +140,7 @@ public class FragmentGestionarPermisos extends Fragment implements AdaptadorGest
     }//Fin onItemClick
 
     //Extracción de los datos en función del apellido:
-
+    /*
     private void crearListaUsuariosApellido() {
         List<Tusuario> Listado = new ArrayList<>();
 
@@ -190,4 +191,6 @@ public class FragmentGestionarPermisos extends Fragment implements AdaptadorGest
 
 
     }//Fin método crearListaUsuariosApellido
+
+     */
 }
