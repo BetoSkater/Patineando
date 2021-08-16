@@ -78,7 +78,7 @@ public class Tusuario implements Serializable {
         this.tipoUsuario = tipoUsuario;
     }
 
-    public boolean isMatriculaActivaUsuario() {
+    public boolean getMatriculaActivaUsuario() {
         return matriculaActivaUsuario;
     }
 

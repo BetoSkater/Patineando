@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -15,6 +16,9 @@ import android.widget.TextView;
 import com.example.patineando.AuxAdaptadorGestionPermisos;
 import com.example.patineando.R;
 import com.example.patineando.Tusuario;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.squareup.picasso.Picasso;
 //TODO Fragment al que se accede desde el fragment FragmentGestionarPermisos
 /**
  * A simple {@link Fragment} subclass.
@@ -26,7 +30,7 @@ public class FragmentUsuarioPermisos extends Fragment {
     private Spinner spinnerPermisos;
     private TextView txtNombreUsuarioPermisos, txtCorreoUsuarioPermisos, txtPermisosUsuarioPermisos;
     private ImageView imgUsuarioPermisos;
-
+    private Button botonActualizarPermisos;
 
     //
 
@@ -36,7 +40,7 @@ public class FragmentUsuarioPermisos extends Fragment {
     //private static final String ARG_PARAM2 = "param2";
 
     // TODO: Rename and change types of parameters
-    private AuxAdaptadorGestionPermisos mParam1;
+    private Tusuario mParam1;
     //private String mParam2;
 
     public FragmentUsuarioPermisos() {
@@ -67,7 +71,7 @@ public class FragmentUsuarioPermisos extends Fragment {
 
 
         if (getArguments() != null) {
-            mParam1 = (AuxAdaptadorGestionPermisos) getArguments().getSerializable("DatosUsuario");
+            mParam1 = (Tusuario) getArguments().getSerializable("DatosUsuario");
             //mParam2 = getArguments().getString(ARG_PARAM2);
         }
 
@@ -84,23 +88,28 @@ public class FragmentUsuarioPermisos extends Fragment {
         txtNombreUsuarioPermisos = (TextView) vista.findViewById(R.id.txtNombreFraUsuarioPermisos);
         txtCorreoUsuarioPermisos = (TextView) vista.findViewById(R.id.txtCorreoFraUsuarioPermisos);
         txtPermisosUsuarioPermisos = (TextView) vista.findViewById(R.id.txtTipoUsuarioFraUsuarioPermisos);
-
+        botonActualizarPermisos = (Button) vista.findViewById(R.id.btnGuardarCambiosUsuarioPermisos);
 
         //Extracción de los valores recibidos:
 
          String idUsuarioObtenido = mParam1.getIdUsuario();
          String correoUsuarioObtenido = mParam1.getCorreoUsuario();
-         int imagenUsuarioObtenido = mParam1.getImagenUsuario();
+         String imagenUsuarioObtenido = mParam1.getImagenUsuario();
          String tipoUsuarioObtenido = mParam1.getTipoUsuario();
          String nombreUsuarioObtenido = mParam1.getNombreUsuario();
          String apellidosUsuarioObtenido = mParam1.getApellidosUsuario();
 
-         imgUsuarioPermisos.setImageResource(imagenUsuarioObtenido);
+         Picasso.get().load(imagenUsuarioObtenido).into(imgUsuarioPermisos); //TODO no funciona lo de Picasso
          txtNombreUsuarioPermisos.setText(nombreUsuarioObtenido+" "+apellidosUsuarioObtenido);
          txtCorreoUsuarioPermisos.setText(correoUsuarioObtenido);
          txtPermisosUsuarioPermisos.setText(tipoUsuarioObtenido);
 
-
+         botonActualizarPermisos.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View v) {
+                 actualizacionDePermisos();
+             }
+         });
 
 
         //Array con los valores de las opciones  que se van a mostrar en el Spinner:
@@ -116,6 +125,36 @@ public class FragmentUsuarioPermisos extends Fragment {
         spinnerPermisos.setAdapter(adaptador);
         return vista;
 
+
+    }//Fin onCreateView
+
+    //Metodo que se llama en el botón para actualizar los permisos:
+
+    public void actualizacionDePermisos(){
+       //VAtiables necesarias para la correcta realización de la edición de un campo.
+        //ID del usuario al que se le quieren cambiar los permisos:
+        String identificadorUsuario = mParam1.getIdUsuario();
+        //Campo de la tabla en el que se va a realizar la modificacion:
+        String campoAModificar = "tipoUsuario";
+
+        //Creación de la referencia a la base de datos:
+        DatabaseReference mDatabase;
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+
+        //Obtención del tipo de parámetro que se debe introducir en el campo tipoUsuario:
+        String palabraSpinner = spinnerPermisos.getSelectedItem().toString();
+        String palabraInsertar;
+        if(palabraSpinner.equals("Alumnado")){
+            palabraInsertar = palabraSpinner;
+        }else if(palabraSpinner.equals("Profesorado")){
+            palabraInsertar = palabraSpinner;
+        }else if (palabraSpinner.equals("Administración")){
+            palabraInsertar = palabraSpinner;
+        }else{
+            palabraInsertar = "Alumnado"; //Si por algún casual falla y no se obtiene ningún valor, se pone que por defecto sea de tipo Alumnado, ya que es el permiso de más bajo nivel.
+        }
+
+        mDatabase.child("Usuarios").child(identificadorUsuario).child(campoAModificar).setValue(palabraInsertar);
 
     }
 }

@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import android.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,6 +27,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -106,7 +108,7 @@ public class FragmentGestionarPermisos extends Fragment implements AdaptadorGest
             }
         });
 
-        listadoPermisos.setAdapter(new AdaptadorGestionPermisos(crearListaUsuariosApellido(),this));
+        //listadoPermisos.setAdapter(new AdaptadorGestionPermisos(crearListaUsuariosApellido(),this));
 
 
         return vista;
@@ -155,50 +157,45 @@ public class FragmentGestionarPermisos extends Fragment implements AdaptadorGest
         //Obtención de la palabra del criterio de busqueda (el apellido);
         String palabraBusqueda = criterioBusqueda.getText().toString().trim();
 
-        //Busqueda de los usuarios:
+        //Busqueda de los usuarios: https://stackoverflow.com/questions/37642352/how-to-perform-search-in-a-firebasedatabase
 
-        mDatabase.child("Usuarios").orderByChild("apellidosUsuario").equalTo(palabraBusqueda).addChildEventListener(new ChildEventListener(){
+        mDatabase.child("Usuarios").orderByChild("apellidosUsuario").equalTo(palabraBusqueda).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String prevChildKey){
-                System.out.println(dataSnapshot.getKey());
-                for(DataSnapshot child: dataSnapshot.getChildren()){
-                   // AuxAdaptadorGestionPermisos usuariosApellidos = new AuxAdaptadorGestionPermisos();
-                    //usuariosApellidos = (AuxAdaptadorGestionPermisos) dataSnapshot.getValue();
+            public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
 
-                    //Tusuario usuariosApellidos = child.getValue(Tusuario.class);
-                    Tusuario usuarioApellidos = new Tusuario();
-                    usuarioApellidos.setApellidosUsuario(child.getValue(Tusuario.class).getApellidosUsuario());
-                    usuarioApellidos.setNombreUsuario(child.getValue(Tusuario.class).getNombreUsuario());
-                    usuarioApellidos.setCorreoUsuario(child.getValue(Tusuario.class).getCorreoUsuario());
-                    usuarioApellidos.setIdUsuario(child.getValue(Tusuario.class).getIdUsuario());
-                    usuarioApellidos.setImagenUsuario(child.getValue(Tusuario.class).getImagenUsuario());
-                    usuarioApellidos.setTipoUsuario(child.getValue(Tusuario.class).getTipoUsuario());
+                for( DataSnapshot data: snapshot.getChildren()){
+                    Tusuario usuarioBusqueda = new Tusuario();
 
-                    Listado.add(usuarioApellidos);
+                    usuarioBusqueda.setApellidosUsuario(data.getValue(Tusuario.class).getApellidosUsuario().toString());
+                    usuarioBusqueda.setApodoUsuario(data.getValue(Tusuario.class).getApodoUsuario().toString());
+                    usuarioBusqueda.setCorreoUsuario(data.getValue(Tusuario.class).getCorreoUsuario().toString());
+                    usuarioBusqueda.setDescripcionUsuario(data.getValue(Tusuario.class).getDescripcionUsuario().toString());
+                    usuarioBusqueda.setFechaCreacionUsuario(data.getValue(Tusuario.class).getFechaCreacionUsuario());
+                    usuarioBusqueda.setIdUsuario(data.getValue(Tusuario.class).getIdUsuario().toString());
+                    usuarioBusqueda.setImagenUsuario(data.getValue(Tusuario.class).getImagenUsuario().toString());
+                    usuarioBusqueda.setMatriculaActivaUsuario(data.getValue(Tusuario.class).getMatriculaActivaUsuario());
+                    usuarioBusqueda.setNombreUsuario(data.getValue(Tusuario.class).getNombreUsuario().toString());
+                    usuarioBusqueda.setPatinesUsuario(data.getValue(Tusuario.class).getPatinesUsuario().toString());
+                    usuarioBusqueda.setTipoUsuario(data.getValue(Tusuario.class).getTipoUsuario().toString());
+
+
+
+                    Listado.add(usuarioBusqueda);
                 }
-
-            }
-
-            @Override
-            public void onChildChanged(@NonNull @NotNull DataSnapshot snapshot, @Nullable @org.jetbrains.annotations.Nullable String previousChildName) {
-
-            }
-
-            @Override
-            public void onChildRemoved(@NonNull @NotNull DataSnapshot snapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(@NonNull @NotNull DataSnapshot snapshot, @Nullable @org.jetbrains.annotations.Nullable String previousChildName) {
-
             }
 
             @Override
             public void onCancelled(@NonNull @NotNull DatabaseError error) {
 
             }
-        });//Fin consulta:
+        }); //Fin busqueda de usuarios
+
+
+
+
+
+
+
 
         listadoPermisos.setAdapter(new AdaptadorGestionPermisos(Listado,this));
 

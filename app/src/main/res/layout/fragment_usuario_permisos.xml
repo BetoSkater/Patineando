@@ -89,6 +89,7 @@
             android:id="@+id/btnGuardarCambiosUsuarioPermisos"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+
             android:text="@string/btn_guardar_cambios_usuario_permisos" />
     </LinearLayout>
 </FrameLayout>
