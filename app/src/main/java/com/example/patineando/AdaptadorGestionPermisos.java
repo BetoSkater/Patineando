@@ -18,16 +18,17 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.patineando.FragmentsND.FragmentGestionarPermisos;
 import com.example.patineando.FragmentsND.FragmentOpciones;
 import com.example.patineando.FragmentsND.FragmentUsuarioPermisos;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
 public class AdaptadorGestionPermisos extends RecyclerView.Adapter<AdaptadorGestionPermisos.ViewHolder> {
     //Variables:
-    private List<AuxAdaptadorGestionPermisos> listadoUsuariosPermisos;
+    private List<Tusuario> listadoUsuariosPermisos;
     private ItemClickListener clickListener;
 
     //Constructor:
-    public AdaptadorGestionPermisos(List<AuxAdaptadorGestionPermisos> listadoUsuariosPermisos, ItemClickListener clickListener){
+    public AdaptadorGestionPermisos(List<Tusuario> listadoUsuariosPermisos, ItemClickListener clickListener){
         this.listadoUsuariosPermisos = listadoUsuariosPermisos;
         this.clickListener = clickListener;
     }
@@ -42,29 +43,21 @@ public class AdaptadorGestionPermisos extends RecyclerView.Adapter<AdaptadorGest
 
     //3º) Sobreescritura onBind:
     public void onBindViewHolder(ViewHolder holder, int position){
-        int imagenUsuarioPermisos = listadoUsuariosPermisos.get(position).getImagenUsuario();
+        String imagenUsuarioPermisos = listadoUsuariosPermisos.get(position).getImagenUsuario();
         String gradoPermisos = listadoUsuariosPermisos.get(position).getTipoUsuario();
         String nombreCompleto = listadoUsuariosPermisos.get(position).getApellidosUsuario() + ", " + listadoUsuariosPermisos.get(position).getNombreUsuario();
 
         String idUsuario = listadoUsuariosPermisos.get(position).getIdUsuario(); //Información a enviar al siguiente fragment.
 
-        holder.imgUsuarioPermisos.setImageResource(imagenUsuarioPermisos);
+        Picasso.get().load(imagenUsuarioPermisos).into(holder.imgUsuarioPermisos);
+        //holder.imgUsuarioPermisos.setImageResource(imagenUsuarioPermisos);
         holder.txtTipoUsuarioPermisos.setText(gradoPermisos);
         holder.txtNombreApellidoPermisos.setText(nombreCompleto);
 
         holder.tarjetaRecycler.setOnClickListener(new View.OnClickListener(){
            @Override
            public void onClick(View v){
-                /*
-               FragmentUsuarioPermisos fragmentoND = new FragmentUsuarioPermisos();
-               FragmentManager fragmentManager = getFragmentManager(); //TODO me quedo aqui
-               //Se crea una nueva transacción:
-               FragmentTransaction transaccion = fragmentManager.beginTransaction();
 
-               transaccion.replace(R.id.contenedor_fragments_ND,fragmentoND);
-               transaccion.commit();
-
-                 */
                clickListener.onItemClick(listadoUsuariosPermisos.get(position));
            }
         });
@@ -96,6 +89,6 @@ public class AdaptadorGestionPermisos extends RecyclerView.Adapter<AdaptadorGest
 
     //Se crea la interfaz para el ItemClickListener
     public interface ItemClickListener{
-        public void onItemClick(AuxAdaptadorGestionPermisos modeloDatos);
+        public void onItemClick(Tusuario modeloDatos);
     }
 }

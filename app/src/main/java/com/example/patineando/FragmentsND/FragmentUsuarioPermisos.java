@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.example.patineando.AuxAdaptadorGestionPermisos;
 import com.example.patineando.R;
+import com.example.patineando.Tusuario;
 //TODO Fragment al que se accede desde el fragment FragmentGestionarPermisos
 /**
  * A simple {@link Fragment} subclass.
@@ -51,7 +52,7 @@ public class FragmentUsuarioPermisos extends Fragment {
      * @return A new instance of fragment FragmentUsuarioPermisos.
      */
     // TODO: Rename and change types and number of parameters
-    public static FragmentUsuarioPermisos newInstance(AuxAdaptadorGestionPermisos param1) {
+    public static FragmentUsuarioPermisos newInstance(Tusuario param1) {
         FragmentUsuarioPermisos fragment = new FragmentUsuarioPermisos();
         Bundle args = new Bundle();
         args.putSerializable("DatosUsuario", param1);

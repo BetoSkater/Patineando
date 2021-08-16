@@ -92,16 +92,21 @@ public class FragmentGestionarPermisos extends Fragment implements AdaptadorGest
         View vista = inflater.inflate(R.layout.fragment_gestionar_permisos, container, false);
         criterioBusqueda = vista.findViewById(R.id.txtFragmentoGestionarPermisosBusqueda);
         botonBusquedaApellido = vista.findViewById(R.id.btnFragmentoPermisosBuscar);
-        botonBusquedaApellido.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ListadoGestionPermisos();
-            }
-        });
+
+
+
         listadoPermisos = vista.findViewById(R.id.rcvListadoPermisos);
         listadoPermisos.setHasFixedSize(true);
         listadoPermisos.setLayoutManager(new LinearLayoutManager(vista.getContext()));
-        listadoPermisos.setAdapter(new AdaptadorGestionPermisos(ListadoGestionPermisos(),this));
+        botonBusquedaApellido.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                crearListaUsuariosApellido();
+               // listadoPermisos.setAdapter(new AdaptadorGestionPermisos(crearListaUsuariosApellido(),this));
+            }
+        });
+
+        listadoPermisos.setAdapter(new AdaptadorGestionPermisos(crearListaUsuariosApellido(),this));
 
 
         return vista;
@@ -125,7 +130,7 @@ public class FragmentGestionarPermisos extends Fragment implements AdaptadorGest
 
     //Sobreescritura del interfaz onItemClick para poder mostrar la vista detalle un elemento del fragment de los permisos:
     @Override
-    public void onItemClick(AuxAdaptadorGestionPermisos auxiliarModeloDatos){
+    public void onItemClick(Tusuario auxiliarModeloDatos){
 
         Fragment fragmento = FragmentUsuarioPermisos.newInstance(auxiliarModeloDatos);
         //Fragment fragmento = FragmentUsuarioPermisos.newInstance(auxiliarModeloDatos.getIdUsuario());
@@ -140,8 +145,8 @@ public class FragmentGestionarPermisos extends Fragment implements AdaptadorGest
     }//Fin onItemClick
 
     //Extracción de los datos en función del apellido:
-    /*
-    private void crearListaUsuariosApellido() {
+
+    private List<Tusuario> crearListaUsuariosApellido() {
         List<Tusuario> Listado = new ArrayList<>();
 
             DatabaseReference mDatabase;
@@ -160,8 +165,16 @@ public class FragmentGestionarPermisos extends Fragment implements AdaptadorGest
                    // AuxAdaptadorGestionPermisos usuariosApellidos = new AuxAdaptadorGestionPermisos();
                     //usuariosApellidos = (AuxAdaptadorGestionPermisos) dataSnapshot.getValue();
 
-                    Tusuario usuariosApellidos = (Tusuario) dataSnapshot.getValue();
-                    Listado.add(usuariosApellidos);
+                    //Tusuario usuariosApellidos = child.getValue(Tusuario.class);
+                    Tusuario usuarioApellidos = new Tusuario();
+                    usuarioApellidos.setApellidosUsuario(child.getValue(Tusuario.class).getApellidosUsuario());
+                    usuarioApellidos.setNombreUsuario(child.getValue(Tusuario.class).getNombreUsuario());
+                    usuarioApellidos.setCorreoUsuario(child.getValue(Tusuario.class).getCorreoUsuario());
+                    usuarioApellidos.setIdUsuario(child.getValue(Tusuario.class).getIdUsuario());
+                    usuarioApellidos.setImagenUsuario(child.getValue(Tusuario.class).getImagenUsuario());
+                    usuarioApellidos.setTipoUsuario(child.getValue(Tusuario.class).getTipoUsuario());
+
+                    Listado.add(usuarioApellidos);
                 }
 
             }
@@ -189,8 +202,15 @@ public class FragmentGestionarPermisos extends Fragment implements AdaptadorGest
 
         listadoPermisos.setAdapter(new AdaptadorGestionPermisos(Listado,this));
 
-
+        return Listado;
     }//Fin método crearListaUsuariosApellido
 
-     */
+
+
+    //Método para refrescar el ReciclerView
+    public void refrescarRecyclerView(){
+            //https://stackoverflow.com/questions/31367599/how-to-update-recyclerview-adapter-data
+        
+
+    }
 }
