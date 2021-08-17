@@ -178,24 +178,13 @@ public class FragmentGestionarPermisos extends Fragment implements AdaptadorGest
                     usuarioBusqueda.setPatinesUsuario(data.getValue(Tusuario.class).getPatinesUsuario().toString());
                     usuarioBusqueda.setTipoUsuario(data.getValue(Tusuario.class).getTipoUsuario().toString());
 
-
-
                     Listado.add(usuarioBusqueda);
                 }
             }
-
             @Override
             public void onCancelled(@NonNull @NotNull DatabaseError error) {
-
             }
         }); //Fin busqueda de usuarios
-
-
-
-
-
-
-
 
         listadoPermisos.setAdapter(new AdaptadorGestionPermisos(Listado,this));
 

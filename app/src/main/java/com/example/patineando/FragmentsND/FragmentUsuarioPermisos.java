@@ -1,5 +1,6 @@
 package com.example.patineando.FragmentsND;
 
+import android.app.FragmentTransaction;
 import android.os.Bundle;
 
 import android.app.Fragment;
@@ -30,7 +31,7 @@ public class FragmentUsuarioPermisos extends Fragment {
     private Spinner spinnerPermisos;
     private TextView txtNombreUsuarioPermisos, txtCorreoUsuarioPermisos, txtPermisosUsuarioPermisos;
     private ImageView imgUsuarioPermisos;
-    private Button botonActualizarPermisos;
+    private Button botonActualizarPermisos,botonGestionarCuentaMatricula, botonGestionarPerfilUsuario;
 
     //
 
@@ -69,7 +70,6 @@ public class FragmentUsuarioPermisos extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
         if (getArguments() != null) {
             mParam1 = (Tusuario) getArguments().getSerializable("DatosUsuario");
             //mParam2 = getArguments().getString(ARG_PARAM2);
@@ -89,6 +89,8 @@ public class FragmentUsuarioPermisos extends Fragment {
         txtCorreoUsuarioPermisos = (TextView) vista.findViewById(R.id.txtCorreoFraUsuarioPermisos);
         txtPermisosUsuarioPermisos = (TextView) vista.findViewById(R.id.txtTipoUsuarioFraUsuarioPermisos);
         botonActualizarPermisos = (Button) vista.findViewById(R.id.btnGuardarCambiosUsuarioPermisos);
+        botonGestionarCuentaMatricula = (Button) vista.findViewById(R.id.btnModificarInfoEscuelaUsuarioPermisos);
+        botonGestionarPerfilUsuario = (Button) vista.findViewById(R.id.btnModificarPerfilUsuarioUsuarioPermisos);
 
         //Extracción de los valores recibidos:
 
@@ -111,6 +113,26 @@ public class FragmentUsuarioPermisos extends Fragment {
              }
          });
 
+         botonGestionarCuentaMatricula.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View v) {
+                 Fragment fragmento = new FragmentModificarCuentaMatriculaUsuario();
+                 //Fragment fragmento = FragmentUsuarioPermisos.newInstance(auxiliarModeloDatos.getIdUsuario());
+                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                 //transaction.hide(getActivity().getFragmentManager().findFragmentByTag("fragment_gestionar_permisos")); //TODO igual el tag está mal, ya que po lo que parece no es el id, entiendo que es el nobre del xml
+                 // transaction.add(R.id.fragmento_gestionar_permisos_usuario_permisos,fragmento);
+                 transaction.replace(R.id.contenedor_fragments_ND,fragmento);
+                 transaction.addToBackStack(null); //Esto no entiendo que hace
+                 transaction.commit();
+             }
+         });
+
+         botonGestionarPerfilUsuario.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View v) {
+
+             }
+         });
 
         //Array con los valores de las opciones  que se van a mostrar en el Spinner:
         String [] opcionesPermisos = {"Alumnado","Profesorado","Administración"};
@@ -124,7 +146,6 @@ public class FragmentUsuarioPermisos extends Fragment {
         //Asociacion del ArrayAdapter al Spinner
         spinnerPermisos.setAdapter(adaptador);
         return vista;
-
 
     }//Fin onCreateView
 
@@ -156,5 +177,14 @@ public class FragmentUsuarioPermisos extends Fragment {
 
         mDatabase.child("Usuarios").child(identificadorUsuario).child(campoAModificar).setValue(palabraInsertar);
 
+    }
+    public void irAGestionarCuentaMatricula(Tusuario datosUsuario){
+       //https://stackoverflow.com/questions/16036572/how-to-pass-values-between-fragments
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("DatosUsuario2", datosUsuario);
+
+        FragmentModificarCuentaMatriculaUsuario fragmentoModificarCuentaMatricula = new FragmentModificarCuentaMatriculaUsuario();
+        fragmentoModificarCuentaMatricula.setArguments(bundle);
+         getFragmentManager().beginTransaction().replace(R.id.contenedor_fragments_ND, fragmentoModificarCuentaMatricula).commit();
     }
 }

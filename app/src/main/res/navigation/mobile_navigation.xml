@@ -38,6 +38,14 @@
         android:name="com.example.patineando.FragmentsND.FragmentUsuarioPermisos"
         tools:layout="@layout/fragment_usuario_permisos" />
     <fragment
+        android:id="@+id/fragmento_modificar_perfil_usuario"
+        android:name="com.example.patineando.FragmentsND.FragmentModificarPerfilUsuario"
+        tools:layout="@layout/fragment_modificar_perfil_usuario" />
+    <fragment
+        android:id="@+id/fragmento_modificar_cuenta_matricula_usuario"
+        android:name="com.example.patineando.FragmentsND.FragmentModificarCuentaMatriculaUsuario"
+        tools:layout="@layout/fragment_modificar_cuenta_matricula_usuario" />
+    <fragment
         android:id="@+id/fragmento_gestionar_usuarios"
         android:name="com.example.patineando.FragmentsND.FragmentGestionarUsuarios"
         tools:layout="@layout/fragment_gestionar_usuarios" />

@@ -129,4 +129,20 @@
     <string name="etiqueta_tipo_usuario_fragmento_usuario_permisos">Tipo de Usuario:</string>
     <string name="etiqueta_cambiar_fragmento_usuario_permisos">Seleccione el permiso que debería tener este usuario.</string>
     <string name="btn_guardar_cambios_usuario_permisos">Actualizar permisos</string>
+    <string name="btn_modificar_info_escuela_usuario_permisos">Gestionar cuenta y matrícula</string>
+    <string name="btn_modificar_perfil_usuario_usuario_permisos">Gestionar perfil del usuario</string>
+
+    <!-- Fragment Modificar Cuenta Matricula Usuario-->
+
+    <string name="lbl_gestion_correo_modificar_cuenta_matricula">Gestionar Correo</string>
+    <string name="lbl_correo_antiguo_modificar_cuenta_matricula">Correo actual</string>
+    <string name="lbl_correo_modificar_cuenta_matricula">Nuevo Correo:</string>
+    <string name="lbl_confirmar_correo_modificar_cuenta_matricula">Confirmar Nuevo Correo:</string>
+    <string name="lbl_gestion_matricula_modificar_cuenta_matricula">Gestionar Estado de la Matrícula</string>
+    <string name="rdb_activa_modificar_cuenta_matricula">Activar</string>
+    <string name="rdb_inactiva_modificar_cuenta_matricula">Desactivar</string>
+    <string name="btn_matricula_modificar_cuenta_matricula">Modificar Estado de la Matricula</string>
+    <string name="lbl_eliminar_usuario_modificar_cuenta_matricula">Eliminar Usuario</string>
+    <string name="btn_eliminar_usuario_modificar_cuenta_matricula">Eliminar Usuario</string>
+
 </resources>

@@ -83,13 +83,25 @@
             android:id="@+id/sprDesplegablePermisos"
             android:layout_width="match_parent"
             android:layout_height="38dp"
-            android:layout_marginBottom="200dp" />
+            android:layout_marginBottom="125dp" />
 
         <Button
             android:id="@+id/btnGuardarCambiosUsuarioPermisos"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
             android:text="@string/btn_guardar_cambios_usuario_permisos" />
+        <Button
+            android:id="@+id/btnModificarInfoEscuelaUsuarioPermisos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_modificar_info_escuela_usuario_permisos" />
+
+        <Button
+            android:id="@+id/btnModificarPerfilUsuarioUsuarioPermisos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_modificar_perfil_usuario_usuario_permisos" />
+
+
     </LinearLayout>
 </FrameLayout>
