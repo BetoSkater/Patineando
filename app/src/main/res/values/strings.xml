@@ -138,6 +138,7 @@
     <string name="lbl_correo_antiguo_modificar_cuenta_matricula">Correo actual</string>
     <string name="lbl_correo_modificar_cuenta_matricula">Nuevo Correo:</string>
     <string name="lbl_confirmar_correo_modificar_cuenta_matricula">Confirmar Nuevo Correo:</string>
+    <string name="btn_correo_modificar_correo_matricula">Actualizar correo</string>
     <string name="lbl_gestion_matricula_modificar_cuenta_matricula">Gestionar Estado de la Matrícula</string>
     <string name="rdb_activa_modificar_cuenta_matricula">Activar</string>
     <string name="rdb_inactiva_modificar_cuenta_matricula">Desactivar</string>

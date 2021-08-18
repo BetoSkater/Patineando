@@ -7,30 +7,26 @@ import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 
 import com.example.patineando.R;
-import com.example.patineando.Tusuario;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link FragmentModificarCuentaMatriculaUsuario#newInstance} factory method to
+ * Use the {@link FragmentCursosImpartidos#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class FragmentModificarCuentaMatriculaUsuario extends Fragment {
-
-    EditText txtCorreoActual;
+public class FragmentCursosImpartidos extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final Tusuario ARG_PARAM1 = new Tusuario();
+    private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
     // TODO: Rename and change types of parameters
-    private Tusuario mParam1;
+    private String mParam1;
     private String mParam2;
 
-    public FragmentModificarCuentaMatriculaUsuario() {
+    public FragmentCursosImpartidos() {
         // Required empty public constructor
     }
 
@@ -38,17 +34,16 @@ public class FragmentModificarCuentaMatriculaUsuario extends Fragment {
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @param param3 Parameter 1.
-
-     * @return A new instance of fragment FragmentModificarCuentaMatriculaUsuario.
+     * @param param1 Parameter 1.
+     * @param param2 Parameter 2.
+     * @return A new instance of fragment FragmentCursosImpartidos.
      */
     // TODO: Rename and change types and number of parameters
-    public static FragmentModificarCuentaMatriculaUsuario newInstance(Tusuario param3) {
-
-        FragmentModificarCuentaMatriculaUsuario fragment = new FragmentModificarCuentaMatriculaUsuario();
+    public static FragmentCursosImpartidos newInstance(String param1, String param2) {
+        FragmentCursosImpartidos fragment = new FragmentCursosImpartidos();
         Bundle args = new Bundle();
-        args.putSerializable("DatosUsuario2", param3);
-
+        args.putString(ARG_PARAM1, param1);
+        args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
     }
@@ -57,7 +52,8 @@ public class FragmentModificarCuentaMatriculaUsuario extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = (Tusuario) getArguments().getSerializable("DatosUsuario2");
+            mParam1 = getArguments().getString(ARG_PARAM1);
+            mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
 
@@ -65,14 +61,6 @@ public class FragmentModificarCuentaMatriculaUsuario extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View vista = inflater.inflate(R.layout.fragment_modificar_cuenta_matricula_usuario, container, false);
-
-        txtCorreoActual = (EditText) vista.findViewById(R.id.txtCorreoAntiguoModificarCorreoMatricula);
-
-        String correoACambiar = "prueba";
-                correoACambiar =mParam1.getCorreoUsuario().toString();
-        txtCorreoActual.setText(correoACambiar);
-
-        return vista;
+        return inflater.inflate(R.layout.fragment_cursos_impartidos, container, false);
     }
 }

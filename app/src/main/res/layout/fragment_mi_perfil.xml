@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FragmentsND.FragmentMiPerfil">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <ImageView
+            android:id="@+id/imvImagenPerfilND"
+            android:layout_width="match_parent"
+            android:layout_height="206dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/lblNombreUsuarioND"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/lblNombreUsuario" />
+
+            <TextView
+                android:id="@+id/lblNombreUsuarioResultadoND"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Yo" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/lblApodoUsuarioND"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/lblApodoUsuario" />
+
+            <TextView
+                android:id="@+id/lblApodoUsuarioResultadoND"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="yo" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/lblPatinesUsuarioND"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/lblPatinesUsuario" />
+
+            <TextView
+                android:id="@+id/lblPatinesUsuarioResultadoND"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Fila NRK PRO" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/lblDescripcionUsuarioND"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/lblDescripcionUsuario" />
+
+        <ScrollView
+            android:id="@+id/srlDescripcionND"
+            android:layout_width="match_parent"
+            android:layout_height="251dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/lblDescripcionUsuarioResultadoND"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Ejemplo de Descripción" />
+            </LinearLayout>
+        </ScrollView>
+
+        <Button
+            android:id="@+id/btnVolverMiPerfilND"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:text="@string/btnVolverMiPerfil" />
+
+        <Button
+            android:id="@+id/btnModificarMiPerfilND"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:text="@string/btnModificarMiPerfil" />
+
+        <Button
+            android:id="@+id/btnCerrarSesionMiPerfilND"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:text="@string/btnCerrarSesionMiPerfil" />
+
+
+    </LinearLayout>
+</FrameLayout>

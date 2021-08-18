@@ -88,6 +88,12 @@
                     android:ems="10"
                     android:inputType="textEmailAddress" />
 
+                <Button
+                    android:id="@+id/btnCorreoModificarCuentaMatricula"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/btn_correo_modificar_correo_matricula" />
+
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>

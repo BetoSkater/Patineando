@@ -6,6 +6,7 @@ package com.example.patineando;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
+import android.transition.Fade;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
@@ -150,6 +151,7 @@ public class MenuNavigatorDrawer extends AppCompatActivity {
                         //transaccion.add(R.id.contenedor_fragments_ND,fragmentoND);
                         //Validacion del cambio:
                         //transaccion.commit();
+                        fragmentoND = new FragmentMenuPrincipal();
                         break;
                     case (R.id.nav_opciones):
                         fragmentoND = new FragmentOpciones();
@@ -172,6 +174,7 @@ public class MenuNavigatorDrawer extends AppCompatActivity {
                 }
                 transaccion.replace(R.id.contenedor_fragments_ND,fragmentoND);
                 transaccion.addToBackStack(null);
+
                 transaccion.commit();
                 DrawerLayout drawerLayout = findViewById(R.id.menu_drawer_layout);
                 drawerLayout.closeDrawer(GravityCompat.START);
@@ -179,9 +182,6 @@ public class MenuNavigatorDrawer extends AppCompatActivity {
             }
 
         });
-
-
-
 
     }//fin onCreate
 
@@ -234,13 +234,16 @@ public class MenuNavigatorDrawer extends AppCompatActivity {
             }
         });
 
-
-
-
-
         return tipoUsuarioApp;
+    }
+
+
+    //Metodo para pasar del fragment principal al fragment menu principal:
+    public void transicionHomeMenuPrincipal(){
+
 
     }
+
 
 }
 

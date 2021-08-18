@@ -5,11 +5,87 @@
     android:layout_height="match_parent"
     tools:context=".FragmentsND.FragmentMenuPrincipal">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="FUNCA MP" />
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:orientation="horizontal"
+            android:padding="5dp">
 
+            <ImageButton
+                android:id="@+id/imbOpcionesMPND"
+
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/transparente"
+                android:src="@drawable/ic_menu_gear" />
+
+            <ImageButton
+                android:id="@+id/imbTiempoMPND"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/transparente"
+
+                android:src="@drawable/ic_menu_sun" />
+
+            <ImageButton
+                android:id="@+id/imbRutasMPND"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/transparente"
+                android:src="@drawable/ic_menu_planet" />
+
+            <ImageButton
+                android:id="@+id/imbCursosMPND"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/transparente"
+
+                android:src="@drawable/ic_menu_picasa" />
+        </LinearLayout>
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:layout_width="match_parent"
+            android:layout_height="464dp">
+
+        </androidx.viewpager2.widget.ViewPager2>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:padding="1dp">
+
+            <Button
+                android:id="@+id/btnMisCursosMPND"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="2dp"
+                android:layout_weight="1"
+
+                android:text="@string/btnMisCursos" />
+
+            <Button
+                android:id="@+id/btnMiPerfilMPND"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="2dp"
+                android:layout_weight="1"
+
+                android:text="@string/btnMiPerfil" />
+        </LinearLayout>
+
+    </LinearLayout>
 </FrameLayout>

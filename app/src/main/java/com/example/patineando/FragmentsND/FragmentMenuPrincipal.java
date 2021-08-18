@@ -1,12 +1,15 @@
 package com.example.patineando.FragmentsND;
 
+import android.app.FragmentTransaction;
 import android.os.Bundle;
 
-import androidx.fragment.app.Fragment;
+import android.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageButton;
 
 import com.example.patineando.R;
 
@@ -17,6 +20,9 @@ import com.example.patineando.R;
  */
 public class FragmentMenuPrincipal extends Fragment {
 
+
+    ImageButton btnOpciones,btnClima, btnRutas, btnCursos;
+    Button btnMisCursos, btnMiPerfil;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -61,6 +67,109 @@ public class FragmentMenuPrincipal extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_menu_principal, container, false);
+        View vista = inflater.inflate(R.layout.fragment_menu_principal, container, false);
+
+        btnOpciones = (ImageButton) vista.findViewById(R.id.imbOpcionesMPND);
+        btnOpciones.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                verOpciones();
+            }
+        });
+
+
+
+        btnClima = (ImageButton) vista.findViewById(R.id.imbTiempoMPND);
+        btnClima.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                verTiempo();
+            }
+        });
+
+        btnRutas = (ImageButton) vista.findViewById(R.id.imbRutasMPND);
+        btnRutas.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                verRutas();
+            }
+        });
+
+        btnCursos = (ImageButton) vista.findViewById(R.id.imbCursosMPND);
+        btnCursos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                verCursos();
+            }
+        });
+
+        btnMisCursos = (Button) vista.findViewById(R.id.btnMisCursosMPND);
+        btnMisCursos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                verMisCursos();
+            }
+        });
+
+        btnMiPerfil = (Button) vista.findViewById(R.id.btnMiPerfilMPND);
+        btnMiPerfil.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                verMiPerfil();
+            }
+        });
+
+        return vista;
+    }//Fin View onCreateView
+
+
+    //Funcionalidad de los botones:
+
+    public void verOpciones(){
+        Fragment fragmento = new FragmentOpciones();
+        FragmentTransaction transaccion = getFragmentManager().beginTransaction();
+        transaccion.replace(R.id.contenedor_fragments_ND,fragmento);
+        transaccion.addToBackStack(null);
+        transaccion.commit();
+    }
+
+    public void verTiempo(){
+        Fragment fragmento = new FragmentInformacionClimatica();
+        FragmentTransaction transaccion = getFragmentManager().beginTransaction();
+        transaccion.replace(R.id.contenedor_fragments_ND,fragmento);
+        transaccion.addToBackStack(null);
+        transaccion.commit();
+    }
+
+    public void verRutas(){
+        Fragment fragmento = new FragmentVerRutas();
+        FragmentTransaction transaccion = getFragmentManager().beginTransaction();
+        transaccion.replace(R.id.contenedor_fragments_ND,fragmento);
+        transaccion.addToBackStack(null);
+        transaccion.commit();
+    }
+
+    public void verCursos(){
+        Fragment fragmento = new FragmentCursosImpartidos();
+        FragmentTransaction transaccion = getFragmentManager().beginTransaction();
+        transaccion.replace(R.id.contenedor_fragments_ND,fragmento);
+        transaccion.addToBackStack(null);
+        transaccion.commit();
+    }
+
+    public void verMisCursos(){
+        Fragment fragmento = new FragmentMisCursos();
+        FragmentTransaction transaccion = getFragmentManager().beginTransaction();
+        transaccion.replace(R.id.contenedor_fragments_ND,fragmento);
+        transaccion.addToBackStack(null);
+        transaccion.commit();
+    }
+
+    public void verMiPerfil(){
+        Fragment fragmento = new FragmentMiPerfil();
+        FragmentTransaction transaccion = getFragmentManager().beginTransaction();
+        transaccion.replace(R.id.contenedor_fragments_ND,fragmento);
+        transaccion.addToBackStack(null);
+        transaccion.commit();
     }
 }

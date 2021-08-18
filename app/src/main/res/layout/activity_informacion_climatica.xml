@@ -8,14 +8,14 @@
     tools:context=".InformacionClimatica"
     android:padding="10dp">
     <TextView
-        android:id="@+id/lblClimaMadrid"
+        android:id="@+id/lblClimaMadridND"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="@string/lblClimaMadrid" />
 
     <WebView
-        android:id="@+id/wbvClimaMadrid"
+        android:id="@+id/wbvClimaMadridND"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

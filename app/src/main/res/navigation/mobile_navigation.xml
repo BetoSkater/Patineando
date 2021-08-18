@@ -3,14 +3,42 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@id/fragmento_menu_principal">
+    app:startDestination="@id/fragmento_carga">
 
     <!--Alumnos-->
     <fragment
+        android:id="@+id/fragmento_carga"
+        android:name="com.example.patineando.FragmentsND.FragmentPrincipal"
+        tools:layout="@layout/fragment_principal" />
+
+    <fragment
         android:id="@+id/fragmento_menu_principal"
         android:name="com.example.patineando.FragmentsND.FragmentMenuPrincipal"
-
         tools:layout="@layout/fragment_menu_principal" />
+    <fragment
+        android:id="@+id/fragmento_informacion_Climatica"
+        android:name="com.example.patineando.FragmentsND.FragmentInformacionClimatica"
+        tools:layout="@layout/fragment_informacion_climatica" />
+
+    <fragment
+        android:id="@+id/fragmento_ver_rutas"
+        android:name="com.example.patineando.FragmentsND.FragmentVerRutas"
+        tools:layout="@layout/fragment_ver_rutas" />
+
+    <fragment
+        android:id="@+id/fragmento_cursos_impartidos"
+        android:name="com.example.patineando.FragmentsND.FragmentCursosImpartidos"
+        tools:layout="@layout/fragment_cursos_impartidos" />
+
+    <fragment
+        android:id="@+id/fragmento_mis_cursos"
+        android:name="com.example.patineando.FragmentsND.FragmentMisCursos"
+        tools:layout="@layout/fragment_mis_cursos" />
+    <fragment
+        android:id="@+id/fragmento_mi_perfil"
+        android:name="com.example.patineando.FragmentsND.FragmentMiPerfil"
+        tools:layout="@layout/fragment_mi_perfil" />
+
     <fragment
         android:id="@+id/fragmento_opciones"
         android:name="com.example.patineando.FragmentsND.FragmentOpciones"

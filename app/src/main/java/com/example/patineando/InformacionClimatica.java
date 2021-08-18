@@ -16,7 +16,7 @@ public class InformacionClimatica extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_informacion_climatica);
 
-        this.contenedorNavegador = (WebView) findViewById(R.id.wbvClimaMadrid);
+        this.contenedorNavegador = (WebView) findViewById(R.id.wbvClimaMadridND);
 
         //Llamada al método que muestra la información climática de Madrid de la Web AEMET en el WebView
         irAlEnlace();

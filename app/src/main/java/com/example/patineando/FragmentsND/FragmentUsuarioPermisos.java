@@ -26,7 +26,7 @@ import com.squareup.picasso.Picasso;
  * Use the {@link FragmentUsuarioPermisos#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class FragmentUsuarioPermisos extends Fragment {
+public class FragmentUsuarioPermisos extends Fragment  {
 
     private Spinner spinnerPermisos;
     private TextView txtNombreUsuarioPermisos, txtCorreoUsuarioPermisos, txtPermisosUsuarioPermisos;
@@ -116,6 +116,7 @@ public class FragmentUsuarioPermisos extends Fragment {
          botonGestionarCuentaMatricula.setOnClickListener(new View.OnClickListener() {
              @Override
              public void onClick(View v) {
+                 irAGestionarCuentaMatricula(mParam1);
                  Fragment fragmento = new FragmentModificarCuentaMatriculaUsuario();
                  //Fragment fragmento = FragmentUsuarioPermisos.newInstance(auxiliarModeloDatos.getIdUsuario());
                  FragmentTransaction transaction = getFragmentManager().beginTransaction();
@@ -150,7 +151,6 @@ public class FragmentUsuarioPermisos extends Fragment {
     }//Fin onCreateView
 
     //Metodo que se llama en el botón para actualizar los permisos:
-
     public void actualizacionDePermisos(){
        //VAtiables necesarias para la correcta realización de la edición de un campo.
         //ID del usuario al que se le quieren cambiar los permisos:
@@ -177,7 +177,22 @@ public class FragmentUsuarioPermisos extends Fragment {
 
         mDatabase.child("Usuarios").child(identificadorUsuario).child(campoAModificar).setValue(palabraInsertar);
 
-    }
+    }//Fin método public void actualizacionDePermisos(){
+/*
+    //Sobreescritura del interfaz onClick para poder mostrar el fragmentModificarCuentaMatricula ppasando la informaciónd el usuario alque se quiere modificar la matricula:
+    @Override
+    public void onClick(Tusuario auxModeloEnviar){
+        Fragment fragmento2 = FragmentModificarCuentaMatriculaUsuario.newInstance(auxModeloEnviar);
+        FragmentTransaction transaccion2 = getFragmentManager().beginTransaction();
+        transaccion2.replace(R.id.contenedor_fragments_ND,fragmento2);
+        transaccion2.addToBackStack(null); //Esto no entiendo que hace
+        transaccion2.commit();
+
+    }//Fin Sobreescritura onClick
+
+
+ */
+
     public void irAGestionarCuentaMatricula(Tusuario datosUsuario){
        //https://stackoverflow.com/questions/16036572/how-to-pass-values-between-fragments
         Bundle bundle = new Bundle();
@@ -187,4 +202,11 @@ public class FragmentUsuarioPermisos extends Fragment {
         fragmentoModificarCuentaMatricula.setArguments(bundle);
          getFragmentManager().beginTransaction().replace(R.id.contenedor_fragments_ND, fragmentoModificarCuentaMatricula).commit();
     }
+
+
+    //Se crea la interfaz para el OnClickListener
+    public interface OnClickListenerMio{
+        public void onClick(Tusuario modeloEnviar);
+    }
+
 }
