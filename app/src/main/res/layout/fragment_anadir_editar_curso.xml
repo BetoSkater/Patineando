@@ -229,6 +229,11 @@
             android:layout_height="wrap_content"
             android:text="@string/lbl_seleccionar_profesor" />
 
+        <Spinner
+            android:id="@+id/sprSeleccionarProfesor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
         <View
             android:id="@+id/divider14"
             android:layout_width="match_parent"
