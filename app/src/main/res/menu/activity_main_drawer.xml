@@ -62,9 +62,9 @@
                     android:title="@string/gestionarPermisosNavigatorDrawer"
                     android:menuCategory="secondary"/>
                 <item
-                    android:id="@+id/nav_admin_usuarios"
+                    android:id="@+id/nav_admin_escuela"
                     android:icon="@drawable/ic_menu_slideshow"
-                    android:title="@string/gestionarUsuariosNavigatorDrawer"
+                    android:title="@string/gestionarEscuelaNavigatorDrawer"
                     android:menuCategory="secondary"/>
 
             </menu>

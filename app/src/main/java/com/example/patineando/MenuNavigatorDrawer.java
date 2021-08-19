@@ -3,31 +3,21 @@ package com.example.patineando;
 
 
 
-import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
-import android.transition.Fade;
 import android.view.MenuItem;
-import android.view.View;
 import android.view.Menu;
-import android.widget.Toast;
 
 import com.example.patineando.FragmentsND.FragmentGestionarCursos;
+import com.example.patineando.FragmentsND.FragmentGestionarEscuela;
 import com.example.patineando.FragmentsND.FragmentGestionarNoticias;
 import com.example.patineando.FragmentsND.FragmentGestionarPermisos;
 import com.example.patineando.FragmentsND.FragmentGestionarRutas;
-import com.example.patineando.FragmentsND.FragmentGestionarUsuarios;
 import com.example.patineando.FragmentsND.FragmentMenuPrincipal;
 import com.example.patineando.FragmentsND.FragmentOpciones;
-import com.example.patineando.databinding.ActivityMainBinding;
-import com.example.patineando.databinding.ActivityMenuPrincipalBinding;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.core.view.GravityCompat;
 import android.app.Fragment;
 import androidx.navigation.NavController;
@@ -40,12 +30,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.patineando.databinding.ActivityMenuNavigatorDrawerBinding;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import org.jetbrains.annotations.NotNull;
@@ -168,8 +156,8 @@ public class MenuNavigatorDrawer extends AppCompatActivity {
                     case (R.id.nav_admin_permisos):
                         fragmentoND = new FragmentGestionarPermisos();
                         break;
-                    case (R.id.nav_admin_usuarios):
-                        fragmentoND = new FragmentGestionarUsuarios();
+                    case (R.id.nav_admin_escuela):
+                        fragmentoND = new FragmentGestionarEscuela();
                         break;
                 }
                 transaccion.replace(R.id.contenedor_fragments_ND,fragmentoND);

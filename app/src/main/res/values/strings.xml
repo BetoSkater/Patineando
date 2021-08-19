@@ -100,7 +100,7 @@
     <string name="gestionarCursosNavigatorDrawer">Gestionar Cursos</string>
     <string name="gestionarNoticiasNavigatorDrawer">Gestionar Noticias</string>
     <string name="gestionarPermisosNavigatorDrawer">Gestionar Permisos</string>
-    <string name="gestionarUsuariosNavigatorDrawer">Gestionar Usuarios</string>
+    <string name="gestionarEscuelaNavigatorDrawer">Gestionar Escuela</string>
     <string name="gestionarRutasNavigatorDrawer">Gestionar Rutas</string>
     <!-- Preference Titles -->
     <string name="messages_header">Messages</string>
@@ -146,4 +146,36 @@
     <string name="lbl_eliminar_usuario_modificar_cuenta_matricula">Eliminar Usuario</string>
     <string name="btn_eliminar_usuario_modificar_cuenta_matricula">Eliminar Usuario</string>
 
+
+    <!-- Fragment Gestionar Escuela -->
+    <string name="lbl_gestionar_cursos_GE">GESTIONAR CURSOS</string>
+
+    <string name="lbl_anadir_curso_GE">Crear un nuevo curso</string>
+    <string name="btn_añadir_curso_GE">Añadir </string>
+
+    <string name="lbl_editar_curso_GE">Modificar curso existente</string>
+    <string name="btn_editar_curso_GE">Editar </string>
+
+    <string name="lbl_eliminar_curso_GE">Eliminar un curso publicado</string>
+    <string name="btn_eliminar_curso_GE">Eliminar</string>
+
+
+    <string name="lbl_gestionar_grupos_GE">GESTIONAR GRUPOS</string>
+
+    <!--Fragment Anadir Editar Curso-->
+    <string name="lbl_seleccionar_curso"> Selecciona la disciplina:</string>
+    <string name="lbl_seleccionar_dificultad"> Selecciona dificultad: </string>
+    <string name="rdb_basico">Básico</string>
+    <string name="rdb_medio">Medio</string>
+    <string name="rdb_avanzado">Avanzado</string>
+    <string name="rdb_experto">Experto</string>
+    <string name="lbl_dias_semana">Seleccione los dias de la semana en los que habrá clase.</string>
+    <string name="chp_lunes">Lun</string>
+    <string name="chp_martes">Mar</string>
+    <string name="chp_miercoles">Mie</string>
+    <string name="chp_jueves">Jue</string>
+    <string name="chp_viernes">Vie</string>
+    <string name="chp_sabado">Sab</string>
+    <string name="chp_domingo">Dom</string>
+    <string name="lbl_seleccionar_hora_clase">Seleccione la hora a la que se imparten las clases:</string>
 </resources>

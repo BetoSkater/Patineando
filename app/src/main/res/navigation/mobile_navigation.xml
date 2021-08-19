@@ -74,8 +74,11 @@
         android:name="com.example.patineando.FragmentsND.FragmentModificarCuentaMatriculaUsuario"
         tools:layout="@layout/fragment_modificar_cuenta_matricula_usuario" />
     <fragment
-        android:id="@+id/fragmento_gestionar_usuarios"
-        android:name="com.example.patineando.FragmentsND.FragmentGestionarUsuarios"
-        tools:layout="@layout/fragment_gestionar_usuarios" />
-
+        android:id="@+id/fragmento_gestionar_escuela"
+        android:name="com.example.patineando.FragmentsND.FragmentGestionarEscuela"
+        tools:layout="@layout/fragment_gestionar_escuela" />
+    <fragment
+        android:id="@+id/fragmento_anadir_editar_curso"
+        android:name="com.example.patineando.FragmentsND.FragmentAnadirEditarCurso"
+        tools:layout="@layout/fragment_anadir_editar_curso" />
 </navigation>
