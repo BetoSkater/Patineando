@@ -178,4 +178,12 @@
     <string name="chp_sabado">Sab</string>
     <string name="chp_domingo">Dom</string>
     <string name="lbl_seleccionar_hora_clase">Seleccione la hora a la que se imparten las clases:</string>
+    <string name="btn_seleccionar_hora">Seleccionar Hora</string>
+    <string name="lbl_seleccionar_localizacion">Seleccione la ubicación de las clases</string>
+    <string name="lbl_seleccionar_profesor">Seleccionar profesor</string>
+    <string name="btn_confirmar">Confirmar</string>
+
+
+
+
 </resources>
