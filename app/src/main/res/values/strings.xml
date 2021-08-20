@@ -184,6 +184,31 @@
     <string name="btn_confirmar">Confirmar</string>
 
 
+    <string name="lbl_hora">Hora</string>
+
+    <string name="rdb_cero">0</string>
+    <string name="rdb_uno">1</string>
+    <string name="rdb_dos">2</string>
+    <string name="rdb_tres">3</string>
+    <string name="rdb_cuatro">4</string>
+    <string name="rdb_cinco">5</string>
+    <string name="rdb_seis">6</string>
+    <string name="rdb_siete">7</string>
+    <string name="rdb_ocho">8</string>
+    <string name="rdb_nueve">9</string>
+    <string name="rdb_diez">10</string>
+    <string name="rdb_once">11</string>
+
+    <string name="lbl_minuto">Minuto</string>
+    <string name="rdb_punto">XX:00</string>
+    <string name="rdb_cuarto">XX:15</string>
+    <string name="rdb_media">XX:30</string>
+    <string name="rdb_menoscuarto">XX:45</string>
+
+    <string name="lbl_ampm">AM / PM</string>
+    <string name="lbl_am">AM</string>
+    <string name="lbl_pm">PM</string>
+
 
 
 </resources>
