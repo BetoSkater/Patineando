@@ -312,30 +312,20 @@ public class FragmentAnadirEditarCurso extends Fragment {
         long resultadoHora = 0 ;
         String horaString = "";
 
-        if(String.valueOf(grupoHoraUno.getCheckedRadioButtonId()).equals(null)){
+        boolean isGrupoHoraUno = false;
+        boolean isGrupoHoraDos = false;
 
-            switch (grupoHoraDos.getCheckedRadioButtonId()){
-                case R.id.rdbSeis:
-                    horaString = "06";
-                    break;
-                case R.id.rdbSiete:
-                    horaString = "07";
-                    break;
-                case R.id.rdbOcho:
-                    horaString = "08";
-                    break;
-                case R.id.rdbNueve:
-                    horaString = "09";
-                    break;
-                case R.id.rdbDiez:
-                    horaString = "10";
-                    break;
-                case R.id.rdbOnce:
-                    horaString = "11";
-                    break;
-            }
+        int comprobacionGrupoUno = grupoHoraUno.getCheckedRadioButtonId();
+        int comprobacionGrupoDos = grupoHoraDos.getCheckedRadioButtonId();
+        if(comprobacionGrupoUno != -1){
+            isGrupoHoraUno = true;
+        }
+        if(comprobacionGrupoDos != -1){
+            isGrupoHoraDos = true;
+        }
 
-        }else if(String.valueOf(grupoHoraDos.getCheckedRadioButtonId()).equals(null)){
+        if(isGrupoHoraUno){
+
             switch (grupoHoraUno.getCheckedRadioButtonId()){
                 case R.id.rdbCero:
                     horaString = "00";
@@ -356,6 +346,33 @@ public class FragmentAnadirEditarCurso extends Fragment {
                     horaString = "05";
                     break;
             }
+
+            isGrupoHoraUno = false;
+
+
+
+        }else if(isGrupoHoraDos){
+            switch (grupoHoraDos.getCheckedRadioButtonId()){
+                case R.id.rdbSeis:
+                    horaString = "06";
+                    break;
+                case R.id.rdbSiete:
+                    horaString = "07";
+                    break;
+                case R.id.rdbOcho:
+                    horaString = "08";
+                    break;
+                case R.id.rdbNueve:
+                    horaString = "09";
+                    break;
+                case R.id.rdbDiez:
+                    horaString = "10";
+                    break;
+                case R.id.rdbOnce:
+                    horaString = "11";
+                    break;
+            }
+            isGrupoHoraDos = false;
         }//En if hora:
 
         switch (grupoMinutos.getCheckedRadioButtonId()){
