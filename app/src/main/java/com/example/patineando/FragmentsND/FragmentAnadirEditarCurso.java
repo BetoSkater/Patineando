@@ -100,7 +100,7 @@ public class FragmentAnadirEditarCurso extends Fragment {
         radioExperto = (RadioButton) vista.findViewById(R.id.rdbExperto);
 
 
-        grupoHora = (RadioGroup) vista.findViewById(R.id.rdgGrupoHoras);
+        grupoHora = (RadioGroup) vista.findViewById(R.id.rdgGrupoHoras1);
         grupoMinutos = (RadioGroup) vista.findViewById(R.id.rdgGrupoMinutos);
 
 

@@ -40,63 +40,52 @@
                 android:layout_height="wrap_content"
                 android:text="@string/lbl_seleccionar_dificultad" />
 
-            <RadioGroup
-                android:id="@+id/rdgRadioDificultad"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
-                >
 
-                <LinearLayout
+                <RadioGroup
+                    android:id="@+id/rdgRadioDificultad"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:orientation="horizontal">
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
+                    <RadioButton
+                        android:id="@+id/rdbBasico"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                        android:layout_weight="1"
+                        android:checked="true"
 
-                        <RadioButton
-                            android:id="@+id/rdbBasico"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="@string/rdb_basico"
+                        android:text="@string/rdb_basico" />
 
-                            android:checked="true"/>
-
-                        <RadioButton
-                            android:id="@+id/rdbMedio"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="@string/rdb_medio" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
+                    <RadioButton
+                        android:id="@+id/rdbMedio"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                        android:layout_weight="1"
+                        android:text="@string/rdb_medio" />
 
-                        <RadioButton
-                            android:id="@+id/rdbAvanzado"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="@string/rdb_avanzado" />
 
-                        <RadioButton
-                            android:id="@+id/rdbExperto"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="@string/rdb_experto" />
-                    </LinearLayout>
+                    <RadioButton
+                        android:id="@+id/rdbAvanzado"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/rdb_avanzado" />
 
-                </LinearLayout>
+                    <RadioButton
+                        android:id="@+id/rdbExperto"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/rdb_experto" />
 
-            </RadioGroup>
+                </RadioGroup>
+
+            </LinearLayout>
 
             <View
                 android:id="@+id/divider10"
@@ -200,131 +189,117 @@
 
 
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
-                    <RadioGroup
-                        android:id="@+id/rdgGrupoHoras"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
 
-                        <TextView
-                            android:id="@+id/lblHora"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/lbl_hora" />
+                    <TextView
+                        android:id="@+id/lblHora"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/lbl_hora" />
 
-                        <LinearLayout
+
+                        <RadioGroup
+                            android:id="@+id/rdgGrupoHoras1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal">
 
-                            <LinearLayout
+                            <RadioButton
+                                android:id="@+id/rdbCero"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:orientation="vertical">
-
-                                <RadioButton
-                                    android:id="@+id/rdbCero"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/rdb_cero"
-                                    android:checked="true"/>
-
-                                <RadioButton
-                                    android:id="@+id/rdbTres"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/rdb_tres" />
-
-
-                                <RadioButton
-                                    android:id="@+id/rdbSeis"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/rdb_seis" />
-
-                                <RadioButton
-                                    android:id="@+id/rdbNueve"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/rdb_nueve" />
-
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="wrap_content"
+                                android:checked="true"
+                                android:text="@string/rdb_cero" />
+                            <RadioButton
+                                android:id="@+id/rdbUno"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:orientation="vertical">
+                                android:text="@string/rdb_uno" />
 
-                                <RadioButton
-                                    android:id="@+id/rdbUno"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/rdb_uno" />
-
-
-                                <RadioButton
-                                    android:id="@+id/rdbCuatro"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/rdb_cuatro" />
-
-
-                                <RadioButton
-                                    android:id="@+id/rdbSiete"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/rdb_siete" />
-
-                                <RadioButton
-                                    android:id="@+id/rdbDiez"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/rdb_diez" />
-
-
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="wrap_content"
+                            <RadioButton
+                                android:id="@+id/rdbDos"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:orientation="vertical">
+                                android:text="@string/rdb_dos" />
+
+                            <RadioButton
+                                android:id="@+id/rdbTres"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/rdb_tres" />
+                            <RadioButton
+                                android:id="@+id/rdbCuatro"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/rdb_cuatro" />
+
+                            <RadioButton
+                                android:id="@+id/rdbCinco"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/rdb_cinco" />
 
 
-                                <RadioButton
-                                    android:id="@+id/rdbDos"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/rdb_dos" />
-                                <RadioButton
-                                    android:id="@+id/rdbCinco"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/rdb_cinco" />
-                                <RadioButton
-                                    android:id="@+id/rdbOcho"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/rdb_ocho" />
-                                <RadioButton
-                                    android:id="@+id/rdbOnce"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/rdb_once" />
-                            </LinearLayout>
-                        </LinearLayout>
 
-                    </RadioGroup>
+
+
+                        </RadioGroup>
+
+                        <RadioGroup
+                            android:id="@+id/rdgGrupoHoras2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+
+                            <RadioButton
+                                android:id="@+id/rdbSeis"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/rdb_seis" />
+
+
+
+                            <RadioButton
+                                android:id="@+id/rdbSiete"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/rdb_siete" />
+
+                            <RadioButton
+                                android:id="@+id/rdbOcho"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/rdb_ocho" />
+                            <RadioButton
+                                android:id="@+id/rdbNueve"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/rdb_nueve" />
+                            <RadioButton
+                                android:id="@+id/rdbDiez"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/rdb_diez" />
+                            <RadioButton
+                                android:id="@+id/rdbOnce"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/rdb_once" />
+
+                        </RadioGroup>
+
+
+
+
+
+
+
                 </LinearLayout>
 
                 <View
@@ -347,49 +322,35 @@
 
                     </TextView>
 
-                    <RadioGroup
-                        android:id="@+id/rdgGrupoMinutos"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" >
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical">
 
-                            <LinearLayout
-                                android:layout_width="wrap_content"
+                            <RadioGroup
+                                android:id="@+id/rdgGrupoMinutos"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:orientation="horizontal">
-
 
                                 <RadioButton
                                     android:id="@+id/rdbEnPunto"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
-                                    android:text="@string/rdb_punto"
-                                    android:checked="true"/>
-
+                                    android:checked="true"
+                                    android:text="@string/rdb_punto" />
                                 <RadioButton
                                     android:id="@+id/rdbCuarto"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
                                     android:text="@string/rdb_cuarto" />
-                            </LinearLayout>
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal">
-
-
                                 <RadioButton
                                     android:id="@+id/rdbMedia"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
                                     android:text="@string/rdb_media" />
+
+
 
                                 <RadioButton
                                     android:id="@+id/rdbMenosCuarto"
@@ -398,17 +359,10 @@
                                     android:layout_weight="1"
                                     android:text="@string/rdb_menoscuarto" />
 
+                            </RadioGroup>
 
-                            </LinearLayout>
 
-                        </LinearLayout>
-                    </RadioGroup>
-                    <View
-                        android:id="@+id/divider19"
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
 
-                        android:background="?android:attr/listDivider" />
                     <TextView
                         android:id="@+id/lblAMPM"
                         android:layout_width="match_parent"
@@ -421,23 +375,20 @@
                         android:orientation="horizontal">
 
 
-
-
                         <ToggleButton
                             android:id="@+id/tgbAMPM"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:textOff="@string/lbl_am"
-                            android:textOn="@string/lbl_pm"/>
-
+                            android:textOn="@string/lbl_pm" />
 
 
                     </LinearLayout>
 
                 </LinearLayout>
 
-            </LinearLayout>
+
 
             <View
                 android:id="@+id/divider12"
@@ -484,7 +435,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/btn_confirmar" />
-
 
 
         </LinearLayout>
