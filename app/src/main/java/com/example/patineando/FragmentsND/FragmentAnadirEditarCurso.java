@@ -17,11 +17,15 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
+import com.example.patineando.ConversionesTemporales;
 import com.example.patineando.R;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
 
+
+import java.sql.Time;
 import java.util.Calendar;
 
 /**
@@ -43,9 +47,10 @@ public class FragmentAnadirEditarCurso extends Fragment {
     private RadioButton radioBasico, radioMedio, radioAvanzado, radioExperto;
     private RadioButton radioCero, radioUno, radioDos, radioTres, radioCuatro, radioCinco;
     private RadioButton radioSeis, radioSiete, radioOcho, radioNueve, radioDiez, radioOnce;
+    private RadioButton radioEnPunto, radioYCuarto, radioYMedia, radioMenosCuarto;
     private ChipGroup chipsDias;
     private Chip chipLunes, chipMartes, chipMiercoles, chipJueves, chipViernes, chipSabado, chipDomingo;//TODO no lo he usado y tira bien, lo dejo por si acaso
-
+    private ToggleButton toggleAMPM;
     private Button confirmar;
 
     // TODO: Rename parameter arguments, choose names that match
@@ -143,7 +148,12 @@ public class FragmentAnadirEditarCurso extends Fragment {
 
 
         grupoMinutos = (RadioGroup) vista.findViewById(R.id.rdgGrupoMinutos);
+        radioEnPunto = (RadioButton) vista.findViewById(R.id.rdbEnPunto);
+        radioYCuarto = (RadioButton ) vista.findViewById(R.id.rdbCuarto);
+        radioYMedia = (RadioButton) vista.findViewById(R.id.rdbMedia);
+        radioMenosCuarto = (RadioButton) vista.findViewById(R.id.rdbMenosCuarto);
 
+        toggleAMPM = (ToggleButton) vista.findViewById(R.id.tgbAMPM);
 
         btnConfirmar = (Button) vista.findViewById(R.id.btnConfirmar);
 
@@ -178,9 +188,9 @@ public class FragmentAnadirEditarCurso extends Fragment {
                 int resultadoImagen = obtenerImagenRecursoID(resultadoDificultad);
                 int chipSeleccionado = chipsDias.getCheckedChipId();
                 String resultadoDia = obtenerDia(chipSeleccionado);
+                long resultadoHora = obtenerHora();
 
-
-                String mensaje = resultadoCurso + ", " +resultadoDificultad + ", " + resultadoDia+ ", " ;
+                String mensaje = resultadoCurso + ", " +resultadoDificultad + ", " + resultadoDia+ ", " + resultadoHora ;
                 Toast.makeText(vista.getContext(),mensaje,Toast.LENGTH_SHORT).show();
             }
         });
@@ -262,7 +272,7 @@ public class FragmentAnadirEditarCurso extends Fragment {
     //Método para obtener el dia de la semana seleccionado:
     public String obtenerDia(int chipChecked){
         String resultadoDia = "";
-
+       // https://stackoverflow.com/questions/10425569/radiogroup-with-two-columns-which-have-ten-radiobuttons
         Chip chip = chipsDias.findViewById(chipChecked);
         resultadoDia = chip.getChipText().toString().trim();
 
@@ -271,7 +281,8 @@ public class FragmentAnadirEditarCurso extends Fragment {
     }
 
     //Metodos onChecked que eliminan los checs del radiogrupo no seleccionado en el apartado de las horas:
-
+    //https://stackoverflow.com/questions/11168538/radiogroup-doesnt-work-properly
+    //https://stackoverflow.com/questions/10425569/radiogroup-with-two-columns-which-have-ten-radiobuttons
     private RadioGroup.OnCheckedChangeListener escuchadorUno = new RadioGroup.OnCheckedChangeListener() {
         @Override
         public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -294,4 +305,85 @@ public class FragmentAnadirEditarCurso extends Fragment {
         }
     };
 
+
+
+    //Metodo para la obtencion de la hora:
+    private long obtenerHora(){
+        long resultadoHora = 0 ;
+        String horaString = "";
+
+        if(String.valueOf(grupoHoraUno.getCheckedRadioButtonId()).equals(null)){
+
+            switch (grupoHoraDos.getCheckedRadioButtonId()){
+                case R.id.rdbSeis:
+                    horaString = "06";
+                    break;
+                case R.id.rdbSiete:
+                    horaString = "07";
+                    break;
+                case R.id.rdbOcho:
+                    horaString = "08";
+                    break;
+                case R.id.rdbNueve:
+                    horaString = "09";
+                    break;
+                case R.id.rdbDiez:
+                    horaString = "10";
+                    break;
+                case R.id.rdbOnce:
+                    horaString = "11";
+                    break;
+            }
+
+        }else if(String.valueOf(grupoHoraDos.getCheckedRadioButtonId()).equals(null)){
+            switch (grupoHoraUno.getCheckedRadioButtonId()){
+                case R.id.rdbCero:
+                    horaString = "00";
+                    break;
+                case R.id.rdbUno:
+                    horaString = "01";
+                    break;
+                case R.id.rdbDos:
+                    horaString = "02";
+                    break;
+                case R.id.rdbTres:
+                    horaString = "03";
+                    break;
+                case R.id.rdbCuarto:
+                    horaString = "04";
+                    break;
+                case R.id.rdbCinco:
+                    horaString = "05";
+                    break;
+            }
+        }//En if hora:
+
+        switch (grupoMinutos.getCheckedRadioButtonId()){
+            case R.id.rdbEnPunto:
+                horaString = horaString + ":" + "00";
+                break;
+            case R.id.rdbCuarto:
+                horaString = horaString + ":" + "15";
+                break;
+            case R.id.rdbMedia:
+                horaString = horaString + ":" + "30";
+                break;
+            case R.id.rdbMenosCuarto:
+                horaString = horaString + ":" + "45";
+                break;
+        }
+
+       if(toggleAMPM.isChecked()){
+           horaString = horaString + " " +toggleAMPM.getTextOn();
+       }else{
+           horaString = horaString + " " + toggleAMPM.getTextOff();
+       }
+
+
+        ConversionesTemporales conversor = new ConversionesTemporales();
+
+       resultadoHora = conversor.tiempoAMPMalong(horaString);
+
+        return resultadoHora;
+    }
 }
