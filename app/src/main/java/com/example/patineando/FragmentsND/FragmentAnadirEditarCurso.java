@@ -19,6 +19,8 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.example.patineando.R;
+import com.google.android.material.chip.Chip;
+import com.google.android.material.chip.ChipGroup;
 
 import java.util.Calendar;
 
@@ -37,9 +39,12 @@ public class FragmentAnadirEditarCurso extends Fragment {
     static final int TIME_DIALOG_ID = 0;
 
     private Spinner spinnerCursos, spinnerLocalizacion, spinnerProfesores;
-    private RadioGroup grupoDificultad, grupoHora, grupoMinutos;
+    private RadioGroup grupoDificultad, grupoHoraUno, grupoHoraDos, grupoMinutos;
     private RadioButton radioBasico, radioMedio, radioAvanzado, radioExperto;
-
+    private RadioButton radioCero, radioUno, radioDos, radioTres, radioCuatro, radioCinco;
+    private RadioButton radioSeis, radioSiete, radioOcho, radioNueve, radioDiez, radioOnce;
+    private ChipGroup chipsDias;
+    private Chip chipLunes, chipMartes, chipMiercoles, chipJueves, chipViernes, chipSabado, chipDomingo;//TODO no lo he usado y tira bien, lo dejo por si acaso
 
     private Button confirmar;
 
@@ -99,8 +104,44 @@ public class FragmentAnadirEditarCurso extends Fragment {
         radioAvanzado = (RadioButton) vista.findViewById(R.id.rdbAvanzado);
         radioExperto = (RadioButton) vista.findViewById(R.id.rdbExperto);
 
+        chipsDias = (ChipGroup) vista.findViewById(R.id.chpGrupoDiasSemana);
+        chipLunes = (Chip) vista.findViewById(R.id.chpLunes);
+        chipMartes = (Chip) vista.findViewById(R.id.chpMartes);
+        chipMiercoles = (Chip) vista.findViewById(R.id.chpMiercoles);
+        chipJueves = (Chip) vista.findViewById(R.id.chpJueves);
+        chipViernes = (Chip) vista.findViewById(R.id.chpViernes);
+        chipSabado = (Chip) vista.findViewById(R.id.chpSabado);
+        chipDomingo = (Chip) vista.findViewById(R.id.chpDomingo);
 
-        grupoHora = (RadioGroup) vista.findViewById(R.id.rdgGrupoHoras1);
+
+
+        grupoHoraUno = (RadioGroup) vista.findViewById(R.id.rdgGrupoHoras1);
+        radioCero = (RadioButton) vista.findViewById(R.id.rdbCero);
+        radioUno = (RadioButton) vista.findViewById(R.id.rdbUno);
+        radioDos = (RadioButton) vista.findViewById(R.id.rdbDos);
+        radioTres = (RadioButton) vista.findViewById(R.id.rdbTres);
+        radioCuatro = (RadioButton) vista.findViewById(R.id.rdbCuarto);
+        radioCinco = (RadioButton) vista.findViewById(R.id.rdbCinco);
+
+        grupoHoraDos = (RadioGroup) vista.findViewById(R.id.rdgGrupoHoras2);
+        radioSeis = (RadioButton) vista.findViewById(R.id.rdbSeis);
+        radioSiete = (RadioButton) vista.findViewById(R.id.rdbSiete);
+        radioOcho = (RadioButton) vista.findViewById(R.id.rdbOcho);
+        radioNueve = (RadioButton) vista.findViewById(R.id.rdbNueve);
+        radioDiez = (RadioButton) vista.findViewById(R.id.rdbDiez);
+        radioOnce = (RadioButton) vista.findViewById(R.id.rdbOnce);
+
+        //Se deseleccionan los posibles radioButtons para que no existan conflictos entre ambos radiogrupos:
+
+        grupoHoraUno.clearCheck();
+        grupoHoraDos.clearCheck();
+
+        //Se asocian a ambos radioGrupos listenrs que desactivan los botones del otro en cuanto se activa un radioButton en el.
+
+        grupoHoraUno.setOnCheckedChangeListener(escuchadorUno);
+        grupoHoraDos.setOnCheckedChangeListener(escuchadorDos);
+
+
         grupoMinutos = (RadioGroup) vista.findViewById(R.id.rdgGrupoMinutos);
 
 
@@ -114,21 +155,84 @@ public class FragmentAnadirEditarCurso extends Fragment {
         spinnerCursos.setAdapter(adaptadorCursos);
 
 
-        //RedioGroup seleccionador dificultad:
+        //RedioGroup seleccionador dificultad: (ver metodo obtener dificultad)
+
+        //Funcionalidad del grupo Chips (ver metodo obtenerDia)
+
+        //Funcionalidad Extracción y formateo de la hora:
+
+        //TODO lo primero es hacer lo de vincular los dos radioGrupos de las horas.
 
 
-        //Funcionalidad para añadir un nuevo curso:
+
+
+
+
+
+        //Funcionalidad para boton para añadir un nuevo curso:
         btnConfirmar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String resultadoDificultado = obtenerDificultad();
-                Toast.makeText(vista.getContext(),resultadoDificultado,Toast.LENGTH_SHORT).show();
+                String resultadoCurso = obtenerTipoCurso();
+                String resultadoDificultad = obtenerDificultad();
+                int resultadoImagen = obtenerImagenRecursoID(resultadoDificultad);
+                int chipSeleccionado = chipsDias.getCheckedChipId();
+                String resultadoDia = obtenerDia(chipSeleccionado);
+
+
+                String mensaje = resultadoCurso + ", " +resultadoDificultad + ", " + resultadoDia+ ", " ;
+                Toast.makeText(vista.getContext(),mensaje,Toast.LENGTH_SHORT).show();
             }
         });
         return vista;
 
     }//Fin onCreateView
 
+
+    //Método para obtener el tipo de curso seleccionado:
+
+    public String obtenerTipoCurso(){
+        String resultadoCurso = "";
+
+        resultadoCurso =spinnerCursos.getSelectedItem().toString();
+
+        return resultadoCurso;
+    }
+    public int obtenerImagenRecursoID(String cursoSeleccionado){
+        int rutaRecurso = 0;
+        //String [] cursos = {"Agresivo", "Artistico", "Baile", "Tecnica", "Hockey", "Slalom", "Velocidad", "Otros"};
+        switch (cursoSeleccionado){
+            case "Agresivo":
+                rutaRecurso = R.drawable.agresivo_sin_texto;
+                break;
+            case "Artistico":
+                rutaRecurso = R.drawable.artistico_sin_texto;
+                break;
+            case "Baile":
+                rutaRecurso = R.drawable.baile_sin_texto;
+                break;
+            case "Tecnica":
+                rutaRecurso = R.drawable.tecnica_sin_texto;
+                break;
+            case "Hockey":
+                rutaRecurso = R.drawable.hockey_sin_texto;
+                break;
+            case "Slalom":
+                rutaRecurso = R.drawable.slalom_sin_texto;
+                break;
+            case "Velocidad":
+                rutaRecurso = R.drawable.velocidad_sin_texto;
+                break;
+            case "Otros":
+                rutaRecurso = R.drawable.otras_sin_texto;
+                break;
+            default:
+                rutaRecurso = R.drawable.otras_sin_texto;
+                break;
+
+        }
+        return rutaRecurso;
+    }
 
     //Metodo que obtiene el radio releccionado del campo dificultad, se debe meter en el boton de confirmar:
     public String obtenerDificultad (){
@@ -153,4 +257,41 @@ public class FragmentAnadirEditarCurso extends Fragment {
 
         return resultadoDificultad;
     }
+
+
+    //Método para obtener el dia de la semana seleccionado:
+    public String obtenerDia(int chipChecked){
+        String resultadoDia = "";
+
+        Chip chip = chipsDias.findViewById(chipChecked);
+        resultadoDia = chip.getChipText().toString().trim();
+
+
+        return resultadoDia;
+    }
+
+    //Metodos onChecked que eliminan los checs del radiogrupo no seleccionado en el apartado de las horas:
+
+    private RadioGroup.OnCheckedChangeListener escuchadorUno = new RadioGroup.OnCheckedChangeListener() {
+        @Override
+        public void onCheckedChanged(RadioGroup group, int checkedId) {
+            if(checkedId != -1){
+                grupoHoraDos.setOnCheckedChangeListener(null);
+                grupoHoraDos.clearCheck();
+                grupoHoraDos.setOnCheckedChangeListener(escuchadorDos);
+            }
+        }
+    };
+
+    private RadioGroup.OnCheckedChangeListener escuchadorDos = new RadioGroup.OnCheckedChangeListener() {
+        @Override
+        public void onCheckedChanged(RadioGroup group, int checkedId) {
+            if(checkedId != -1){
+                grupoHoraUno.setOnCheckedChangeListener(null);
+                grupoHoraUno.clearCheck();
+                grupoHoraUno.setOnCheckedChangeListener(escuchadorUno);
+            }
+        }
+    };
+
 }

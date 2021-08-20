@@ -102,76 +102,68 @@
             <com.google.android.material.chip.ChipGroup
                 android:id="@+id/chpGrupoDiasSemana"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                app:singleSelection="true"
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal">
+                >
 
                         <com.google.android.material.chip.Chip
                             android:id="@+id/chpLunes"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="@string/chp_lunes" />
+                            android:text="@string/chp_lunes"
+                            android:checkable="true"
+                            />
 
                         <com.google.android.material.chip.Chip
                             android:id="@+id/chpMartes"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="@string/chp_martes" />
+                            android:text="@string/chp_martes"
+                            android:checkable="true"/>
 
                         <com.google.android.material.chip.Chip
                             android:id="@+id/chpMiercoles"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="@string/chp_miercoles" />
+                            android:text="@string/chp_miercoles"
+                            android:checkable="true"/>
 
                         <com.google.android.material.chip.Chip
                             android:id="@+id/chpJueves"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="@string/chp_jueves" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:orientation="horizontal">
+                            android:text="@string/chp_jueves"
+                            android:checkable="true"/>
 
                         <com.google.android.material.chip.Chip
                             android:id="@+id/chpViernes"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="@string/chp_viernes" />
+                            android:text="@string/chp_viernes"
+                            android:checkable="true"/>
 
                         <com.google.android.material.chip.Chip
                             android:id="@+id/chpSabado"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="@string/chp_sabado" />
+                            android:text="@string/chp_sabado"
+                            android:checkable="true"/>
 
                         <com.google.android.material.chip.Chip
                             android:id="@+id/chpDomingo"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="@string/chp_domingo" />
-                    </LinearLayout>
-                </LinearLayout>
+                            android:text="@string/chp_domingo"
+                            android:checkable="true"/>
+
 
             </com.google.android.material.chip.ChipGroup>
 

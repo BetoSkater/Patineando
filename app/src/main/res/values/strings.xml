@@ -165,18 +165,18 @@
     <!--Fragment Anadir Editar Curso-->
     <string name="lbl_seleccionar_curso"> Selecciona la disciplina:</string>
     <string name="lbl_seleccionar_dificultad"> Selecciona dificultad: </string>
-    <string name="rdb_basico">Básico</string>
+    <string name="rdb_basico">Basico</string>
     <string name="rdb_medio">Medio</string>
     <string name="rdb_avanzado">Avanzado</string>
     <string name="rdb_experto">Experto</string>
     <string name="lbl_dias_semana">Seleccione los dias de la semana en los que habrá clase.</string>
-    <string name="chp_lunes">Lun</string>
-    <string name="chp_martes">Mar</string>
-    <string name="chp_miercoles">Mie</string>
-    <string name="chp_jueves">Jue</string>
-    <string name="chp_viernes">Vie</string>
-    <string name="chp_sabado">Sab</string>
-    <string name="chp_domingo">Dom</string>
+    <string name="chp_lunes">Lunes</string>
+    <string name="chp_martes">Martes</string>
+    <string name="chp_miercoles">Miercoles</string>
+    <string name="chp_jueves">Jueves</string>
+    <string name="chp_viernes">Viernes</string>
+    <string name="chp_sabado">Sabado</string>
+    <string name="chp_domingo">Domingo</string>
     <string name="lbl_seleccionar_hora_clase">Seleccione la hora a la que se imparten las clases:</string>
     <string name="btn_seleccionar_hora">Seleccionar Hora</string>
     <string name="lbl_seleccionar_localizacion">Seleccione la ubicación de las clases</string>
