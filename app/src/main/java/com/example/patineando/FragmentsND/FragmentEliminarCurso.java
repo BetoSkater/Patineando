@@ -1,5 +1,7 @@
 package com.example.patineando.FragmentsND;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 
 import android.app.Fragment;
@@ -11,6 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -147,12 +150,32 @@ public class FragmentEliminarCurso extends Fragment implements AdaptadorEliminar
 
     //Sobreescritura del interfaz onItemClick para poder mostrar la vista detalle un elemento del fragment de los permisos:
     @Override
-    public void onItemClick(TCursoPublicado auxiliarModeloDatos) { //TODO no funciona, es decir, no borra el dato
-        DatabaseReference mDatabase;
-        mDatabase = FirebaseDatabase.getInstance().getReference();
-        String criterioBorrar = auxiliarModeloDatos.getIdCurso();
+    public void onItemClick(TCursoPublicado modeloDatos) { //TODO no funciona, es decir, no borra el dato
+        new AlertDialog.Builder(getContext())
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setTitle("Closing Activity")
+                .setMessage("Seguro que quuieres borrar?? PD ponlo en Stirngs")
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener()
+                {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        DatabaseReference mDatabase;
+                        mDatabase = FirebaseDatabase.getInstance().getReference();
+                        String criterioBorrar = modeloDatos.getIdCurso();
 
-        mDatabase.child("CursosOfertados").child(criterioBorrar).removeValue();
+                        mDatabase.child("CursosOfertados").child(criterioBorrar).removeValue();
+                        //TODO poner que refresque la lista y la transaccion
+                    }
+
+                })
+                .setNegativeButton("No", null)
+                .show();
+
+        //----------
+
+
+
+
 
     }
 

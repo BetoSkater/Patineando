@@ -22,7 +22,7 @@ import android.widget.Toast;
 import com.example.patineando.databinding.ActivityMainBinding;
 import com.example.patineando.databinding.ActivityMenuNavigatorDrawerBinding;
 import com.example.patineando.databinding.ActivityMenuPrincipalBinding;
-import com.example.patineando.ui.gallery.GalleryFragment;
+
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 

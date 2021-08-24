@@ -56,7 +56,13 @@ public class AdaptadorEliminarCurso extends RecyclerView.Adapter<AdaptadorElimin
         holder.txtLocalizacion.setText(localizacion);
         holder.txtProfe.setText(profe);
 
+        holder.tarjetaCurso.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
 
+                clickListenerBorrar.onItemClick(listadoCursosEliminar.get(position));
+            }
+        });
         if(position%2 ==0) {
             holder.tarjetaCurso.setBackgroundDrawable(ponerBordeMorado());
         }else{

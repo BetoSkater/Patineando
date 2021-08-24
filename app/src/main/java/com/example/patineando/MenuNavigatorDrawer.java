@@ -20,6 +20,9 @@ import com.google.android.material.navigation.NavigationView;
 import androidx.annotation.NonNull;
 import androidx.core.view.GravityCompat;
 import android.app.Fragment;
+import android.widget.ImageView;
+import android.widget.TextView;
+
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -35,8 +38,14 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 import org.jetbrains.annotations.NotNull;
+
+/*public enum TipoUsurio
+{
+    Administracion, Profesorado, Alumnado
+}*/
 
 public class MenuNavigatorDrawer extends AppCompatActivity {
 //TODo Esto creo que lo puedo borrar, ya que el .java del navigator es el menuPrincipal.java
@@ -44,17 +53,28 @@ public class MenuNavigatorDrawer extends AppCompatActivity {
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMenuNavigatorDrawerBinding binding;
     private FirebaseAuth mAuth;
-    String tipoUsuario2 = "Administración"; //TODO cambiar a Alumno cuando funcione el hacer dinámico el menú.
 
-    String tipoUsuarioApp = "Administración"; //TODO lo mismo aqui
 
+    String tipoUsuario2 =  "Alumnado"; //TODO cambiar a Alumno cuando funcione el hacer dinámico el menú.
+
+    String tipoUsuarioApp = "Alumnado"; //TODO lo mismo aqui
+
+
+    private ImageView imagenNavigatorDrawer;
+    private TextView nombreNavigatorDrawer, correoNavigatorDrawer;
+
+    NavigationView navigationView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+
+
+
+
         //Instancia de autenticacion:
         mAuth = FirebaseAuth.getInstance();
-        //tipoUsuario2 = obtencionTipoUsuarioND();
+        tipoUsuario2 = obtencionTipoUsuarioND();
 
 
         binding = ActivityMenuNavigatorDrawerBinding.inflate(getLayoutInflater());
@@ -63,7 +83,16 @@ public class MenuNavigatorDrawer extends AppCompatActivity {
 
         setSupportActionBar(binding.appBarMenuNavigatorDrawer.toolbar);
         DrawerLayout drawer =findViewById(R.id.menu_drawer_layout);
-        NavigationView navigationView = findViewById(R.id.vista_navegacion_ND);
+         navigationView = findViewById(R.id.vista_navegacion_ND);
+
+        //La asignacion de variables-controladores del ND se tienen que poner despues de la definicion del navigator:
+
+        //https://stackoverflow.com/questions/33560219/in-android-how-to-set-navigation-drawer-header-image-and-name-programmatically-i
+        imagenNavigatorDrawer = (ImageView) navigationView.getHeaderView(0).findViewById(R.id.imgUsuarioND);
+        nombreNavigatorDrawer = (TextView) navigationView.getHeaderView(0).findViewById(R.id.lblNombreND);
+        correoNavigatorDrawer = (TextView) navigationView.getHeaderView(0).findViewById(R.id.lblCorreoND);
+
+
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         //TODO: NOTA: En teoria esto es lo que va  a hacer que el menú sea dinámico en funcion del tipo de usuario.
@@ -204,11 +233,33 @@ public class MenuNavigatorDrawer extends AppCompatActivity {
         mDatabase.child("Usuarios").child(usuario.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
-               for(DataSnapshot usuarios : snapshot.getChildren()){
-                   tipoUsuarioApp = usuarios.child("tipoUsuario").getValue(Tusuario.class).getTipoUsuario();
+                   tipoUsuarioApp = snapshot.child("tipoUsuario").getValue().toString();
 
-               }
+                //---------------------
 
+                   Menu menu = navigationView.getMenu();
+                if(tipoUsuarioApp.equals("Profesorado")){
+                    MenuItem menuProfe = menu.findItem(R.id.menuProfesorND);
+                    menuProfe.setVisible(true);
+                }else if(tipoUsuarioApp.equals("Administración")){
+                    MenuItem menuProfe = menu.findItem(R.id.menuProfesorND);
+                    menuProfe.setVisible(true);
+                    MenuItem menuAdmin = menu.findItem(R.id.menuAdministracionND);
+                    menuAdmin.setVisible(true);
+                }
+
+                //-------------------
+        //TODO comprobar que funciona
+                   String imagenObtenida = snapshot.child("imagenUsuario").getValue().toString();
+               Picasso.get().load(imagenObtenida).into(imagenNavigatorDrawer);
+
+                String nombre = snapshot.child("nombreUsuario").getValue().toString();
+                String apellido = snapshot.child("apellidosUsuario").getValue().toString();
+                String nombreCompleto = nombre + " " + apellido;
+                nombreNavigatorDrawer.setText(nombreCompleto);
+
+                String correo = snapshot.child("correoUsuario").getValue().toString();
+                correoNavigatorDrawer.setText(correo);
             }
 
 

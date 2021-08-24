@@ -80,53 +80,49 @@ public class FragmentCursosImpartidos extends Fragment {
         botonAgresivo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Fragment fragmento = new FragmentOpciones();
-                FragmentTransaction transaccion = getFragmentManager().beginTransaction();
-                transaccion.replace(R.id.contenedor_fragments_ND,fragmento);
-                transaccion.addToBackStack(null);
-                transaccion.commit();
+                generarBundleYNuevoFragmentDetalle("Agresivo");
             }
         });
 
         botonArtistico.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                generarBundleYNuevoFragmentDetalle("Artistico");
             }
         });
 
         botonBaile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                generarBundleYNuevoFragmentDetalle("Baile");
             }
         });
 
         botonTecnica.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                generarBundleYNuevoFragmentDetalle("Tecnica");
             }
         });
 
         botonOtras.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                generarBundleYNuevoFragmentDetalle("Otras");
             }
         });
 
         botonHockey.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                generarBundleYNuevoFragmentDetalle("Hockey");
             }
         });
 
         botonSlalom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                generarBundleYNuevoFragmentDetalle("Slalom");
             }
         });
 
@@ -134,9 +130,31 @@ public class FragmentCursosImpartidos extends Fragment {
         botonVelocidad.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                generarBundleYNuevoFragmentDetalle("Velocidad");
             }
         });
         return vista;
+    }//Fin onCreateView
+
+    //Métodos para no repetir información tanto para el envio como el acceso a la siguiente actividad:
+
+    //Método asignación del String a enviar:
+
+    public void generarBundleYNuevoFragmentDetalle(String criterioBusqueda){
+        Fragment fragmento = new FragmentListadoCursosTipo();
+        //FragmentListadoCursosTipo fragmentDetalle = new FragmentListadoCursosTipo();
+        Bundle parametroEnviar = new Bundle();
+        parametroEnviar.putString("Disciplina",criterioBusqueda);
+        fragmento.setArguments(parametroEnviar);
+
+
+        FragmentTransaction transaccion = getFragmentManager().beginTransaction();
+        transaccion.replace(R.id.contenedor_fragments_ND,fragmento);
+        transaccion.addToBackStack(null);
+        transaccion.commit();
+
     }
+
+
+
 }

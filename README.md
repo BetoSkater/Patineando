@@ -4,7 +4,8 @@ Ninguna
    Me pongo con esto para crear la autenticacion:
     **Agrega acceso a tu app para Android fácilmente con FirebaseUI** https://firebase.google.com/docs/auth/android/firebaseui?authuser=0
        
-        
+ #Envio de un string entre fragments bien explicado sin usar los mParams autogenerados que son un lio, es la respuesta de Joao Marcos:
+  * https://stackoverflow.com/questions/24555417/how-to-send-data-from-one-fragment-to-another-fragment
   
 Editor de textos en línea: https://stackedit.io/app#
                            https://gauge.org
