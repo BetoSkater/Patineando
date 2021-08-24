@@ -28,6 +28,7 @@
                     android:layout_width="130dp"
                     android:layout_height="200dp"
                     android:adjustViewBounds="true"
+                    android:backgroundTint="@color/transparente"
                     android:scaleType="fitCenter"
                     android:src="@drawable/agresivo" />
 
@@ -36,6 +37,7 @@
                     android:layout_width="130dp"
                     android:layout_height="200dp"
                     android:adjustViewBounds="false"
+                    android:backgroundTint="@color/transparente"
                     android:scaleType="fitCenter"
                     android:src="@drawable/artistico" />
 
@@ -44,6 +46,7 @@
                     android:layout_width="130dp"
                     android:layout_height="200dp"
                     android:adjustViewBounds="false"
+                    android:backgroundTint="@color/transparente"
                     android:scaleType="fitCenter"
                     android:src="@drawable/baile" />
             </TableRow>
@@ -60,6 +63,7 @@
                     android:layout_width="130dp"
                     android:layout_height="200dp"
                     android:adjustViewBounds="false"
+                    android:backgroundTint="@color/transparente"
                     android:scaleType="fitCenter"
                     android:src="@drawable/tecnica" />
 
@@ -68,6 +72,7 @@
                     android:layout_width="130dp"
                     android:layout_height="200dp"
                     android:adjustViewBounds="false"
+                    android:backgroundTint="@color/transparente"
                     android:scaleType="fitCenter"
                     android:src="@drawable/otras" />
 
@@ -84,6 +89,7 @@
                     android:layout_width="130dp"
                     android:layout_height="200dp"
                     android:adjustViewBounds="false"
+                    android:backgroundTint="@color/transparente"
                     android:scaleType="fitCenter"
                     android:src="@drawable/hockey" />
 
@@ -92,6 +98,7 @@
                     android:layout_width="130dp"
                     android:layout_height="200dp"
                     android:adjustViewBounds="false"
+                    android:backgroundTint="@color/transparente"
                     android:scaleType="fitCenter"
                     android:src="@drawable/slalom" />
 
@@ -100,6 +107,7 @@
                     android:layout_width="130dp"
                     android:layout_height="200dp"
                     android:adjustViewBounds="false"
+                    android:backgroundTint="@color/transparente"
                     android:scaleType="fitCenter"
                     android:src="@drawable/velocidad" />
             </TableRow>

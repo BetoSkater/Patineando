@@ -29,6 +29,10 @@
         android:id="@+id/fragmento_cursos_impartidos"
         android:name="com.example.patineando.FragmentsND.FragmentCursosImpartidos"
         tools:layout="@layout/fragment_cursos_impartidos" />
+    <fragment
+        android:id="@+id/fragmento_listado_cursos_tipo"
+        android:name="com.example.patineando.FragmentsND.FragmentListadoCursosTipo"
+        tools:layout="@layout/fragment_listado_cursos_tipo" />
 
     <fragment
         android:id="@+id/fragmento_mis_cursos"
@@ -81,4 +85,10 @@
         android:id="@+id/fragmento_anadir_editar_curso"
         android:name="com.example.patineando.FragmentsND.FragmentAnadirEditarCurso"
         tools:layout="@layout/fragment_anadir_editar_curso" />
+
+    <fragment
+        android:id="@+id/fragmento_eliminar_curso"
+        android:name="com.example.patineando.FragmentsND.FragmentEliminarCurso"
+        tools:layout="@layout/fragment_eliminar_curso" />
+
 </navigation>

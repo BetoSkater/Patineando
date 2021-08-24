@@ -83,6 +83,13 @@ public class FragmentGestionarEscuela extends Fragment {
         });
 
         btnEliminar = (Button) vista.findViewById(R.id.btnEliminarGE);
+        btnEliminar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                eliminarCurso();
+            }
+        });
+
 
         return vista;
     }//Fin on CreateView
@@ -106,4 +113,11 @@ public class FragmentGestionarEscuela extends Fragment {
         transaccion.commit();
     }//Fin metodo editarCurso()
 
+    public void eliminarCurso(){
+        Fragment fragmento = new FragmentEliminarCurso();
+        FragmentTransaction transaccion = getFragmentManager().beginTransaction();
+        transaccion.replace(R.id.contenedor_fragments_ND,fragmento);
+        transaccion.addToBackStack(null);
+        transaccion.commit();
+    }
 }

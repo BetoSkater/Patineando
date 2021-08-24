@@ -1,7 +1,5 @@
 package com.example.patineando.FragmentsND;
 
-import android.app.Dialog;
-import android.app.TimePickerDialog;
 import android.os.Bundle;
 
 import android.app.Fragment;
@@ -15,18 +13,22 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.TimePicker;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import com.example.patineando.ConversionesTemporales;
 import com.example.patineando.R;
+import com.example.patineando.TCursoPublicado;
+import com.example.patineando.TinformacionCursos;
+import com.example.patineando.Tusuario;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 
-import java.sql.Time;
-import java.util.Calendar;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -38,6 +40,8 @@ public class FragmentAnadirEditarCurso extends Fragment {
     private TextView txtMostrarHora;
     private Button btnSeleccionarHora, btnConfirmar;
 
+    public List<Tusuario> listadoProfesores = new ArrayList<Tusuario>();
+    boolean listadoCargado = false;
     private int horaSeleccionador, minutoSeleccionador;
 
     static final int TIME_DIALOG_ID = 0;
@@ -164,6 +168,26 @@ public class FragmentAnadirEditarCurso extends Fragment {
         ArrayAdapter<String> adaptadorCursos = new ArrayAdapter<String>(vista.getContext(), android.R.layout.simple_spinner_dropdown_item, cursos);
         spinnerCursos.setAdapter(adaptadorCursos);
 
+        //Adaptador localizaciones:
+        String [] localizaciones ={"Las Rozas","Arganzuela","Retiro", "Matadero", "Las Aguilas", "Colón", "Juan Carlos I"};
+        ArrayAdapter<String> adaptadorLocalizaciones = new ArrayAdapter<String>(vista.getContext(), android.R.layout.simple_spinner_dropdown_item, localizaciones);
+        spinnerLocalizacion.setAdapter(adaptadorLocalizaciones);
+
+
+        //Adaptador profesores: requiere extraer valores de la base de datos:
+
+        //Generacion de la lista de objetos profesor:
+
+      //  listadoProfesores = generadorListaProfesores();
+
+            //Ahora se crea un Array que contiene los nombres de los profesores:
+
+
+       //ArrayList<String> profesores = listadoNombresProfesores();
+        String [] profesores = {"Profesor1 Uno (El primero)","Emilio Sanz", "Elena Alarcon (Helen)", "Luis Casado (Luismi)", "Isabel Valenzuela (Isa)" };
+        ArrayAdapter<String> adaptadorProfesores = new ArrayAdapter<String>(vista.getContext(), android.R.layout.simple_spinner_item, profesores);
+        spinnerProfesores.setAdapter(adaptadorProfesores);
+
 
         //RedioGroup seleccionador dificultad: (ver metodo obtener dificultad)
 
@@ -184,19 +208,130 @@ public class FragmentAnadirEditarCurso extends Fragment {
             @Override
             public void onClick(View v) {
                 String resultadoCurso = obtenerTipoCurso();
+                int resultadoImagen = obtenerImagenRecursoID(resultadoCurso);
                 String resultadoDificultad = obtenerDificultad();
-                int resultadoImagen = obtenerImagenRecursoID(resultadoDificultad);
+
                 int chipSeleccionado = chipsDias.getCheckedChipId();
                 String resultadoDia = obtenerDia(chipSeleccionado);
-                long resultadoHora = obtenerHora();
-
-                String mensaje = resultadoCurso + ", " +resultadoDificultad + ", " + resultadoDia+ ", " + resultadoHora ;
+                String resultadoHora = obtenerHora();
+                String resultadoLocalizacion = obtenerLocalizacion();
+                String resultadoProfesor = obtenerProfesor();
+                String mensaje = resultadoCurso + ", " +resultadoDificultad + ", " + resultadoDia+ ", " + resultadoHora +", " + resultadoLocalizacion + ", "+ resultadoProfesor ;
                 Toast.makeText(vista.getContext(),mensaje,Toast.LENGTH_SHORT).show();
+
+                TCursoPublicado curso = new TCursoPublicado();
+                curso.setImagenCurso(resultadoImagen);
+                curso.setTipoCurso(resultadoCurso);
+                curso.setNivelDificultad(resultadoDificultad);
+                curso.setDiaClase(resultadoDia);
+                curso.setHoraClase(resultadoHora);
+                curso.setLocalizacion(resultadoLocalizacion);
+                curso.setProfesor(resultadoProfesor);
+
+                DatabaseReference mDatabase; //TODO debería ser private, pero no lo permite ya que la clase original es pública. Debo cambiar esto?
+                mDatabase = FirebaseDatabase.getInstance().getReference();
+
+                mDatabase.child("CursosOfertados").push().setValue(curso);
+
             }
-        });
+        });//Fin boton agregar curso:
+
+
         return vista;
 
     }//Fin onCreateView
+
+    //Generar Array con los valores de los profesores: //TODO la obtencion de los nombres de los profesores de la abse de datos no funciona
+    /*
+    public List<Tusuario> generadorListaProfesores(){
+        List<Tusuario> listado = new ArrayList<Tusuario>();
+
+        DatabaseReference mDatabase;
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        String palabraBusquedaProfe = "Profesorado";
+
+        mDatabase.child("Usuarios").orderByChild("tipoUsuario").equalTo(palabraBusquedaProfe).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+
+                for( DataSnapshot data: snapshot.getChildren()){
+                    Tusuario usuarioBusqueda = new Tusuario();
+
+                    usuarioBusqueda.setApellidosUsuario(data.getValue(Tusuario.class).getApellidosUsuario().toString());
+                    usuarioBusqueda.setApodoUsuario(data.getValue(Tusuario.class).getApodoUsuario().toString());
+                    usuarioBusqueda.setCorreoUsuario(data.getValue(Tusuario.class).getCorreoUsuario().toString());
+                    usuarioBusqueda.setDescripcionUsuario(data.getValue(Tusuario.class).getDescripcionUsuario().toString());
+                    usuarioBusqueda.setFechaCreacionUsuario(data.getValue(Tusuario.class).getFechaCreacionUsuario());
+                    usuarioBusqueda.setIdUsuario(data.getValue(Tusuario.class).getIdUsuario().toString());
+                    usuarioBusqueda.setImagenUsuario(data.getValue(Tusuario.class).getImagenUsuario().toString());
+                    usuarioBusqueda.setMatriculaActivaUsuario(data.getValue(Tusuario.class).getMatriculaActivaUsuario());
+                    usuarioBusqueda.setNombreUsuario(data.getValue(Tusuario.class).getNombreUsuario().toString());
+                    usuarioBusqueda.setPatinesUsuario(data.getValue(Tusuario.class).getPatinesUsuario().toString());
+                    usuarioBusqueda.setTipoUsuario(data.getValue(Tusuario.class).getTipoUsuario().toString());
+
+                    listado.add(usuarioBusqueda);
+                }
+                listadoCargado = true;
+            }
+            @Override
+            public void onCancelled(@NonNull @NotNull DatabaseError error) {
+            }
+        }); //Fin busqueda de usuarios
+
+
+        /*
+        mDatabase.child("Usuarios").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+                for(DataSnapshot child: snapshot.getChildren()){
+                    Tusuario auxUsuario = new Tusuario();
+                    if((child.getValue(Tusuario.class).getTipoUsuario().toString()).equals("Profesorado")){
+                        auxUsuario.setTipoUsuario(child.getValue(Tusuario.class).getApellidosUsuario().toString());
+                        auxUsuario.setApodoUsuario(child.getValue(Tusuario.class).getApodoUsuario().toString());
+                        auxUsuario.setCorreoUsuario(child.getValue(Tusuario.class).getCorreoUsuario().toString());
+                        auxUsuario.setDescripcionUsuario(child.getValue(Tusuario.class).getDescripcionUsuario().toString());
+                        auxUsuario.setFechaCreacionUsuario(child.getValue(Tusuario.class).getFechaCreacionUsuario());
+                        auxUsuario.setIdUsuario(child.getValue(Tusuario.class).getIdUsuario().toString());
+                        auxUsuario.setImagenUsuario(child.getValue(Tusuario.class).getImagenUsuario().toString());
+                        auxUsuario.setMatriculaActivaUsuario(child.getValue(Tusuario.class).getMatriculaActivaUsuario());
+                        auxUsuario.setNombreUsuario(child.getValue(Tusuario.class).getNombreUsuario().toString());
+                        auxUsuario.setPatinesUsuario(child.getValue(Tusuario.class).getPatinesUsuario().toString());
+                        auxUsuario.setTipoUsuario(child.getValue(Tusuario.class).getTipoUsuario().toString());
+
+                        listado.add(auxUsuario);
+                    }
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull @NotNull DatabaseError error) {
+
+            }
+        });
+
+
+        return listado;
+    }//Fin metodo generarListaProfesores
+
+    public ArrayList<String> listadoNombresProfesores(){
+        ArrayList<String> listado = new ArrayList<>();
+
+        for( int i = 0; i <= listadoProfesores.size(); i++){
+            Tusuario auxUsuario = listadoProfesores.get(i);
+            String nombre = auxUsuario.getNombreUsuario() + " "+ auxUsuario.getApellidosUsuario();
+            String apodo = auxUsuario.getApodoUsuario();
+
+            if(!apodo.equals("")){
+                nombre = nombre + " ("+apodo+")";
+            }
+            listado.add(nombre);
+
+        }
+
+        return listado;
+    }
+   */
 
 
     //Método para obtener el tipo de curso seleccionado:
@@ -308,12 +443,13 @@ public class FragmentAnadirEditarCurso extends Fragment {
 
 
     //Metodo para la obtencion de la hora:
-    private long obtenerHora(){
-        long resultadoHora = 0 ;
+    private String obtenerHora(){
+        String resultadoHora = "" ;
         String horaString = "";
 
         boolean isGrupoHoraUno = false;
         boolean isGrupoHoraDos = false;
+        boolean isPM = false;
 
         int comprobacionGrupoUno = grupoHoraUno.getCheckedRadioButtonId();
         int comprobacionGrupoDos = grupoHoraDos.getCheckedRadioButtonId();
@@ -339,7 +475,7 @@ public class FragmentAnadirEditarCurso extends Fragment {
                 case R.id.rdbTres:
                     horaString = "03";
                     break;
-                case R.id.rdbCuarto:
+                case R.id.rdbCuatro:
                     horaString = "04";
                     break;
                 case R.id.rdbCinco:
@@ -391,16 +527,34 @@ public class FragmentAnadirEditarCurso extends Fragment {
         }
 
        if(toggleAMPM.isChecked()){
-           horaString = horaString + " " +toggleAMPM.getTextOn();
+           //horaString = horaString + " " +toggleAMPM.getTextOn();
+           isPM = true;
        }else{
-           horaString = horaString + " " + toggleAMPM.getTextOff();
+           //horaString = horaString + " " + toggleAMPM.getTextOff();
        }
 
 
         ConversionesTemporales conversor = new ConversionesTemporales();
 
-       resultadoHora = conversor.tiempoAMPMalong(horaString);
+       resultadoHora = conversor.pasarDeAMPM(horaString,isPM);
 
         return resultadoHora;
+    }//Fin metodo obtener hora
+
+
+    public String obtenerLocalizacion(){
+        String resultadoLocalizacion = "";
+
+        resultadoLocalizacion =spinnerLocalizacion.getSelectedItem().toString();
+
+        return resultadoLocalizacion;
+    }//Fin metodo obtenerLocalizacion
+
+    public String obtenerProfesor(){
+        String resultadoProfesor = "";
+
+        resultadoProfesor =spinnerProfesores.getSelectedItem().toString();
+
+        return resultadoProfesor;
     }
 }

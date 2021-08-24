@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FragmentsND.FragmentEliminarCurso">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+
+
+        <TextView
+            android:id="@+id/lblSeleccionarCriterioBusquedaEliminarCurso"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/lbl_seleccionar_criterio_busqueda" />
+
+        <RadioGroup
+            android:id="@+id/rdgEliminarCurso"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+
+            <RadioButton
+                android:id="@+id/rdbCursoEC"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/rdb_curso" />
+
+            <RadioButton
+                android:id="@+id/rdbNivelEC"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/rdb_dificultad" />
+
+            <RadioButton
+                android:id="@+id/rdbProfeEC"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/rdb_profesor" />
+
+            <RadioButton
+                android:id="@+id/rdbDiaEC"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/rdb_dia" />
+
+            <RadioButton
+                android:id="@+id/rdbLugarEC"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/rdb_lugar" />
+        </RadioGroup>
+
+        <EditText
+            android:id="@+id/txtCriterioBusquedaCursosEliminarCurso"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName" />
+
+        <Button
+            android:id="@+id/btnBuscarCursosEliminarCurso"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/boton_fragmento_permisos_buscar" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rcvBuscadorCursosEliminarCurso"
+            android:layout_width="match_parent"
+            android:layout_height="523dp" />
+    </LinearLayout>
+
+</FrameLayout>

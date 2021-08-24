@@ -1,5 +1,6 @@
 package com.example.patineando.FragmentsND;
 
+import android.app.FragmentTransaction;
 import android.os.Bundle;
 
 import android.app.Fragment;
@@ -7,6 +8,7 @@ import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 
 import com.example.patineando.R;
 
@@ -16,6 +18,9 @@ import com.example.patineando.R;
  * create an instance of this fragment.
  */
 public class FragmentCursosImpartidos extends Fragment {
+
+
+    ImageButton botonAgresivo, botonArtistico, botonBaile, botonTecnica, botonOtras, botonHockey, botonSlalom, botonVelocidad;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -61,6 +66,77 @@ public class FragmentCursosImpartidos extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_cursos_impartidos, container, false);
+        View vista =  inflater.inflate(R.layout.fragment_cursos_impartidos, container, false);
+
+        botonAgresivo = (ImageButton) vista.findViewById(R.id.imbAgresivo);
+        botonArtistico = (ImageButton) vista.findViewById(R.id.imbArtistico);
+        botonBaile = (ImageButton) vista.findViewById(R.id.imbBaile);
+        botonTecnica = (ImageButton) vista.findViewById(R.id.imbTecnica);
+        botonOtras = (ImageButton) vista.findViewById(R.id.imbOtras);
+        botonHockey = (ImageButton) vista.findViewById(R.id.imbHockey);
+        botonSlalom = (ImageButton) vista.findViewById(R.id.imbSlalom);
+        botonVelocidad = (ImageButton) vista.findViewById(R.id.imbVelocidad);
+
+        botonAgresivo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment fragmento = new FragmentOpciones();
+                FragmentTransaction transaccion = getFragmentManager().beginTransaction();
+                transaccion.replace(R.id.contenedor_fragments_ND,fragmento);
+                transaccion.addToBackStack(null);
+                transaccion.commit();
+            }
+        });
+
+        botonArtistico.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        botonBaile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        botonTecnica.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        botonOtras.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        botonHockey.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        botonSlalom.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+
+        botonVelocidad.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+        return vista;
     }
 }

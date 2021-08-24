@@ -209,6 +209,15 @@
     <string name="lbl_am">AM</string>
     <string name="lbl_pm">PM</string>
 
+    <!--Fragment Eliminar curso -->
+    <string name="lbl_seleccionar_criterio_busqueda">Seleccione un criterio de búsqueda</string>
+    <string name="rdb_dia">Dia</string>
+    <string name="rdb_lugar">Lugar</string>
+    <string name="rdb_dificultad">Nivel</string>
+    <string name="rdb_curso">Curso</string>
+    <string name="rdb_profesor">Docente</string>
 
+    <!--Fragment Cursos Impartidos-->
 
+    <string name="lbl_mostrar_cursos_disciplina">Listado de cursos : </string>
 </resources>

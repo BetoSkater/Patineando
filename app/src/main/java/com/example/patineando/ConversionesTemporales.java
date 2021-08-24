@@ -9,7 +9,7 @@ import java.util.TimeZone;
 public class ConversionesTemporales {
 
 
-    public long tiempoAMPMalong(String horaAMPM){
+    public long tiempoAMPMalong(String horaAMPM){ //N funciona
         //https://stackoverflow.com/questions/6531632/conversion-from-12-hours-time-to-24-hours-time-in-java
         long resultado = 0;
         DateFormat formatoUno = new SimpleDateFormat("hh:mm:ss aa");
@@ -34,4 +34,61 @@ public class ConversionesTemporales {
         }
         return resultado;
     }//Fin tiempoAMPMlong
+
+    public String pasarDeAMPM (String horaPasar, boolean esPM){
+        String resultado ="";
+        String auxiliarHora = "";
+        String auxiliarResto ="";
+        int auxCorte = horaPasar.length();
+        if (esPM){
+
+            auxiliarHora = horaPasar.substring(0,2);
+            auxiliarResto =horaPasar.substring(2,auxCorte);
+            switch (auxiliarHora){
+                case "00":
+                    resultado = "12"+auxiliarResto;
+                    break;
+                case "01":
+                    resultado = "13"+auxiliarResto;
+                    break;
+                case "02":
+                    resultado = "14"+auxiliarResto;
+                    break;
+                case "03":
+                    resultado = "15"+auxiliarResto;
+                    break;
+                case "04":
+                    resultado = "16"+auxiliarResto;
+                    break;
+                case "05":
+                    resultado = "17"+auxiliarResto;
+                    break;
+                case "06":
+                    resultado = "18"+auxiliarResto;
+                    break;
+                case "07":
+                    resultado = "19"+auxiliarResto;
+                    break;
+                case "08":
+                    resultado = "20"+auxiliarResto;
+                    break;
+                case "09":
+                    resultado = "21"+auxiliarResto;
+                    break;
+                case "10":
+                    resultado = "22"+auxiliarResto;
+                    break;
+                case "11":
+                    resultado = "23"+auxiliarResto;
+                    break;
+            }
+        }else{
+
+            resultado = horaPasar;
+        }
+
+
+        return resultado;
+
+    }
 }

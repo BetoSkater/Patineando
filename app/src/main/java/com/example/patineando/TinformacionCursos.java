@@ -103,4 +103,7 @@ public class TinformacionCursos implements Serializable {
     public void setApodoProfesor(String apodoProfesor) {
         this.apodoProfesor = apodoProfesor;
     }
+
+
+
 }
