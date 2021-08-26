@@ -217,7 +217,13 @@
     <string name="rdb_curso">Curso</string>
     <string name="rdb_profesor">Docente</string>
 
-    <!--Fragment Cursos Impartidos-->
+    <!--Fragment Listado Cursos Tipo-->
 
     <string name="lbl_mostrar_cursos_disciplina">Listado de cursos : </string>
+    <string name="alertdialog_titulo_matricularse">Cuadro de matriculación</string>
+    <string name="alertdialog_cuerpo_matricularse">Seleccione aceptar para matricularse en el curso.</string>
+    <string name="alertdialog_boton_aceptar_matricularse">Confirmar</string>
+    <string name="alertdialog_boton_cancelar_matricularse">Cancelar</string>
+    <string name="toast_matricula_realizada_con_exito">Matricula realizada con éxito.</string>
+
 </resources>

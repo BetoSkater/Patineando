@@ -1,5 +1,7 @@
 package com.example.patineando.FragmentsND;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 
 import android.app.Fragment;
@@ -12,12 +14,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.patineando.AdaptadorEliminarCurso;
 import com.example.patineando.AdaptadorListadoCursosTipo;
 import com.example.patineando.R;
 import com.example.patineando.TCursoPublicado;
+import com.example.patineando.TCursoUsuario;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -26,6 +31,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,6 +46,8 @@ public class FragmentListadoCursosTipo extends Fragment implements AdaptadorList
     private RecyclerView listadorCursos;
     private RecyclerView.Adapter adaptador;
     private Button botonPruebas; //TODO Borrar
+
+    private FirebaseAuth mAuth;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -157,7 +165,60 @@ public class FragmentListadoCursosTipo extends Fragment implements AdaptadorList
     //Sobreescritura del interfaz onItemClick para poder mostrar la vista detalle un elemento del fragment de los permisos:
     @Override
     public void onItemClick(TCursoPublicado auxiliarModeloDatos) { //TODO no funciona, es decir, no borra el dato
-        Toast.makeText(getContext(), auxiliarModeloDatos.getIdCurso(), Toast.LENGTH_LONG).show();
+        //Toast.makeText(getContext(), auxiliarModeloDatos.getIdCurso(), Toast.LENGTH_LONG).show();
 
-    }
+
+        //Estas dos lineas de imagen forman parte del AlertDialog
+        ImageView imagen = new ImageView(getContext());
+        imagen.setImageResource(R.drawable.icono_rueda);
+
+        new AlertDialog.Builder(getContext())
+                .setView(imagen)
+                .setTitle(R.string.alertdialog_titulo_matricularse)
+                .setMessage(R.string.alertdialog_cuerpo_matricularse)
+                .setPositiveButton(R.string.alertdialog_boton_aceptar_matricularse, new DialogInterface.OnClickListener()
+                {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        realizarMatricula(auxiliarModeloDatos.getIdCurso());
+
+                    }
+
+                })
+                .setNegativeButton(R.string.alertdialog_boton_cancelar_matricularse, null)
+                .show();
+
+    }//Fin onItemClick
+
+    //Método del boton positivo del alertDialog:
+    public void realizarMatricula(String idCurso){
+        String idUsuario;
+        long fechaSolicitudMatricula = Instant.now().toEpochMilli(); //https://stackoverflow.com/questions/21198882/convert-current-datetime-to-long-in-java
+
+        DatabaseReference mDatabase;
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+
+        mAuth =  FirebaseAuth.getInstance();
+
+        idUsuario = mAuth.getUid().toString();
+
+        TCursoUsuario relacionCursoAlumno = new TCursoUsuario(idCurso,idUsuario,fechaSolicitudMatricula);
+
+        //Insercion de la relacion curso-alumno en la tabla RelacionCursoAlumno:
+        mDatabase.child("RelacionCursoAlumno").push().setValue(relacionCursoAlumno);
+
+
+        //Cuando un usuario tiene en la temporada de cursos una matricula activa, es alumno, por lo que se tiene que activar el campo de matricula activa de dicho usuario en la tabla de usuarios
+        mDatabase.child("Usuarios").child(idUsuario).child("matriculaActivaUsuario").setValue(true);
+
+
+        Toast.makeText(getContext(),R.string.toast_matricula_realizada_con_exito,Toast.LENGTH_SHORT).show();
+
+
+
+
+    }//fin metodo realizarMatricula
+
+
 }

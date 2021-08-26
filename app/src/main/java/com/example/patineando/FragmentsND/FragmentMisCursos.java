@@ -1,5 +1,7 @@
 package com.example.patineando.FragmentsND;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 
 import android.app.Fragment;
@@ -7,13 +9,25 @@ import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.patineando.AdaptadorMisCursos;
 import com.example.patineando.CursoMisCursos;
 import com.example.patineando.R;
+import com.example.patineando.TCursoPublicado;
+import com.example.patineando.TCursoUsuario;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,10 +37,12 @@ import java.util.List;
  * Use the {@link FragmentMisCursos#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class FragmentMisCursos extends Fragment {
+public class FragmentMisCursos extends Fragment implements AdaptadorMisCursos.ItemClickListenerAcceso{
 
     private RecyclerView listador;
     private RecyclerView.Adapter adaptador;
+    private List<TCursoPublicado> listadoMisCursos = new ArrayList<>();
+    private FirebaseAuth mAuth;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -74,6 +90,11 @@ public class FragmentMisCursos extends Fragment {
         // Inflate the layout for this fragment
         View vista = inflater.inflate(R.layout.fragment_mis_cursos, container, false);
 
+        //obtencion del id del usuario autenticado
+        mAuth =  FirebaseAuth.getInstance();
+        String idUsuario = mAuth.getUid();
+
+
         //Busqueda del controlador en el que se van a cargar los datos:
         listador = (RecyclerView) vista.findViewById(R.id.rcvListadoMisCursosND);
 
@@ -84,14 +105,41 @@ public class FragmentMisCursos extends Fragment {
 
         //Especificacion del adaptador con la lissta a visualizar:
 
-        adaptador = new AdaptadorMisCursos(ListadoMisCursos());
+       // adaptador = new AdaptadorMisCursos(listadoMisCursos,this); //Al poner el listado no funciona, si o si en el adaptador hay que poner la funcion que devuelve el arraylist a meter, y dentro de esta funcion, el notifyonDAtaChange.
+        adaptador = new AdaptadorMisCursos(obtenerMisCursos(idUsuario),this);
         listador.setAdapter(adaptador);
 
-
+        obtenerMisCursos(idUsuario);
 
         return vista;
-    }
+    }//Fin onCreateView
 
+    //Sobreescritua del metodo onItemClick del interfaz del adaptadorMisCursos.class
+    @Override
+    public void onItemClick(TCursoPublicado modeloDatosAcceso){
+
+        //Funcion que obtiene el id del curso en el que se ha pinchado, para mostrar un fragment que contiene los recursos del curso de la tabla CursoRecurso o como la quiera llamar. 
+
+
+
+        new AlertDialog.Builder(getContext())
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setTitle("Closing Activity")
+                .setMessage("Seguro que quuieres borrar?? PD ponlo en Stirngs")
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener()
+                {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Toast.makeText(getContext(),"Funciona", Toast.LENGTH_SHORT).show();
+
+                        //TODO poner que refresque la lista y la transaccion
+                    }
+
+                })
+                .setNegativeButton("No", null)
+                .show();
+
+    }
 
 
     //Listado para probar que el RecyclerView de mis cursos funciona, este deberá contener en un futuro la informacion de la base de datos:
@@ -103,6 +151,92 @@ public class FragmentMisCursos extends Fragment {
         Listado.add(new CursoMisCursos(R.drawable.ic_menu_umbrella, "RollerDance", "Medio","Domingo", "17:00", "Alcobendas", "Javier", null));
         Listado.add((new CursoMisCursos(R.drawable.ic_menu_sun, "Velocidad", "Básico", "Martes", "20:00", "Wanda Metropolitano", "Sonsoles", "Sonso")));
         return Listado;
-    }
+    } //Fin metodo obtencion de valores de prueba.
+
+
+
+    //ESte metodo extrae los valores de la base de datos de la siguiente manera, primero se mira si en la tabla Curso
+    public List<TCursoPublicado> obtenerMisCursos(String idUsuarioBuscar){
+        List<TCursoPublicado> listadoMisCursos = new ArrayList<>();
+        List<TCursoUsuario> listadoIDCursosAlumno = new ArrayList<>();
+
+        //Obtencion de la referencia de la base de datos.
+        DatabaseReference mDatabase;
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+
+        mDatabase.child("RelacionCursoAlumno").orderByChild("idUsuario").equalTo(idUsuarioBuscar).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+                for(DataSnapshot datos: snapshot.getChildren()){
+                    TCursoUsuario auxTCursoUsuario = new TCursoUsuario();
+
+                    auxTCursoUsuario.setIdCurso(datos.getValue(TCursoUsuario.class).getIdCurso());
+                    auxTCursoUsuario.setFechaMatricula(datos.getValue(TCursoUsuario.class).getFechaMatricula());
+                    auxTCursoUsuario.setIdUsuario(datos.getValue(TCursoUsuario.class).getIdUsuario());
+
+                    listadoIDCursosAlumno.add(auxTCursoUsuario);
+
+                }//Fin for extracion idCursos:
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull @NotNull DatabaseError error) {
+
+            }
+        });
+
+        mDatabase.child("CursosOfertados").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+                int contador = 0;
+                for(DataSnapshot data : snapshot.getChildren()){
+                    String idSnapShot = data.getKey().toString();
+
+                    for(int i = 0; i<listadoIDCursosAlumno.size();i++){
+                        String idCursoAuxListadoAlumnos =listadoIDCursosAlumno.get(i).getIdCurso().toString();
+
+                        if(idCursoAuxListadoAlumnos.equals(idSnapShot)){
+                            TCursoPublicado auxCurso = new TCursoPublicado();
+
+                            auxCurso.setImagenCurso(data.getValue(TCursoPublicado.class).getImagenCurso());
+                            auxCurso.setIdCurso(data.getKey()); //TODO id del curso
+                            auxCurso.setTipoCurso(data.getValue(TCursoPublicado.class).getTipoCurso());
+                            auxCurso.setNivelDificultad(data.getValue(TCursoPublicado.class).getNivelDificultad());
+
+                            auxCurso.setDiaClase(data.getValue(TCursoPublicado.class).getDiaClase());
+                            auxCurso.setHoraClase(data.getValue(TCursoPublicado.class).getHoraClase());
+                            auxCurso.setLocalizacion(data.getValue(TCursoPublicado.class).getLocalizacion());
+
+                            auxCurso.setProfesor(data.getValue(TCursoPublicado.class).getProfesor());
+
+
+                            listadoMisCursos.add(auxCurso);
+
+                            contador++;
+
+                            //TODO aqui tengo que extraer el objeto y calzarselo al listado listadoMisCursos que es el que se debe retornar:
+                        }
+
+                    }//Fin for anidado
+                    if(contador == listadoIDCursosAlumno.size()){
+                        break;
+                    }
+                }//Fin for snapshot
+                //TODO el fallo está qui, el listadoMisCursos obtiene los dos valores de datos de la base de datos de forma satisfactoria
+                listador.getAdapter().notifyDataSetChanged();
+            }//Fin onDataChange
+
+            @Override
+            public void onCancelled(@NonNull @NotNull DatabaseError error) {
+
+            }
+        });//Fin Query
+
+
+
+        return listadoMisCursos;
+    }//Fin metodo obtener mis cursos
 
 }

@@ -33,7 +33,7 @@ public class MisCursos extends AppCompatActivity {
 
         //Especificacion del adaptador con la lissta a visualizar:
 
-        adaptador = new AdaptadorMisCursos(ListadoMisCursos());
+      //  adaptador = new AdaptadorMisCursos(ListadoMisCursos());
         listador.setAdapter(adaptador);
 
     }//Fin onCreate

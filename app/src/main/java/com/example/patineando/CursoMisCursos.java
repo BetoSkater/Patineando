@@ -2,6 +2,8 @@ package com.example.patineando;
 
 import java.io.Serializable;
 
+
+//TODO desfasado, no se utiliza, se tiene que eliminar, la buena es TCursoPublicado
 public class CursoMisCursos implements Serializable {
     private int imagenMiCurso;
     private String nombreMiCurso; //TODO poner el private en todo para encapsularlo!!!
