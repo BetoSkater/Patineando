@@ -20,7 +20,7 @@ import com.example.patineando.R;
 public class FragmentGestionarEscuela extends Fragment {
 
     Button btnAnadir, btnEditar, btnEliminar;
-
+    Button btnAsignarRecurso, btnSubirRecurso, btnEliminarRecurso;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -90,6 +90,29 @@ public class FragmentGestionarEscuela extends Fragment {
             }
         });
 
+        btnAsignarRecurso = (Button) vista.findViewById(R.id.btnAsignarRecursosGE);
+        btnAsignarRecurso.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                irFragmentAsignarRecursos();
+            }
+        });
+
+        btnSubirRecurso = (Button) vista.findViewById(R.id.btnSubirRecursosGE);
+        btnSubirRecurso.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                irFragmentSubirRecursos();
+            }
+        });
+
+        btnEliminarRecurso = (Button) vista.findViewById(R.id.btnEliminarRecursosGE);
+        btnEliminarRecurso.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            irFragmentEliminarRecursos();
+            }
+        });
 
         return vista;
     }//Fin on CreateView
@@ -113,6 +136,7 @@ public class FragmentGestionarEscuela extends Fragment {
         transaccion.commit();
     }//Fin metodo editarCurso()
 
+    //Metodo para ir a eliminar un curso:
     public void eliminarCurso(){
         Fragment fragmento = new FragmentEliminarCurso();
         FragmentTransaction transaccion = getFragmentManager().beginTransaction();
@@ -120,4 +144,33 @@ public class FragmentGestionarEscuela extends Fragment {
         transaccion.addToBackStack(null);
         transaccion.commit();
     }
+
+    //Metodo para ir al fragment que permite asignar recursos:
+    public void irFragmentAsignarRecursos(){
+        Fragment fragmento = new FragmentAsignarRescursos();
+        FragmentTransaction transaccion = getFragmentManager().beginTransaction();
+        transaccion.replace(R.id.contenedor_fragments_ND,fragmento);
+        transaccion.addToBackStack(null);
+        transaccion.commit();
+    }//Fin metodo irFragmentAsignarRecursos
+
+    //Metodo para ir al fragment que permite subir recursos:
+    public void irFragmentSubirRecursos(){
+        Fragment fragmento = new FragmentSubirRecursos();
+        FragmentTransaction transaccion = getFragmentManager().beginTransaction();
+        transaccion.replace(R.id.contenedor_fragments_ND,fragmento);
+        transaccion.addToBackStack(null);
+        transaccion.commit();
+    }//Fin metodo irFragmentSubirRecursos
+
+    //Metodo que permite ir al fragment en el que se pueden eliminar recursos subidos:
+    public void irFragmentEliminarRecursos(){
+        Fragment fragmento = new FragmentEliminarRecursos();
+        FragmentTransaction transaccion = getFragmentManager().beginTransaction();
+        transaccion.replace(R.id.contenedor_fragments_ND,fragmento);
+        transaccion.addToBackStack(null);
+        transaccion.commit();
+    }//Fin metodo irFragmentEliminarRecursos
+
+
 }

@@ -1,6 +1,7 @@
 package com.example.patineando.FragmentsND;
 
 import android.app.AlertDialog;
+import android.app.FragmentTransaction;
 import android.content.DialogInterface;
 import android.os.Bundle;
 
@@ -118,26 +119,12 @@ public class FragmentMisCursos extends Fragment implements AdaptadorMisCursos.It
     @Override
     public void onItemClick(TCursoPublicado modeloDatosAcceso){
 
-        //Funcion que obtiene el id del curso en el que se ha pinchado, para mostrar un fragment que contiene los recursos del curso de la tabla CursoRecurso o como la quiera llamar. 
+        //Funcion que obtiene el id del curso en el que se ha pinchado, para mostrar un fragment que contiene los recursos del curso de la tabla CursoRecurso o como la quiera llamar.
+        String cursoSeleccionado = modeloDatosAcceso.getIdCurso();
+        irARecursosCurso(cursoSeleccionado);
 
 
 
-        new AlertDialog.Builder(getContext())
-                .setIcon(android.R.drawable.ic_dialog_alert)
-                .setTitle("Closing Activity")
-                .setMessage("Seguro que quuieres borrar?? PD ponlo en Stirngs")
-                .setPositiveButton("Yes", new DialogInterface.OnClickListener()
-                {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        Toast.makeText(getContext(),"Funciona", Toast.LENGTH_SHORT).show();
-
-                        //TODO poner que refresque la lista y la transaccion
-                    }
-
-                })
-                .setNegativeButton("No", null)
-                .show();
 
     }
 
@@ -238,5 +225,20 @@ public class FragmentMisCursos extends Fragment implements AdaptadorMisCursos.It
 
         return listadoMisCursos;
     }//Fin metodo obtener mis cursos
+
+
+    public void irARecursosCurso(String idCurso){
+        Fragment fragmento = new FragmentRecursosCurso();
+        //FragmentListadoCursosTipo fragmentDetalle = new FragmentListadoCursosTipo();
+        Bundle parametroEnviar = new Bundle();
+        parametroEnviar.putString("CursoSeleccionado",idCurso);
+        fragmento.setArguments(parametroEnviar);
+
+
+        FragmentTransaction transaccion = getFragmentManager().beginTransaction();
+        transaccion.replace(R.id.contenedor_fragments_ND,fragmento);
+        transaccion.addToBackStack(null);
+        transaccion.commit();
+    }
 
 }

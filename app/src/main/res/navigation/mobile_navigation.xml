@@ -38,6 +38,12 @@
         android:id="@+id/fragmento_mis_cursos"
         android:name="com.example.patineando.FragmentsND.FragmentMisCursos"
         tools:layout="@layout/fragment_mis_cursos" />
+
+    <fragment
+        android:id="@+id/fragmento_recursos_curso"
+        android:name="com.example.patineando.FragmentsND.FragmentRecursosCurso"
+        tools:layout="@layout/fragment_recursos_curso" />
+
     <fragment
         android:id="@+id/fragmento_mi_perfil"
         android:name="com.example.patineando.FragmentsND.FragmentMiPerfil"
@@ -91,4 +97,17 @@
         android:name="com.example.patineando.FragmentsND.FragmentEliminarCurso"
         tools:layout="@layout/fragment_eliminar_curso" />
 
+    <fragment
+        android:id="@+id/fragmento_asignar_recursos_curso"
+        android:name="com.example.patineando.FragmentsND.FragmentAsignarRescursos"
+        tools:layout="@layout/fragment_asignar_rescursos" />
+    <fragment
+        android:id="@+id/fragmento_subir_recursos_curso"
+        android:name="com.example.patineando.FragmentsND.FragmentSubirRecursos"
+        tools:layout="@layout/fragment_subir_recursos" />
+
+    <fragment
+        android:id="@+id/fragmento_eliminar_recursos_curso"
+        android:name="com.example.patineando.FragmentsND.FragmentEliminarRecursos"
+        tools:layout="@layout/fragment_eliminar_recursos" />
 </navigation>

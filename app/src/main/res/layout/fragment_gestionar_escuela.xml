@@ -89,7 +89,7 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/crdGestionGruposGE"
+            android:id="@+id/crdGestionRecursosGE"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp">
@@ -100,11 +100,68 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/textView5"
+                    android:id="@+id/lblGestionarRecursosGE"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="PENDIENTE" />
+                    android:text="@string/lbl_gestionar_recursos_GE" />
+
+                <View
+                    android:id="@+id/divider15"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="?android:attr/listDivider" />
+
+                <TextView
+                    android:id="@+id/lblAsignarRecursosGE"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/lbl_asignar_recurso_GE" />
+
+                <Button
+                    android:id="@+id/btnAsignarRecursosGE"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/btn_asignar_recursoGE" />
+                <View
+                    android:id="@+id/divider16"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="?android:attr/listDivider" />
+
+                <TextView
+                    android:id="@+id/lblSubirRecursosGE"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/lbl_subir_recurso_GE" />
+
+                <Button
+                    android:id="@+id/btnSubirRecursosGE"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/btn_subir_recursoGE" />
+
+                <View
+                    android:id="@+id/divider17"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="?android:attr/listDivider" />
+
+                <TextView
+                    android:id="@+id/lblEliminarRecursosGE"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/lbl_eliminar_recurso_GE" />
+
+                <Button
+                    android:id="@+id/btnEliminarRecursosGE"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/btn_eliminar_recursoGE" />
+
+
+
             </LinearLayout>
         </androidx.cardview.widget.CardView>
+
     </LinearLayout>
 </FrameLayout>

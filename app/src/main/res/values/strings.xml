@@ -160,6 +160,15 @@
     <string name="btn_eliminar_curso_GE">Eliminar</string>
 
 
+    <string name="lbl_gestionar_recursos_GE">GESTIONAR RECURSOS ESCUELAS</string>
+    <string name="lbl_asignar_recurso_GE">Asignar recursos a un curso</string>
+    <string name="btn_asignar_recursoGE">Asignar Recursos</string>
+    <string name="lbl_subir_recurso_GE">Subir recursos</string>
+    <string name="btn_subir_recursoGE">Subir Recursos </string>
+    <string name="lbl_eliminar_recurso_GE">Eliminar recursos</string>
+    <string name="btn_eliminar_recursoGE">Eliminar Recursos </string>
+
+
     <string name="lbl_gestionar_grupos_GE">GESTIONAR GRUPOS</string>
 
     <!--Fragment Anadir Editar Curso-->
