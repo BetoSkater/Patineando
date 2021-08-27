@@ -151,25 +151,7 @@ public class FragmentEliminarCurso extends Fragment implements AdaptadorEliminar
     //Sobreescritura del interfaz onItemClick para poder mostrar la vista detalle un elemento del fragment de los permisos:
     @Override
     public void onItemClick(TCursoPublicado modeloDatos) { //TODO no funciona, es decir, no borra el dato
-        new AlertDialog.Builder(getContext())
-                .setIcon(android.R.drawable.ic_dialog_alert)
-                .setTitle("Closing Activity")
-                .setMessage("Seguro que quuieres borrar?? PD ponlo en Stirngs")
-                .setPositiveButton("Yes", new DialogInterface.OnClickListener()
-                {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        DatabaseReference mDatabase;
-                        mDatabase = FirebaseDatabase.getInstance().getReference();
-                        String criterioBorrar = modeloDatos.getIdCurso();
 
-                        mDatabase.child("CursosOfertados").child(criterioBorrar).removeValue();
-                        //TODO poner que refresque la lista y la transaccion
-                    }
-
-                })
-                .setNegativeButton("No", null)
-                .show();
 
         //----------
 

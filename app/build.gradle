@@ -64,6 +64,10 @@ dependencies {
     //Necesario para el uso de la base de datos:
     implementation 'com.google.firebase:firebase-database:19.2.0' //https://stackoverflow.com/questions/39394502/databasereference-and-firebasedatabase-cannot-resolve-symbol
 
+    //Necesario para poder hacer uso del Storage de Firebase
+    implementation 'com.google.firebase:firebase-storage:19.2.0'
+
+
     //Picaso para imagenes:
     implementation 'com.squareup.picasso:picasso:2.71828'
 

@@ -249,4 +249,17 @@
     <string name="btn_subir_recurso">Subir</string>
     <string name="hint_titulo_video">Título</string>
     <string name="btn_seleccionar_video">Seleccionar Video</string>
+
+    <string name="toast_video_subido_exito">Documento subido con éxito</string>
+    <string name="toast_video_subido_fallo">La subida ha fallado</string>
+    <string name="toast_video_subido_faltan_campos">Hay campos incompletos, complete el formulario antes de confirmar la subida.</string>
+    <string name="txt_error_video_sin_nombre">El video debe tener un nombre</string>
+
+    <string name="alert_confirmar_datos_subida">Recurso a subir:</string>
+    <string name="alert_mensaje_disciplina">Disciplina: </string>
+    <string name="alert_mensaje_nivel">Nivel: </string>
+    <string name="alert_mensaje_tipo">Tipo: </string>
+    <string name="alert_mensaje_nombre">Nombre: </string>
+    <string name="alert_confirmar">Confirmar</string>
+    <string name="alert_cancelar">Cancelar</string>
 </resources>

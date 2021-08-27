@@ -183,7 +183,7 @@ public class FragmentAnadirEditarCurso extends Fragment {
             //Ahora se crea un Array que contiene los nombres de los profesores:
 
 
-       //ArrayList<String> profesores = listadoNombresProfesores();
+       //ArrayList<String> profesores = listadoNombresProfesores(); //TODO, EXTRAER LOS PROFESORES DE LA BASE DE DATOS
         String [] profesores = {"Profesor1 Uno (El primero)","Emilio Sanz", "Elena Alarcon (Helen)", "Luis Casado (Luismi)", "Isabel Valenzuela (Isa)" };
         ArrayAdapter<String> adaptadorProfesores = new ArrayAdapter<String>(vista.getContext(), android.R.layout.simple_spinner_item, profesores);
         spinnerProfesores.setAdapter(adaptadorProfesores);
