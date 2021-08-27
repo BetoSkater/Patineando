@@ -5,10 +5,156 @@
     android:layout_height="match_parent"
     tools:context=".FragmentsND.FragmentSubirRecursos">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="SUBIR RECURSOS" />
+        android:orientation="vertical"
+        android:padding="15dp">
 
+        <TextView
+            android:id="@+id/lblDisciplinaSubir"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/lbl_disciplina_subir_recursos" />
+
+        <Spinner
+            android:id="@+id/sprDisciplinaRecursos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <View
+            android:id="@+id/divider23"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="?android:attr/listDivider" />
+
+        <TextView
+            android:id="@+id/lblNivelSubir"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/lbl_disciplina_subir_recursos" />
+
+        <Spinner
+            android:id="@+id/sprNivelRecursos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+
+        <View
+            android:id="@+id/divider19"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="?android:attr/listDivider" />
+
+        <TextView
+            android:id="@+id/lblTipoDocSubir"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/lbl_tipo_doc_subir" />
+
+        <RadioGroup
+            android:id="@+id/rdgTipoDocumento"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/rdbImagen"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/rdb_imagen" />
+
+            <RadioButton
+                android:id="@+id/rdbPDF"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/rdb_pdf" />
+
+            <RadioButton
+                android:id="@+id/rdbVideo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/rdb_video" />
+        </RadioGroup>
+
+        <View
+            android:id="@+id/divider20"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="?android:attr/listDivider" />
+
+        <TextView
+            android:id="@+id/lblSeleccionarDoc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/lbl_seleccionar_doc_subir" />
+
+        <Button
+            android:id="@+id/btnSeleccionarRecurso"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_seleccionar_recurso" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="PREVIIEW?????" />
+
+        <View
+            android:id="@+id/divider22"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="?android:attr/listDivider" />
+
+        <View
+            android:id="@+id/divider24"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="?android:attr/listDivider" />
+
+        <Button
+            android:id="@+id/btnSeleccionarVideo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_seleccionar_video" />
+
+        <VideoView
+            android:id="@+id/vdvVistaVideo"
+            android:layout_width="match_parent"
+            android:layout_height="236dp"
+            android:backgroundTint="@color/principalPurpura" />
+
+
+        <EditText
+            android:id="@+id/txtNombreVideo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+           android:hint="@string/hint_titulo_video"
+             />
+
+        <View
+            android:id="@+id/divider21"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="?android:attr/listDivider" />
+
+        <Button
+            android:id="@+id/btnSubirRecurso"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_subir_recurso" />
+
+        <ProgressBar
+            android:id="@+id/prgBarraProgresoSubirVideo"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            android:visibility="invisible"/>
+
+
+    </LinearLayout>
 </FrameLayout>

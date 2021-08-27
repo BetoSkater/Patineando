@@ -235,4 +235,18 @@
     <string name="alertdialog_boton_cancelar_matricularse">Cancelar</string>
     <string name="toast_matricula_realizada_con_exito">Matricula realizada con éxito.</string>
 
+
+
+    <!--Fragment Subir Recursos -->
+
+    <string name="lbl_disciplina_subir_recursos">Selecciona la disciplina:</string>
+    <string name="lbl_tipo_doc_subir">Seleccione el tipo de documento:</string>
+    <string name="rdb_imagen">Imagen</string>
+    <string name="rdb_pdf">PDF</string>
+    <string name="rdb_video">Video</string>
+    <string name="lbl_seleccionar_doc_subir">Seleccione el documento a subir:</string>
+    <string name="btn_seleccionar_recurso">Seleccionar recurso</string>
+    <string name="btn_subir_recurso">Subir</string>
+    <string name="hint_titulo_video">Título</string>
+    <string name="btn_seleccionar_video">Seleccionar Video</string>
 </resources>

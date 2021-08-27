@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 
 import com.example.patineando.R;
 
+
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link FragmentAsignarRescursos#newInstance} factory method to
