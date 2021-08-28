@@ -9,14 +9,41 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.patineando.AdaptadorListadoVideos;
+import com.example.patineando.AdaptadorMisCursos;
 import com.example.patineando.R;
+import com.example.patineando.TVideos;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import org.jetbrains.annotations.NotNull;
+
+import java.util.ArrayList;
+import java.util.List;
+
 
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link FragmentRecursosCurso#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class FragmentRecursosCurso extends Fragment {
+public class FragmentRecursosCurso extends Fragment implements AdaptadorListadoVideos.ItemClickListenerVerVideo {
+
+    /*FirebaseDatabase mDatabase;
+    DatabaseReference databaseReference;
+
+     */
+    RecyclerView recyclerVideos;
+    private RecyclerView.Adapter adaptador;
+
+
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -64,12 +91,77 @@ public class FragmentRecursosCurso extends Fragment {
         // Inflate the layout for this fragment
         View vista =  inflater.inflate(R.layout.fragment_recursos_curso, container, false);
 
+        //Obtención del ID del curso con alumnos del cual se quieren mostrar los recursos:
         String textoToast = getArguments().get("CursoSeleccionado").toString();
 
         Toast.makeText(vista.getContext(),textoToast,Toast.LENGTH_SHORT).show();
-
-
         //TODO funciona y se obtiene el idCurso de las tablas CursosOfertados/ RelacionCursoAlumno
+
+
+
+
+
+        //RecyclerVIew:
+        recyclerVideos = vista.findViewById(R.id.rcvListaRecursosCurso);
+        recyclerVideos.setHasFixedSize(true);
+        recyclerVideos.setLayoutManager(new LinearLayoutManager(vista.getContext()));
+
+        //TODO AQUI FALTA POR PONER LO DEL ADAPTER
+        // adaptador = new AdaptadorMisCursos(listadoMisCursos,this); //Al poner el listado no funciona, si o si en el adaptador hay que poner la funcion que devuelve el arraylist a meter, y dentro de esta funcion, el notifyonDAtaChange.
+        adaptador = new AdaptadorListadoVideos(obtenerListadoVideos(),this);
+        recyclerVideos.setAdapter(adaptador);
+
+
+
+
         return vista;
+    }//Fin onCreateView
+
+
+    //Sobreescritura del método onClick del adaptador:
+    @Override
+    public void onItemClick(TVideos modeloDatos){
+        String nombreVideo = modeloDatos.getNombreVideo() + " " + modeloDatos.getEnlaceVideo();
+        Toast.makeText(getContext(),nombreVideo,Toast.LENGTH_SHORT).show();
     }
+
+
+    //Metodo para obtener el listado de los videos de la base de datos: Este es para probar con la tabla videos.
+
+    public List<TVideos> obtenerListadoVideos(){
+
+        List<TVideos> listaResultado = new ArrayList<>();
+
+        //Obtencion de la referencia de la tabal videos de la tabla videos de realtime database //Cambiar a la tabla que contenga los recursos del curso:
+
+        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference(); //Esto lo ponen despues del recycler, pero deberia ir aqui //TODO POSIBLE FALLO AQUI
+
+         mDatabase.child("Video").addListenerForSingleValueEvent(new ValueEventListener() {
+             @Override
+             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+
+                 for(DataSnapshot data : snapshot.getChildren()){
+                     TVideos auxVid = new TVideos();
+                     auxVid.setDisciplinaVideo(data.getValue(TVideos.class).getDisciplinaVideo().toString());
+                     auxVid.setNivelVideo(data.getValue(TVideos.class).getNivelVideo().toString());
+                     auxVid.setNombreVideo(data.getValue(TVideos.class).getNombreVideo().toString());
+                     auxVid.setTipoRecurso(data.getValue(TVideos.class).getTipoRecurso().toString());
+                     auxVid.setEnlaceVideo(data.getValue(TVideos.class).getEnlaceVideo().toString());
+
+                     listaResultado.add(auxVid);
+
+                 }
+
+                 recyclerVideos.getAdapter().notifyDataSetChanged();
+             }
+
+             @Override
+             public void onCancelled(@NonNull @NotNull DatabaseError error) {
+
+             }
+         });
+
+        return listaResultado;
+    }
+
 }
