@@ -260,6 +260,7 @@
     <string name="alert_mensaje_nivel">Nivel: </string>
     <string name="alert_mensaje_tipo">Tipo: </string>
     <string name="alert_mensaje_nombre">Nombre: </string>
+    <string name="alert_mensaje_criteriobusqueda">Criterio de búsqueda: </string>
     <string name="alert_confirmar">Confirmar</string>
     <string name="alert_cancelar">Cancelar</string>
 </resources>

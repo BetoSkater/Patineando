@@ -7,16 +7,17 @@ public class TVideos {
     private String disciplinaVideo;
     private String nivelVideo;
     private String tipoRecurso;
-
+    private String criterioBusqueda;
     public TVideos() {
     }
 
-    public TVideos(String nombreVideo, String enlaceVideo, String disciplinaVideo, String nivelVideo, String tipoRecurso) {
+    public TVideos(String nombreVideo, String enlaceVideo, String disciplinaVideo, String nivelVideo, String tipoRecurso, String criterioBusqueda ) {
         this.nombreVideo = nombreVideo;
         this.enlaceVideo = enlaceVideo;
         this.disciplinaVideo = disciplinaVideo;
         this.nivelVideo = nivelVideo;
         this.tipoRecurso = tipoRecurso;
+        this.criterioBusqueda = criterioBusqueda;
     }
 
 
@@ -58,5 +59,14 @@ public class TVideos {
 
     public void setTipoRecurso(String tipoRecurso) {
         this.tipoRecurso = tipoRecurso;
+    }
+
+
+    public String getCriterioBusqueda() {
+        return criterioBusqueda;
+    }
+
+    public void setCriterioBusqueda(String criterioBusqueda) {
+        this.criterioBusqueda = criterioBusqueda;
     }
 }

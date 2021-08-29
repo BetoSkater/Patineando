@@ -170,11 +170,12 @@ public class FragmentSubirRecursos extends Fragment {
                 String nivel = obtenerNivel();
                 String tipoDoc = obtenerTipoDocumento();
                 String nombre = txtNombreVideo.getText().toString().trim();
-
+                String criterioBusqueda = disciplina+nivel;
                 String mensaje =  (getText(R.string.alert_mensaje_nombre) + " " + nombre + "\n" +
                                      getText(R.string.alert_mensaje_disciplina) + " " + disciplina +"\n"+
                                      getText(R.string.alert_mensaje_nivel) + " " + nivel + "\n"+
-                                     getText(R.string.alert_mensaje_tipo) + " " + tipoDoc);
+                                     getText(R.string.alert_mensaje_tipo) + " " + tipoDoc +"\n" +
+                                    getString(R.string.alert_mensaje_criteriobusqueda) + " " + criterioBusqueda) ;
                 new AlertDialog.Builder(getContext())
                         .setIcon(android.R.drawable.ic_dialog_alert)
                         .setTitle(R.string.alert_confirmar_datos_subida)
@@ -255,7 +256,7 @@ public class FragmentSubirRecursos extends Fragment {
         String tipoDisciplina = obtenerDisciplina();
         String nivelDificultad = obtenerNivel();
         String tipoDocumento = obtenerTipoDocumento();
-
+        String criterioBusqueda = tipoDisciplina+nivelDificultad;
         if(videoUri != null || !TextUtils.isEmpty(nombreVideo) ){ //TODO Poner que todos los parametros tienen que ser =/= de null
 
             barraProgreso.setVisibility(View.VISIBLE);
@@ -286,7 +287,7 @@ public class FragmentSubirRecursos extends Fragment {
                         auxVideo.setNivelVideo(nivelDificultad);
                         auxVideo.setTipoRecurso(tipoDocumento);
                         auxVideo.setEnlaceVideo(downloadUrl.toString());
-
+                        auxVideo.setCriterioBusqueda(criterioBusqueda);
                         //El que se va a introducir en la tabla video esta puesto en la primera referencia del onCreateView. Aqui se indica que se crea un nuevo hijo en
                         //dicha tabla y se obtiene el id autogenerado, seguidamente bajo ese id se introduce el objeto Video.
 

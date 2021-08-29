@@ -7,6 +7,7 @@ import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -24,6 +25,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import org.jetbrains.annotations.NotNull;
@@ -43,11 +45,14 @@ public class FragmentRecursosCurso extends Fragment implements AdaptadorListadoV
     DatabaseReference databaseReference;
 
      */
+    TextView txtTituloCurso, txtProfesor;
     RecyclerView recyclerVideos;
     private RecyclerView.Adapter adaptador;
     String disciplina ="";
     String nivel ="";
-
+    String criterioBuscador = "";
+    String profesor = "";
+    int contadorDificultad = 0;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -98,11 +103,12 @@ public class FragmentRecursosCurso extends Fragment implements AdaptadorListadoV
         //Obtención del ID del curso con alumnos del cual se quieren mostrar los recursos:
         String textoToast = getArguments().get("CursoSeleccionado").toString();
 
-        Toast.makeText(vista.getContext(),textoToast,Toast.LENGTH_SHORT).show();
+        //Toast.makeText(vista.getContext(),textoToast,Toast.LENGTH_SHORT).show();
         //TODO funciona y se obtiene el idCurso de las tablas CursosOfertados/ RelacionCursoAlumno
 
 
-
+        txtTituloCurso = (TextView) vista.findViewById(R.id.lblCursoNivelRecursosCurso);
+        txtProfesor = (TextView) vista.findViewById(R.id.lblProfeRecursosCurso);
 
 
         //RecyclerVIew:
@@ -141,8 +147,47 @@ public class FragmentRecursosCurso extends Fragment implements AdaptadorListadoV
             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
                 disciplina = snapshot.getValue(TCursoPublicado.class).getTipoCurso().toString();
                 nivel = snapshot.getValue(TCursoPublicado.class).getNivelDificultad().toString();
+                profesor = snapshot.getValue(TCursoPublicado.class).getProfesor().toString();
+                criterioBuscador = disciplina+nivel;
 
-            }
+                //Encabezado:
+                String titulo = disciplina + " " + nivel;
+                txtTituloCurso.setText(titulo);
+                txtProfesor.setText(profesor);
+
+                DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
+                Query consulta = mDatabase.child("Video").orderByChild("criterioBusqueda").equalTo(criterioBuscador);
+                FirebaseRecyclerOptions<TVideos> options = new FirebaseRecyclerOptions.Builder<TVideos>().setQuery(consulta, TVideos.class).build();
+
+
+                FirebaseRecyclerAdapter<TVideos, AdaptadorListadoVideos.ViewHolder> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<TVideos, AdaptadorListadoVideos.ViewHolder>(options) {
+                    @Override
+                    protected void onBindViewHolder(@NonNull @NotNull AdaptadorListadoVideos.ViewHolder holder, int i, @NonNull @NotNull TVideos tVideos) {
+                        //https://stackoverflow.com/questions/39066381/cannot-resolve-method-getapplicationcontext-in-fragment-class
+                        //TODO aqui puedo calzar un if
+                        //TODO funciona pero no como cabria de esperar, la base de datos tiene tres videos, pues bien, al seleccionar la disciplina de basico, salen dos cuadrados negros
+                        //Creoq ue tengo que hacer el if, y dentro del if, toda la parte de la consulta y tal persinalizando la query
+
+                        holder.setExoplayer(getActivity().getApplication(), tVideos.getNombreVideo(), tVideos.getNivelVideo(), tVideos.getEnlaceVideo());
+
+
+
+                    }
+
+                    @NonNull
+                    @NotNull
+                    @Override
+                    public AdaptadorListadoVideos.ViewHolder onCreateViewHolder(@NonNull @NotNull ViewGroup parent, int viewType) {
+                        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.listado_recursos_curso, parent, false);
+
+                        return new AdaptadorListadoVideos.ViewHolder(view);
+                    }
+                };
+                firebaseRecyclerAdapter.startListening();
+                recyclerVideos.setAdapter(firebaseRecyclerAdapter);
+
+
+            }//Fin onDataChange
 
             @Override
             public void onCancelled(@NonNull @NotNull DatabaseError error) {
@@ -152,21 +197,30 @@ public class FragmentRecursosCurso extends Fragment implements AdaptadorListadoV
 
 
 
-        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference("Video");
+       // DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference("Video");
 
-
+        //Poniendo esto en el setQuery tampoco Funka .child("Video").orderByChild("nivelVideo").equalTo(nivel)
 
 
 
        // https://stackoverflow.com/questions/55429197/cannot-resolve-symbol-firebaserecycleroptions
-        FirebaseRecyclerOptions<TVideos> options = new FirebaseRecyclerOptions.Builder<TVideos>().setQuery(mDatabase, TVideos.class).build();
+       // FirebaseRecyclerOptions<TVideos> options = new FirebaseRecyclerOptions.Builder<TVideos>().setQuery(mDatabase, TVideos.class).build();
+/*
+        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
+        Query consulta = mDatabase.child("Video").orderByChild("criterioBusqueda").equalTo(criterioBuscador);
+        FirebaseRecyclerOptions<TVideos> options = new FirebaseRecyclerOptions.Builder<TVideos>().setQuery(consulta, TVideos.class).build();
+
 
         FirebaseRecyclerAdapter<TVideos, AdaptadorListadoVideos.ViewHolder> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<TVideos, AdaptadorListadoVideos.ViewHolder>(options) {
             @Override
             protected void onBindViewHolder(@NonNull @NotNull AdaptadorListadoVideos.ViewHolder holder, int i, @NonNull @NotNull TVideos tVideos) {
                     //https://stackoverflow.com/questions/39066381/cannot-resolve-method-getapplicationcontext-in-fragment-class
                 //TODO aqui puedo calzar un if
-                holder.setExoplayer(getActivity().getApplication(), tVideos.getNombreVideo(),tVideos.getNivelVideo(), tVideos.getEnlaceVideo() );
+                //TODO funciona pero no como cabria de esperar, la base de datos tiene tres videos, pues bien, al seleccionar la disciplina de basico, salen dos cuadrados negros
+                    //Creoq ue tengo que hacer el if, y dentro del if, toda la parte de la consulta y tal persinalizando la query
+
+                holder.setExoplayer(getActivity().getApplication(), tVideos.getNombreVideo(), tVideos.getNivelVideo(), tVideos.getEnlaceVideo());
+
 
 
             }
@@ -182,6 +236,8 @@ public class FragmentRecursosCurso extends Fragment implements AdaptadorListadoV
         };
         firebaseRecyclerAdapter.startListening();
         recyclerVideos.setAdapter(firebaseRecyclerAdapter);
+
+ */
     }//fin onStart
 
 
