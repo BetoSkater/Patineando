@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.patineando.AdaptadorListadoVideos;
 import com.example.patineando.AdaptadorMisCursos;
 import com.example.patineando.R;
+import com.example.patineando.TCursoPublicado;
 import com.example.patineando.TVideos;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -44,7 +45,8 @@ public class FragmentRecursosCurso extends Fragment implements AdaptadorListadoV
      */
     RecyclerView recyclerVideos;
     private RecyclerView.Adapter adaptador;
-
+    String disciplina ="";
+    String nivel ="";
 
 
     // TODO: Rename parameter arguments, choose names that match
@@ -127,7 +129,34 @@ public class FragmentRecursosCurso extends Fragment implements AdaptadorListadoV
     public void onStart(){ //En teoria tiene que ser protected, pero da errores por el acceso de los otros fragments.
         super.onStart();
 
+
+        //Obtencion del id del curso:
+        String idCursoBusqueda = getArguments().get("CursoSeleccionado").toString();
+
+        //Primero se extraen  las propiedades disciplina y nivel de la tabla de los cursos con el id del curso:
+
+        DatabaseReference referenciaUno = FirebaseDatabase.getInstance().getReference();
+        referenciaUno.child("CursosOfertados").child(idCursoBusqueda).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+                disciplina = snapshot.getValue(TCursoPublicado.class).getTipoCurso().toString();
+                nivel = snapshot.getValue(TCursoPublicado.class).getNivelDificultad().toString();
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull @NotNull DatabaseError error) {
+
+            }
+        });
+
+
+
         DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference("Video");
+
+
+
+
 
        // https://stackoverflow.com/questions/55429197/cannot-resolve-symbol-firebaserecycleroptions
         FirebaseRecyclerOptions<TVideos> options = new FirebaseRecyclerOptions.Builder<TVideos>().setQuery(mDatabase, TVideos.class).build();
@@ -136,6 +165,7 @@ public class FragmentRecursosCurso extends Fragment implements AdaptadorListadoV
             @Override
             protected void onBindViewHolder(@NonNull @NotNull AdaptadorListadoVideos.ViewHolder holder, int i, @NonNull @NotNull TVideos tVideos) {
                     //https://stackoverflow.com/questions/39066381/cannot-resolve-method-getapplicationcontext-in-fragment-class
+                //TODO aqui puedo calzar un if
                 holder.setExoplayer(getActivity().getApplication(), tVideos.getNombreVideo(),tVideos.getNivelVideo(), tVideos.getEnlaceVideo() );
 
 
