@@ -67,6 +67,9 @@ dependencies {
     //Necesario para poder hacer uso del Storage de Firebase
     implementation 'com.google.firebase:firebase-storage:19.2.0'
 
+    //Necesario para poder hacer consultas con FirebaseRecyclerOptions en FragmentRecursosCurso.java
+    implementation 'com.firebaseui:firebase-ui-database:4.3.2'
+
 
     //Picaso para imagenes:
     implementation 'com.squareup.picasso:picasso:2.71828'

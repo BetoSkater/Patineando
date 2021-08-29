@@ -17,6 +17,8 @@ import com.example.patineando.AdaptadorListadoVideos;
 import com.example.patineando.AdaptadorMisCursos;
 import com.example.patineando.R;
 import com.example.patineando.TVideos;
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -108,14 +110,50 @@ public class FragmentRecursosCurso extends Fragment implements AdaptadorListadoV
 
         //TODO AQUI FALTA POR PONER LO DEL ADAPTER
         // adaptador = new AdaptadorMisCursos(listadoMisCursos,this); //Al poner el listado no funciona, si o si en el adaptador hay que poner la funcion que devuelve el arraylist a meter, y dentro de esta funcion, el notifyonDAtaChange.
+       /*
         adaptador = new AdaptadorListadoVideos(obtenerListadoVideos(),this);
         recyclerVideos.setAdapter(adaptador);
 
+
+        */
 
 
 
         return vista;
     }//Fin onCreateView
+
+
+    @Override
+    public void onStart(){ //En teoria tiene que ser protected, pero da errores por el acceso de los otros fragments.
+        super.onStart();
+
+        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference("Video");
+
+       // https://stackoverflow.com/questions/55429197/cannot-resolve-symbol-firebaserecycleroptions
+        FirebaseRecyclerOptions<TVideos> options = new FirebaseRecyclerOptions.Builder<TVideos>().setQuery(mDatabase, TVideos.class).build();
+
+        FirebaseRecyclerAdapter<TVideos, AdaptadorListadoVideos.ViewHolder> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<TVideos, AdaptadorListadoVideos.ViewHolder>(options) {
+            @Override
+            protected void onBindViewHolder(@NonNull @NotNull AdaptadorListadoVideos.ViewHolder holder, int i, @NonNull @NotNull TVideos tVideos) {
+                    //https://stackoverflow.com/questions/39066381/cannot-resolve-method-getapplicationcontext-in-fragment-class
+                holder.setExoplayer(getActivity().getApplication(), tVideos.getNombreVideo(),tVideos.getNivelVideo(), tVideos.getEnlaceVideo() );
+
+
+            }
+
+            @NonNull
+            @NotNull
+            @Override
+            public AdaptadorListadoVideos.ViewHolder onCreateViewHolder(@NonNull @NotNull ViewGroup parent, int viewType) {
+              View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.listado_recursos_curso, parent, false);
+
+              return new AdaptadorListadoVideos.ViewHolder(view);
+            }
+        };
+        firebaseRecyclerAdapter.startListening();
+        recyclerVideos.setAdapter(firebaseRecyclerAdapter);
+    }//fin onStart
+
 
 
     //Sobreescritura del método onClick del adaptador:
