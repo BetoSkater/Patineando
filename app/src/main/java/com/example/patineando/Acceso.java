@@ -264,7 +264,7 @@ public class Acceso extends AppCompatActivity {
                     tUsuario.setMatriculaActivaUsuario(false);
 
                     //Parametros vacios, el usuario los tendrá que modificar desde su perfil mas adelante:
-                    tUsuario.setImagenUsuario(""); //Poner el url al recurso alojado en CloudFireStore
+                    tUsuario.setImagenUsuario("https://firebasestorage.googleapis.com/v0/b/patineando.appspot.com/o/Imagenes%2Ficono_rueda.jpg?alt=media&token=2c589aae-3960-4ba5-bd6e-7dd4b8bf220f"); //Poner el url al recurso alojado en CloudFireStore
                     tUsuario.setNombreUsuario("");
                     tUsuario.setApellidosUsuario("");
                     tUsuario.setApodoUsuario("");
