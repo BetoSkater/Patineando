@@ -65,6 +65,11 @@
     <string name="logFirebase">Firebase</string>
     <string name="logErrorObtencionDatos">Error al obtener la información</string>
 
+
+    <string name="toast_no_has_seleccionado_imagen">No has seleccionado ninguna imagen</string>
+    <string name="toast_fallo_al_subir_imagen">La subida de la imagen ha fallado</string>
+
+
     <!--listado_mis_cursos_recycler.xml-->
     <string name="lblNivelCardMisCursos">Nivel: </string>
 
@@ -81,6 +86,8 @@
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
+
+
 
 
     <!-- TODO: Remove or change this placeholder text -->

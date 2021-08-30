@@ -1,5 +1,8 @@
 package com.example.patineando.FragmentsND;
 
+import android.content.ContentResolver;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import android.app.Fragment;
@@ -8,22 +11,31 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
 import com.example.patineando.R;
 import com.example.patineando.Tusuario;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
+
+import org.jetbrains.annotations.NotNull;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -36,6 +48,14 @@ public class FragmentModificarMiPerfil extends Fragment {
     Button btnGuardarCambios;
     ImageView imgImagenMod;
     private FirebaseAuth mAuth;
+
+    private static final int PICK_IMAGE_REQUEST = 1;
+    private static final int RESULT_OK = -1; //Esto lo pongo yo porque si no no tiene sentido
+    private Uri uriImagen;
+
+
+     StorageReference mStorageReference;
+     DatabaseReference mDatabaseReference;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -99,9 +119,22 @@ public class FragmentModificarMiPerfil extends Fragment {
         btnGuardarCambios.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                guardarCambios();
+                //guardarCambios();
+                aceptarCambios();
             }
         });
+
+
+        //Para seleccionar una imagen, se tiene que hacer click en el imageView:
+        imgImagenMod.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                abrirSelectorImagen();
+            }
+        });
+
+
 
        return vista;
     }//Fin onCreateView
@@ -146,7 +179,7 @@ public class FragmentModificarMiPerfil extends Fragment {
             }
         });
     }
-
+/*
     //Metodo para guardar los cambios en la tabla usuarios
     public void guardarCambios(){
         DatabaseReference mDatabase; //TODO debería ser private, pero no lo permite ya que la clase original es pública. Debo cambiar esto?
@@ -156,7 +189,7 @@ public class FragmentModificarMiPerfil extends Fragment {
 
 
         Tusuario tUsuario = new Tusuario();
-        String urlImagen = "@drawable/ic_menu_sun.png"; //TODO HARDCODED, poner bien cuando se haga la funcionalidad de seleccionar imagenes.
+       // String urlImagen = "@drawable/ic_menu_sun.png"; //TODO HARDCODED, poner bien cuando se haga la funcionalidad de seleccionar imagenes.
         //pd, no es un url, es una referencia a una foto tomada o sacada de la galeria del dispositivo del alumno
         String nombre = txtNombreMod.getText().toString();
         String apellidos = txtApellidoMod.getText().toString();
@@ -173,11 +206,114 @@ public class FragmentModificarMiPerfil extends Fragment {
 
 
 
-        mDatabase.child("Usuarios").child(usuario.getUid()).child("imagenUsuario").setValue(urlImagen);
+       // mDatabase.child("Usuarios").child(usuario.getUid()).child("imagenUsuario").setValue(urlImagen);
         mDatabase.child("Usuarios").child(usuario.getUid()).child("nombreUsuario").setValue(nombre);
         mDatabase.child("Usuarios").child(usuario.getUid()).child("apellidosUsuario").setValue(apellidos);
         mDatabase.child("Usuarios").child(usuario.getUid()).child("apodoUsuario").setValue(apodo);
         mDatabase.child("Usuarios").child(usuario.getUid()).child("patinesUsuario").setValue(patines);
         mDatabase.child("Usuarios").child(usuario.getUid()).child("descripcionUsuario").setValue(descripcion);
     }//Fin metodo guardarCambios()
+
+
+ */
+
+    //Metodo para elegir imagen:
+    private void abrirSelectorImagen(){
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(intent,PICK_IMAGE_REQUEST);
+    }
+    //Se tiene que sobreescribir el metodo onActivityResult ( ctrl + o) opara abrir el panel de metos a sobreescribir:
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == PICK_IMAGE_REQUEST || requestCode == RESULT_OK || data !=null || data.getData() != null){
+
+            uriImagen = data.getData();
+
+            Picasso.get().load(uriImagen).into(imgImagenMod);
+
+        }
+
+    } //Fin sobreescritura metodo onActivityResult
+
+
+    //Metodo para obtener la extension:
+    private String obtenerExtension(Uri uri){
+        ContentResolver contentResolver = getActivity().getContentResolver();
+        MimeTypeMap mimeTypeMap = MimeTypeMap.getSingleton();
+        return mimeTypeMap.getExtensionFromMimeType(contentResolver.getType(uri));
+    }//Fin obtenerExtencion
+
+
+    //Metodo para subir la imagen a la carpeta de imagenes de usuario del Storage, ademas, se incluye una referencia al storage en la tabla usuarios
+    private void aceptarCambios(){
+        if(uriImagen != null){
+
+             //TODO debería ser private, pero no lo permite ya que la clase original es pública. Debo cambiar esto?
+            mStorageReference = FirebaseStorage.getInstance().getReference("Imagenes"); //TODO igual tengo que cambiarlo a Images
+            mDatabaseReference = FirebaseDatabase.getInstance().getReference(); //Nota dentro de este getReference no va localizacion ta que se especifica abajo que se  modificarán los cambos en la tabla de usuarios, para subir ottras cosas si se pondr´`ia aqui
+
+            //Obtencion del id del usuario actual para nombrar como tal a ala imagen
+            mAuth = FirebaseAuth.getInstance(); //Creo que aqui no haria falta;
+            FirebaseUser usuario = mAuth.getCurrentUser();
+            String idFicheroStorage =usuario.getUid();
+
+            StorageReference fileReference = mStorageReference.child(idFicheroStorage+"."+obtenerExtension(uriImagen));
+
+            fileReference.putFile(uriImagen).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+
+                    String urlImagen = taskSnapshot.getUploadSessionUri().toString();
+
+
+                     //TODO HARDCODED, poner bien cuando se haga la funcionalidad de seleccionar imagenes.
+                    //pd, no es un url, es una referencia a una foto tomada o sacada de la galeria del dispositivo del alumno
+                    String nombre = txtNombreMod.getText().toString();
+                    String apellidos = txtApellidoMod.getText().toString();
+                    String apodo = txtApodoMod.getText().toString();
+                    String patines = txtPatinesMod.getText().toString();
+                    String descripcion = txtDescripcionMod.getText().toString(); //Todo Esto tiene que admitir mas de 255 caracteres ¿No entiendo como hacerlo con BufferedReader/Writter
+/*                  //No se puede volver a introducir el objeto ya que //TODO machaca todos los datos, se debe actualizar campo a campo para respetar el resto de valores.
+                    //Tusuario tUsuario = new Tusuario();
+                    tUsuario.setNombreUsuario(nombre);
+                    tUsuario.setApellidosUsuario(apellidos);
+                    tUsuario.setApodoUsuario(apodo);
+                    tUsuario.setPatinesUsuario(patines);
+                    tUsuario.setDescripcionUsuario(descripcion);
+                    //TODO falta por poner lo de la imagen
+
+ */
+
+
+
+                    mDatabaseReference.child("Usuarios").child(usuario.getUid()).child("imagenUsuario").setValue(urlImagen);
+                    mDatabaseReference.child("Usuarios").child(usuario.getUid()).child("nombreUsuario").setValue(nombre);
+                    mDatabaseReference.child("Usuarios").child(usuario.getUid()).child("apellidosUsuario").setValue(apellidos);
+                    mDatabaseReference.child("Usuarios").child(usuario.getUid()).child("apodoUsuario").setValue(apodo);
+                    mDatabaseReference.child("Usuarios").child(usuario.getUid()).child("patinesUsuario").setValue(patines);
+                    mDatabaseReference.child("Usuarios").child(usuario.getUid()).child("descripcionUsuario").setValue(descripcion);
+
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull @NotNull Exception e) {
+                    Toast.makeText(getContext(),(R.string.toast_fallo_al_subir_imagen + ": " + e.getMessage()) , Toast.LENGTH_SHORT).show();
+
+                }
+            });
+
+
+        }else{
+            Toast.makeText(getContext(),R.string.toast_no_has_seleccionado_imagen, Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
+
+
 }
