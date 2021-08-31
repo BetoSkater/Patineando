@@ -231,6 +231,10 @@
     <string name="rdb_curso">Curso</string>
     <string name="rdb_profesor">Docente</string>
 
+    <string name="alert_eliminar_titulo">¿Seguro que quieres eliminar el curso?</string>
+    <string name="alert_cuerpo_titulo">Si continúa, el curso se eliminará de la base de datos.</string>
+    <string name="toast_exito_borrado">El curso se ha eliminado.</string>
+
     <!--Fragment Listado Cursos Tipo-->
 
     <string name="lbl_mostrar_cursos_disciplina">Listado de cursos : </string>

@@ -152,6 +152,26 @@ public class FragmentEliminarCurso extends Fragment implements AdaptadorEliminar
     @Override
     public void onItemClick(TCursoPublicado modeloDatos) { //TODO no funciona, es decir, no borra el dato
 
+        new AlertDialog.Builder(getContext())
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setTitle(R.string.alert_eliminar_titulo)
+                .setMessage(R.string.alert_cuerpo_titulo)
+                .setPositiveButton(R.string.alert_confirmar, new DialogInterface.OnClickListener()
+                {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                     DatabaseReference mDatabase;
+                     mDatabase = FirebaseDatabase.getInstance().getReference();
+
+                     String criterioBorrar = modeloDatos.getIdCurso();
+
+                     mDatabase.child("CursosOfertados").child(criterioBorrar).removeValue();
+                     Toast.makeText(getContext(),getResources().getString(R.string.toast_exito_borrado),Toast.LENGTH_SHORT).show();
+                    }
+
+                })
+                .setNegativeButton(R.string.alert_cancelar, null)
+                .show();
 
         //----------
 
