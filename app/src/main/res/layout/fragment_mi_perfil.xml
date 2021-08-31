@@ -11,10 +11,25 @@
         android:orientation="vertical"
         android:padding="20dp">
 
-        <ImageView
-            android:id="@+id/imvImagenPerfilND"
+        <FrameLayout
+            android:layout_width="216dp"
+            android:layout_height="216dp"
+            android:layout_gravity="center"
+            android:background="@color/principalPurpura"
+            android:foregroundGravity="center">
+
+            <ImageView
+                android:id="@+id/imvImagenPerfilND"
+                android:layout_width="206dp"
+                android:layout_height="206dp"
+                android:layout_gravity="center" />
+        </FrameLayout>
+
+        <View
+            android:id="@+id/divider32"
             android:layout_width="match_parent"
-            android:layout_height="206dp" />
+            android:layout_height="1dp"
+            android:background="?android:attr/listDivider" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -26,7 +41,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/lblNombreUsuario" />
+                android:text="@string/lblNombreUsuario"
+                android:textColor="@color/principalPurpura" />
 
             <TextView
                 android:id="@+id/lblNombreUsuarioResultadoND"
@@ -46,7 +62,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/lblApodoUsuario" />
+                android:text="@string/lblApodoUsuario"
+                android:textColor="@color/principalPurpura" />
 
             <TextView
                 android:id="@+id/lblApodoUsuarioResultadoND"
@@ -67,7 +84,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/lblPatinesUsuario" />
+                android:text="@string/lblPatinesUsuario"
+                android:textColor="@color/principalPurpura" />
 
             <TextView
                 android:id="@+id/lblPatinesUsuarioResultadoND"
@@ -77,16 +95,24 @@
                 android:text="Fila NRK PRO" />
         </LinearLayout>
 
+        <View
+            android:id="@+id/divider31"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="?android:attr/listDivider" />
+
         <TextView
             android:id="@+id/lblDescripcionUsuarioND"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/lblDescripcionUsuario" />
+            android:gravity="center"
+            android:text="@string/lblDescripcionUsuario"
+            android:textColor="@color/principalPurpura" />
 
         <ScrollView
             android:id="@+id/srlDescripcionND"
             android:layout_width="match_parent"
-            android:layout_height="251dp">
+            android:layout_height="224dp">
 
             <LinearLayout
                 android:layout_width="match_parent"

@@ -9,11 +9,15 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_gravity="center_horizontal"
+        android:foregroundGravity="center_horizontal">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:foregroundGravity="center_horizontal"
+            android:gravity="center_horizontal"
             android:orientation="vertical"
             android:padding="20dp">
 
@@ -21,7 +25,8 @@
                 android:id="@+id/lblSeleccionarTipoCurso"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/lbl_seleccionar_curso" />
+                android:text="@string/lbl_seleccionar_curso"
+                android:textColor="@color/principalPurpura" />
 
             <Spinner
                 android:id="@+id/sprSeleccionarTipoCurso"
@@ -38,7 +43,8 @@
                 android:id="@+id/lblSeleccionarDificultad"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/lbl_seleccionar_dificultad" />
+                android:text="@string/lbl_seleccionar_dificultad"
+                android:textColor="@color/principalPurpura" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -97,72 +103,73 @@
                 android:id="@+id/lblDiaSemana"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/lbl_dias_semana" />
+                android:text="@string/lbl_dias_semana"
+                android:textColor="@color/principalPurpura" />
 
             <com.google.android.material.chip.ChipGroup
                 android:id="@+id/chpGrupoDiasSemana"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:singleSelection="true"
+                android:layout_gravity="center_horizontal"
 
-                >
+                android:foregroundGravity="center_vertical|clip_horizontal"
+                app:singleSelection="true">
 
-                        <com.google.android.material.chip.Chip
-                            android:id="@+id/chpLunes"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="@string/chp_lunes"
-                            android:checkable="true"
-                            />
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chpLunes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:checkable="true"
+                    android:text="@string/chp_lunes" />
 
-                        <com.google.android.material.chip.Chip
-                            android:id="@+id/chpMartes"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="@string/chp_martes"
-                            android:checkable="true"/>
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chpMartes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:checkable="true"
+                    android:text="@string/chp_martes" />
 
-                        <com.google.android.material.chip.Chip
-                            android:id="@+id/chpMiercoles"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="@string/chp_miercoles"
-                            android:checkable="true"/>
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chpMiercoles"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:checkable="true"
+                    android:text="@string/chp_miercoles" />
 
-                        <com.google.android.material.chip.Chip
-                            android:id="@+id/chpJueves"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="@string/chp_jueves"
-                            android:checkable="true"/>
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chpJueves"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:checkable="true"
+                    android:text="@string/chp_jueves" />
 
-                        <com.google.android.material.chip.Chip
-                            android:id="@+id/chpViernes"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="@string/chp_viernes"
-                            android:checkable="true"/>
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chpViernes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:checkable="true"
+                    android:text="@string/chp_viernes" />
 
-                        <com.google.android.material.chip.Chip
-                            android:id="@+id/chpSabado"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="@string/chp_sabado"
-                            android:checkable="true"/>
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chpSabado"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:checkable="true"
+                    android:text="@string/chp_sabado" />
 
-                        <com.google.android.material.chip.Chip
-                            android:id="@+id/chpDomingo"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="@string/chp_domingo"
-                            android:checkable="true"/>
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chpDomingo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:checkable="true"
+                    android:text="@string/chp_domingo" />
 
 
             </com.google.android.material.chip.ChipGroup>
@@ -177,209 +184,211 @@
                 android:id="@+id/lblSeleccionarHoraClase"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/lbl_seleccionar_hora_clase" />
+                android:text="@string/lbl_seleccionar_hora_clase"
+                android:textColor="@color/principalPurpura" />
 
 
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical">
 
 
-                <LinearLayout
+                <TextView
+                    android:id="@+id/lblHora"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/lbl_hora"
+                    android:textColor="@color/principalPurpura" />
+
+
+                <RadioGroup
+                    android:id="@+id/rdgGrupoHoras1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal">
 
-
-                    <TextView
-                        android:id="@+id/lblHora"
+                    <RadioButton
+                        android:id="@+id/rdbCero"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/lbl_hora" />
+                        android:checked="true"
+                        android:text="@string/rdb_cero" />
+
+                    <RadioButton
+                        android:id="@+id/rdbUno"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/rdb_uno" />
+
+                    <RadioButton
+                        android:id="@+id/rdbDos"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/rdb_dos" />
+
+                    <RadioButton
+                        android:id="@+id/rdbTres"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/rdb_tres" />
+
+                    <RadioButton
+                        android:id="@+id/rdbCuatro"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/rdb_cuatro" />
+
+                    <RadioButton
+                        android:id="@+id/rdbCinco"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/rdb_cinco" />
 
 
-                        <RadioGroup
-                            android:id="@+id/rdgGrupoHoras1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal">
+                </RadioGroup>
 
-                            <RadioButton
-                                android:id="@+id/rdbCero"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:checked="true"
-                                android:text="@string/rdb_cero" />
-                            <RadioButton
-                                android:id="@+id/rdbUno"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="@string/rdb_uno" />
-
-                            <RadioButton
-                                android:id="@+id/rdbDos"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="@string/rdb_dos" />
-
-                            <RadioButton
-                                android:id="@+id/rdbTres"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="@string/rdb_tres" />
-                            <RadioButton
-                                android:id="@+id/rdbCuatro"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="@string/rdb_cuatro" />
-
-                            <RadioButton
-                                android:id="@+id/rdbCinco"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="@string/rdb_cinco" />
+                <RadioGroup
+                    android:id="@+id/rdgGrupoHoras2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal">
 
 
+                    <RadioButton
+                        android:id="@+id/rdbSeis"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/rdb_seis" />
 
 
+                    <RadioButton
+                        android:id="@+id/rdbSiete"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/rdb_siete" />
 
-                        </RadioGroup>
+                    <RadioButton
+                        android:id="@+id/rdbOcho"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/rdb_ocho" />
 
-                        <RadioGroup
-                            android:id="@+id/rdgGrupoHoras2"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal">
+                    <RadioButton
+                        android:id="@+id/rdbNueve"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/rdb_nueve" />
 
+                    <RadioButton
+                        android:id="@+id/rdbDiez"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/rdb_diez" />
 
-                            <RadioButton
-                                android:id="@+id/rdbSeis"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="@string/rdb_seis" />
+                    <RadioButton
+                        android:id="@+id/rdbOnce"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/rdb_once" />
 
-
-
-                            <RadioButton
-                                android:id="@+id/rdbSiete"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="@string/rdb_siete" />
-
-                            <RadioButton
-                                android:id="@+id/rdbOcho"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="@string/rdb_ocho" />
-                            <RadioButton
-                                android:id="@+id/rdbNueve"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="@string/rdb_nueve" />
-                            <RadioButton
-                                android:id="@+id/rdbDiez"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="@string/rdb_diez" />
-                            <RadioButton
-                                android:id="@+id/rdbOnce"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="@string/rdb_once" />
-
-                        </RadioGroup>
+                </RadioGroup>
 
 
+            </LinearLayout>
+
+            <View
+                android:id="@+id/divider18"
+                android:layout_width="10dp"
+                android:layout_height="match_parent"
+                android:background="?android:attr/listDivider" />
 
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/lblMinutos"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center_horizontal"
+                    android:text="@string/lbl_minuto"
+                    android:textColor="@color/principalPurpura">
+
+                </TextView>
 
 
+                <RadioGroup
+                    android:id="@+id/rdgGrupoMinutos"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
 
-                </LinearLayout>
+                    <RadioButton
+                        android:id="@+id/rdbEnPunto"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:checked="true"
+                        android:text="@string/rdb_punto" />
 
-                <View
-                    android:id="@+id/divider18"
-                    android:layout_width="10dp"
-                    android:layout_height="match_parent"
-                    android:background="?android:attr/listDivider" />
+                    <RadioButton
+                        android:id="@+id/rdbCuarto"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/rdb_cuarto" />
 
+                    <RadioButton
+                        android:id="@+id/rdbMedia"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/rdb_media" />
+
+
+                    <RadioButton
+                        android:id="@+id/rdbMenosCuarto"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/rdb_menoscuarto" />
+
+                </RadioGroup>
+
+
+                <TextView
+                    android:id="@+id/lblAMPM"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:foregroundGravity="center_horizontal"
+                    android:gravity="center_horizontal"
+                    android:text="@string/lbl_ampm" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
 
-                    <TextView
-                        android:id="@+id/lblMinutos"
+
+                    <ToggleButton
+                        android:id="@+id/tgbAMPM"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/lbl_minuto">
+                        android:layout_weight="1"
+                        android:textOff="@string/lbl_am"
+                        android:textOn="@string/lbl_pm" />
 
-                    </TextView>
-
-
-
-                            <RadioGroup
-                                android:id="@+id/rdgGrupoMinutos"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal">
-
-                                <RadioButton
-                                    android:id="@+id/rdbEnPunto"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:checked="true"
-                                    android:text="@string/rdb_punto" />
-                                <RadioButton
-                                    android:id="@+id/rdbCuarto"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:text="@string/rdb_cuarto" />
-                                <RadioButton
-                                    android:id="@+id/rdbMedia"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:text="@string/rdb_media" />
-
-
-
-                                <RadioButton
-                                    android:id="@+id/rdbMenosCuarto"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:text="@string/rdb_menoscuarto" />
-
-                            </RadioGroup>
-
-
-
-                    <TextView
-                        android:id="@+id/lblAMPM"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/lbl_ampm" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-
-                        <ToggleButton
-                            android:id="@+id/tgbAMPM"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:textOff="@string/lbl_am"
-                            android:textOn="@string/lbl_pm" />
-
-
-                    </LinearLayout>
 
                 </LinearLayout>
 
+            </LinearLayout>
 
 
             <View
@@ -392,7 +401,8 @@
                 android:id="@+id/lblSeleccionarLocalizacion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/lbl_seleccionar_localizacion" />
+                android:text="@string/lbl_seleccionar_localizacion"
+                android:textColor="@color/principalPurpura" />
 
             <Spinner
                 android:id="@+id/sprLocalizacionClases"
@@ -409,7 +419,8 @@
                 android:id="@+id/lblSeleccionarProfesor"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/lbl_seleccionar_profesor" />
+                android:text="@string/lbl_seleccionar_profesor"
+                android:textColor="@color/principalPurpura" />
 
             <Spinner
                 android:id="@+id/sprSeleccionarProfesor"

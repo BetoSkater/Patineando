@@ -16,7 +16,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="10dp"
-            android:text="@string/lbl_Listado_de_rutas" />
+            android:text="@string/lbl_Listado_de_rutas"
+            android:textColor="@color/principalPurpura"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <View
+            android:id="@+id/divider30"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="?android:attr/listDivider" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rcvListadoRutasPublicadas"

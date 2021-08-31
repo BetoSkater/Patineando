@@ -140,7 +140,7 @@
     <!-- Fragment Modificar Cuenta Matricula Usuario-->
 
     <string name="lbl_gestion_correo_modificar_cuenta_matricula">Gestionar Correo</string>
-    <string name="lbl_correo_antiguo_modificar_cuenta_matricula">Correo actual</string>
+    <string name="lbl_correo_antiguo_modificar_cuenta_matricula">Correo actual:</string>
     <string name="lbl_correo_modificar_cuenta_matricula">Nuevo Correo:</string>
     <string name="lbl_confirmar_correo_modificar_cuenta_matricula">Confirmar Nuevo Correo:</string>
     <string name="btn_correo_modificar_correo_matricula">Actualizar correo</string>
@@ -278,7 +278,7 @@
     <string name="toast_fallo_al_subir_el_mapa">Error al subir el mapa</string>
     <string name="toast_no_has_seleccionado_mapa">Debes seleccionar un mapa</string>
     <string name="toast_ruta_subida_exito">La ruta se ha subido con éxito.</string>
-
+    <string name="titulo_anadir_ruta">Añadir Ruta</string>
 
     <!--Fragment listado rutas -->
     <string name="lbl_Listado_de_rutas">Rutas </string>

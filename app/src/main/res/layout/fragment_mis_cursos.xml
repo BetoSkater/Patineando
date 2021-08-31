@@ -8,13 +8,18 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="20dp">
+
         <TextView
             android:id="@+id/lblCursosAlumnoMisCursosND"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="@string/lblCursosAlumnoMisCursos" />
+            android:text="@string/lblCursosAlumnoMisCursos"
+            android:textColor="@color/principalPurpura"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rcvListadoMisCursosND"

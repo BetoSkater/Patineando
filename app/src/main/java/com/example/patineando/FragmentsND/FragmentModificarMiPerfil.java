@@ -251,6 +251,7 @@ public class FragmentModificarMiPerfil extends Fragment {
 
     //Metodo para subir la imagen a la carpeta de imagenes de usuario del Storage, ademas, se incluye una referencia al storage en la tabla usuarios
     private void aceptarCambios(){
+
         if(uriImagen != null){
 
              //TODO debería ser private, pero no lo permite ya que la clase original es pública. Debo cambiar esto?
@@ -268,7 +269,22 @@ public class FragmentModificarMiPerfil extends Fragment {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
 
-                    String urlImagen = taskSnapshot.getUploadSessionUri().toString();
+                  //  String urlImagen = taskSnapshot.getUploadSessionUri().toString();
+                  // String urlImagen = taskSnapshot.getMetadata().getReference().getDownloadUrl().toString();
+
+                    if (taskSnapshot.getMetadata() != null) {
+                        if (taskSnapshot.getMetadata().getReference() != null) {
+                            Task<Uri> result = taskSnapshot.getStorage().getDownloadUrl();
+                            result.addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                @Override
+                                public void onSuccess(Uri uri) {
+                                     String urlImagen = uri.toString();
+                                    mDatabaseReference.child("Usuarios").child(usuario.getUid()).child("imagenUsuario").setValue(urlImagen);
+                                    //createNewPost(imageUrl);
+                                }
+                            });
+                        }
+                    }
 
 
                      //TODO HARDCODED, poner bien cuando se haga la funcionalidad de seleccionar imagenes.
@@ -291,13 +307,14 @@ public class FragmentModificarMiPerfil extends Fragment {
 
 
 
-                    mDatabaseReference.child("Usuarios").child(usuario.getUid()).child("imagenUsuario").setValue(urlImagen);
+                  //  mDatabaseReference.child("Usuarios").child(usuario.getUid()).child("imagenUsuario").setValue(urlImagen);
                     mDatabaseReference.child("Usuarios").child(usuario.getUid()).child("nombreUsuario").setValue(nombre);
                     mDatabaseReference.child("Usuarios").child(usuario.getUid()).child("apellidosUsuario").setValue(apellidos);
                     mDatabaseReference.child("Usuarios").child(usuario.getUid()).child("apodoUsuario").setValue(apodo);
                     mDatabaseReference.child("Usuarios").child(usuario.getUid()).child("patinesUsuario").setValue(patines);
                     mDatabaseReference.child("Usuarios").child(usuario.getUid()).child("descripcionUsuario").setValue(descripcion);
 
+                    Toast.makeText(getContext(),"Perfil actualizado con exito",Toast.LENGTH_SHORT).show();
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override

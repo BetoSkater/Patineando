@@ -20,7 +20,8 @@
                 android:id="@+id/lblDisciplinaSubir"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/lbl_disciplina_subir_recursos" />
+                android:text="@string/lbl_disciplina_subir_recursos"
+                android:textColor="@color/principalPurpura" />
 
             <Spinner
                 android:id="@+id/sprDisciplinaRecursos"
@@ -37,7 +38,8 @@
                 android:id="@+id/lblNivelSubir"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/lbl_disciplina_subir_recursos" />
+                android:text="@string/lbl_disciplina_subir_recursos"
+                android:textColor="@color/principalPurpura" />
 
             <Spinner
                 android:id="@+id/sprNivelRecursos"
@@ -56,12 +58,14 @@
                 android:id="@+id/lblTipoDocSubir"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/lbl_tipo_doc_subir" />
+                android:text="@string/lbl_tipo_doc_subir"
+                android:textColor="@color/principalPurpura" />
 
             <RadioGroup
                 android:id="@+id/rdgTipoDocumento"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:orientation="horizontal">
 
                 <RadioButton
@@ -93,7 +97,8 @@
                 android:id="@+id/lblSeleccionarDoc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/lbl_seleccionar_doc_subir" />
+                android:text="@string/lbl_seleccionar_doc_subir"
+                android:textColor="@color/principalPurpura" />
 
             <Button
                 android:id="@+id/btnSeleccionarRecurso"
@@ -105,7 +110,7 @@
                 android:id="@+id/textView4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="PREVIIEW?????" />
+                android:text="Pendiente: Previsualización documentos" />
 
             <View
                 android:id="@+id/divider22"

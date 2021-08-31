@@ -26,11 +26,11 @@ public class FragmentMapaRuta extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+ // private static final String ARG_PARAM2 = "param2";
 
     // TODO: Rename and change types of parameters
     private String mParam1;
-    private String mParam2;
+   // private String mParam2;
 
     public FragmentMapaRuta() {
         // Required empty public constructor
@@ -49,7 +49,7 @@ public class FragmentMapaRuta extends Fragment {
         FragmentMapaRuta fragment = new FragmentMapaRuta();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+      //  args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
     }
@@ -59,7 +59,7 @@ public class FragmentMapaRuta extends Fragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+          //  mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
 
@@ -70,9 +70,9 @@ public class FragmentMapaRuta extends Fragment {
         View vista = inflater.inflate(R.layout.fragment_mapa_ruta, container, false);
         imagenMapa = (ImageView)vista.findViewById(R.id.imgDetalleMapa);
 
-        TRutas auxRuta = (TRutas) getArguments().getSerializable("RutaSeleccionada");
-
-        Uri uriImagen = Uri.parse(auxRuta.getUriMapa());
+       // TRutas auxRuta = (TRutas) getArguments().getSerializable("RutaSeleccionada");
+        String imagenUrl = getArguments().getString("urlMapa");
+        Uri uriImagen = Uri.parse(imagenUrl);
 
         Glide.with(getContext()).load(uriImagen).into(imagenMapa);
         return vista;

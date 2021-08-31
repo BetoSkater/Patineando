@@ -113,10 +113,12 @@ public class FragmentListadoRutas extends Fragment implements AdaptadorListadoRu
     public void onItemClick(TRutas auxiliarModeloDatos) { //TODO no funciona, es decir, no borra el dato
         //Toast.makeText(getContext(), auxiliarModeloDatos.getIdCurso(), Toast.LENGTH_LONG).show();
 
-            Fragment fragmento = new Fragment();
+            Fragment fragmento =  new FragmentMapaRuta();
             //FragmentListadoCursosTipo fragmentDetalle = new FragmentListadoCursosTipo();
-            Bundle parametroEnviar = new Bundle();
-            parametroEnviar.putSerializable("RutaSeleccionada",auxiliarModeloDatos);
+           Bundle parametroEnviar = new Bundle();
+          // parametroEnviar.putSerializable("RutaSeleccionada",auxiliarModeloDatos);
+        String urlMapa = auxiliarModeloDatos.getUriMapa().toString();
+        parametroEnviar.putString("urlMapa",urlMapa);
             fragmento.setArguments(parametroEnviar);
 
 

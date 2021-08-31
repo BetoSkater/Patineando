@@ -33,9 +33,12 @@
                     android:id="@+id/lblGestionCorreoModificarCuentaMatricula"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:gravity="center"
                     android:text="@string/lbl_gestion_correo_modificar_cuenta_matricula"
-                    android:textSize="20sp" />
+                    android:textColor="@color/principalPurpura"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
                 <View
                     android:id="@+id/divider3"
@@ -47,7 +50,9 @@
                     android:id="@+id/lblCorreoAntiguoModificarCuentaMatricula"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/lbl_correo_antiguo_modificar_cuenta_matricula" />
+                    android:text="@string/lbl_correo_antiguo_modificar_cuenta_matricula"
+                    android:textColor="@color/principalPurpura"
+                    android:textSize="14sp" />
 
                 <EditText
                     android:id="@+id/txtCorreoAntiguoModificarCorreoMatricula"
@@ -66,7 +71,8 @@
                     android:id="@+id/lblCorreoModificarCuentaMatricula"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/lbl_correo_modificar_cuenta_matricula" />
+                    android:text="@string/lbl_correo_modificar_cuenta_matricula"
+                    android:textColor="@color/principalPurpura" />
 
                 <EditText
                     android:id="@+id/txtCorreoModificarCuentaMatricula"
@@ -79,7 +85,8 @@
                     android:id="@+id/lblConfirmarCorreoModificarCuentaMatricula"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/lbl_confirmar_correo_modificar_cuenta_matricula" />
+                    android:text="@string/lbl_confirmar_correo_modificar_cuenta_matricula"
+                    android:textColor="@color/principalPurpura" />
 
                 <EditText
                     android:id="@+id/txtConfirmarCorreoModificarCuentaMatricula"
@@ -117,8 +124,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center|center_horizontal"
+                    android:gravity="center"
                     android:text="@string/lbl_gestion_matricula_modificar_cuenta_matricula"
-                    android:textSize="20sp" />
+                    android:textColor="@color/principalPurpura"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
                 <View
                     android:id="@+id/divider4"
@@ -130,27 +140,27 @@
                 <RadioGroup
                     android:id="@+id/rdgGrupoModificarCuentaMatricula"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:foregroundGravity="center"
+                    android:gravity="center"
+                    android:orientation="horizontal">
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal">
 
-                        <RadioButton
-                            android:id="@+id/rdbActivaModificarCuentaMatricula"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="@string/rdb_activa_modificar_cuenta_matricula" />
+                    <RadioButton
+                        android:id="@+id/rdbActivaModificarCuentaMatricula"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/rdb_activa_modificar_cuenta_matricula" />
 
-                        <RadioButton
-                            android:id="@+id/rdbInactivaModificarCuentaMatricula"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="@string/rdb_inactiva_modificar_cuenta_matricula" />
-                    </LinearLayout>
+                    <RadioButton
+                        android:id="@+id/rdbInactivaModificarCuentaMatricula"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/rdb_inactiva_modificar_cuenta_matricula" />
+
                 </RadioGroup>
 
                 <Button
@@ -179,8 +189,11 @@
                     android:id="@+id/lblEliminarUsuarioModificarCuentaMatricula"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center"
                     android:text="@string/lbl_eliminar_usuario_modificar_cuenta_matricula"
-                    android:textSize="20sp" />
+                    android:textColor="@color/principalPurpura"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
                 <View
                     android:id="@+id/divider5"

@@ -3,6 +3,8 @@ package com.example.patineando.FragmentsND;
 import android.app.FragmentTransaction;
 import android.content.ContentResolver;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.GradientDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -156,7 +158,7 @@ public class FragmentMiPerfil extends Fragment {
                     //TODO PONER IMAGEN
                     String imagenRecuperada = String.valueOf(task.getResult().child("imagenUsuario").getValue());
                     Picasso.get().load(imagenRecuperada).into(imgMiPerfil);
-
+                    imgMiPerfil.setBackgroundDrawable(ponerBordeMorado());
                     String nombreRecuperado = String.valueOf(task.getResult().child("nombreUsuario").getValue());
                     String apellidosRecuperados = String.valueOf(task.getResult().child("apellidosUsuario").getValue());
                     txtNombre.setText(nombreRecuperado + " "+ apellidosRecuperados);
@@ -214,7 +216,13 @@ public class FragmentMiPerfil extends Fragment {
 
     }//Fin metodo cerrarSesion;
 
-
+    //Metodo para poner borde a los botones:
+    public GradientDrawable ponerBordeMorado(){
+        GradientDrawable borde = new GradientDrawable();
+        borde.setColor(Color.argb(0,255,255,255));
+        borde.setStroke(15,Color.argb(255,41,19,42));
+        return borde;
+    }
 
 
 }

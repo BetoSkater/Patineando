@@ -1,6 +1,7 @@
 package com.example.patineando.FragmentsND;
 
 import android.app.FragmentTransaction;
+import android.net.Uri;
 import android.os.Bundle;
 
 import android.app.Fragment;
@@ -13,7 +14,9 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.patineando.AuxAdaptadorGestionPermisos;
 import com.example.patineando.R;
 import com.example.patineando.Tusuario;
@@ -95,13 +98,16 @@ public class FragmentUsuarioPermisos extends Fragment  {
         //Extracción de los valores recibidos:
 
          String idUsuarioObtenido = mParam1.getIdUsuario();
+
          String correoUsuarioObtenido = mParam1.getCorreoUsuario();
          String imagenUsuarioObtenido = mParam1.getImagenUsuario();
-         String tipoUsuarioObtenido = mParam1.getTipoUsuario();
+        Uri uriImagen = Uri.parse(imagenUsuarioObtenido);
+                String tipoUsuarioObtenido = mParam1.getTipoUsuario();
          String nombreUsuarioObtenido = mParam1.getNombreUsuario();
          String apellidosUsuarioObtenido = mParam1.getApellidosUsuario();
 
-         Picasso.get().load(imagenUsuarioObtenido).into(imgUsuarioPermisos); //TODO no funciona lo de Picasso
+         //Picasso.get().load(imagenUsuarioObtenido).into(imgUsuarioPermisos); //TODO no funciona lo de Picasso
+        Glide.with(getContext()).load(uriImagen).into(imgUsuarioPermisos);
          txtNombreUsuarioPermisos.setText(nombreUsuarioObtenido+" "+apellidosUsuarioObtenido);
          txtCorreoUsuarioPermisos.setText(correoUsuarioObtenido);
          txtPermisosUsuarioPermisos.setText(tipoUsuarioObtenido);
@@ -116,7 +122,7 @@ public class FragmentUsuarioPermisos extends Fragment  {
          botonGestionarCuentaMatricula.setOnClickListener(new View.OnClickListener() {
              @Override
              public void onClick(View v) {
-                 irAGestionarCuentaMatricula(mParam1);
+                // irAGestionarCuentaMatricula(mParam1);
                  Fragment fragmento = new FragmentModificarCuentaMatriculaUsuario();
                  //Fragment fragmento = FragmentUsuarioPermisos.newInstance(auxiliarModeloDatos.getIdUsuario());
                  FragmentTransaction transaction = getFragmentManager().beginTransaction();
@@ -176,6 +182,7 @@ public class FragmentUsuarioPermisos extends Fragment  {
         }
 
         mDatabase.child("Usuarios").child(identificadorUsuario).child(campoAModificar).setValue(palabraInsertar);
+        Toast.makeText(getContext(),"Permisos actualizados con exito",Toast.LENGTH_SHORT).show();
 
     }//Fin método public void actualizacionDePermisos(){
 /*

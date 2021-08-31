@@ -44,7 +44,8 @@
                         android:layout_margin="5dp"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:text="Ej Tecnica" />
+                        android:text="Ej Tecnica"
+                        android:textColor="@color/principalPurpura" />
 
                     <TextView
                         android:id="@+id/lblNivelCursoMisCursos"
@@ -53,7 +54,8 @@
                         android:layout_margin="5dp"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:text="@string/lblNivelCardMisCursos" />
+                        android:text="@string/lblNivelCardMisCursos"
+                        android:textColor="@color/principalPurpura" />
 
                     <TextView
                         android:id="@+id/txtNivelMisCursos"
@@ -62,7 +64,8 @@
                         android:layout_margin="5dp"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:text="Ej Nivel" />
+                        android:text="Ej Nivel"
+                        android:textColor="@color/principalPurpura" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -77,7 +80,8 @@
                         android:layout_margin="5dp"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:text="Ej dia" />
+                        android:text="Ej dia"
+                        android:textColor="@color/principalPurpura" />
 
                     <TextView
                         android:id="@+id/txtHoraMisCursos"
@@ -86,7 +90,8 @@
                         android:layout_margin="5dp"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:text="ej hora" />
+                        android:text="ej hora"
+                        android:textColor="@color/principalPurpura" />
                 </LinearLayout>
 
                 <TextView
@@ -94,14 +99,18 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
-                    android:text="Ejemplo Localizacion" />
+                    android:gravity="center"
+                    android:text="Ejemplo Localizacion"
+                    android:textColor="@color/principalPurpura" />
 
                 <TextView
                     android:id="@+id/txtProfesorMisCursos"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
-                    android:text="Ejemplo profesor" />
+                    android:gravity="center"
+                    android:text="Ejemplo profesor"
+                    android:textColor="@color/principalPurpura" />
             </LinearLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>

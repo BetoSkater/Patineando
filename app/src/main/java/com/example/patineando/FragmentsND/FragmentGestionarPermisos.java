@@ -186,7 +186,7 @@ public class FragmentGestionarPermisos extends Fragment implements AdaptadorGest
             }
         }); //Fin busqueda de usuarios
 
-        listadoPermisos.setAdapter(new AdaptadorGestionPermisos(Listado,this));
+        listadoPermisos.setAdapter(new AdaptadorGestionPermisos(Listado,this,getContext()));
 
         return Listado;
     }//Fin método crearListaUsuariosApellido

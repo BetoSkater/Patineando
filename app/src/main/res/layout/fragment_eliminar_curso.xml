@@ -11,17 +11,19 @@
         android:padding="10dp">
 
 
-
         <TextView
             android:id="@+id/lblSeleccionarCriterioBusquedaEliminarCurso"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/lbl_seleccionar_criterio_busqueda" />
+            android:text="@string/lbl_seleccionar_criterio_busqueda"
+            android:textColor="@color/principalPurpura" />
 
         <RadioGroup
             android:id="@+id/rdgEliminarCurso"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:foregroundGravity="center_horizontal"
+            android:gravity="center_horizontal"
             android:orientation="horizontal">
 
 

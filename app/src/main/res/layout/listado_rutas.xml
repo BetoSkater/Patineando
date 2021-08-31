@@ -22,6 +22,7 @@
                 android:id="@+id/imvListaRutas"
                 android:layout_width="315dp"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
                 android:layout_weight="1"
                 tools:srcCompat="@tools:sample/avatars" />
 
@@ -29,24 +30,41 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:orientation="vertical">
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="15dp">
 
                 <TextView
                     android:id="@+id/lblNombreListadoRuta"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center"
                     android:text="Nombre" />
+
+                <View
+                    android:id="@+id/divider37"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="?android:attr/listDivider" />
 
                 <TextView
                     android:id="@+id/lblLocalizacionListadoRuta"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center"
                     android:text="Localizacion" />
+
+                <View
+                    android:id="@+id/divider38"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="?android:attr/listDivider" />
 
                 <TextView
                     android:id="@+id/lblDificultadListadoRuta"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center"
                     android:text="Dificultad" />
             </LinearLayout>
         </LinearLayout>

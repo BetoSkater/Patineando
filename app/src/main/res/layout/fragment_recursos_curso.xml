@@ -22,17 +22,41 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
+                <View
+                    android:id="@+id/divider33"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="?android:attr/listDivider" />
+
                 <TextView
                     android:id="@+id/lblCursoNivelRecursosCurso"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="curso + dificultad" />
+                    android:gravity="center"
+                    android:text="curso + dificultad"
+                    android:textColor="@color/principalPurpura"
+                    android:textSize="16sp" />
+
+                <View
+                    android:id="@+id/divider34"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="?android:attr/listDivider" />
 
                 <TextView
                     android:id="@+id/lblProfeRecursosCurso"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="profesor" />
+                    android:gravity="center"
+                    android:text="profesor"
+                    android:textColor="@color/principalPurpura"
+                    android:textSize="16sp" />
+
+                <View
+                    android:id="@+id/divider35"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="?android:attr/listDivider" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 

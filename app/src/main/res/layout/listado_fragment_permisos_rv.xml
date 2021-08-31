@@ -24,6 +24,7 @@
                 android:id="@+id/imgListadoPermisos"
                 android:layout_width="329dp"
                 android:layout_height="204dp"
+                android:layout_marginLeft="15dp"
                 android:layout_weight="1"
                 tools:srcCompat="@tools:sample/avatars" />
 
@@ -39,13 +40,21 @@
                     android:id="@+id/lblListadoGPPermiso"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center"
                     android:text="Alumno"
                     android:textSize="20sp" />
+
+                <View
+                    android:id="@+id/divider36"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="?android:attr/listDivider" />
 
                 <TextView
                     android:id="@+id/lblListadoGPNombreApe"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center"
                     android:text="Benito Floro"
                     android:textSize="20sp" />
 

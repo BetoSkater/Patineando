@@ -95,7 +95,7 @@ public class FragmentListadoCursosTipo extends Fragment implements AdaptadorList
         View vista =  inflater.inflate(R.layout.fragment_listado_cursos_tipo, container, false);
 
         listadorCursos = (RecyclerView) vista.findViewById(R.id.rcvListaPorDisciplina);
-         botonPruebas = (Button) vista.findViewById(R.id.botonPruebaBorrar);
+      //   botonPruebas = (Button) vista.findViewById(R.id.botonPruebaBorrar);
 
 
         listadorCursos.setHasFixedSize(true);
@@ -108,13 +108,15 @@ public class FragmentListadoCursosTipo extends Fragment implements AdaptadorList
         generarListadoCursos(criterioBusquedaObtenido);
 
 
-
+        /*
         botonPruebas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(vista.getContext(),criterioBusquedaObtenido ,Toast.LENGTH_SHORT).show();
             }
         });
+
+         */
         //Poner la llamada al método que recupere los valores, y dentro
         //TODO dentro de esta llamada, poner la asignacion al adaptador.
 

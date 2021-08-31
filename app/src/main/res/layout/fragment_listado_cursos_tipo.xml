@@ -12,11 +12,21 @@
         android:orientation="vertical"
 
         android:padding="20dp">
+
         <TextView
             android:id="@+id/lblPresentacionCursos"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/lbl_mostrar_cursos_disciplina" />
+            android:text="@string/lbl_mostrar_cursos_disciplina"
+            android:textColor="@color/principalPurpura"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <View
+            android:id="@+id/divider29"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="?android:attr/listDivider" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rcvListaPorDisciplina"
@@ -25,10 +35,5 @@
 
         </androidx.recyclerview.widget.RecyclerView>
 
-        <Button
-            android:id="@+id/botonPruebaBorrar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Button" />
     </LinearLayout>
 </FrameLayout>

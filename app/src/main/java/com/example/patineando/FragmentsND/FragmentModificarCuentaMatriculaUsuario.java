@@ -67,11 +67,11 @@ public class FragmentModificarCuentaMatriculaUsuario extends Fragment {
         // Inflate the layout for this fragment
         View vista = inflater.inflate(R.layout.fragment_modificar_cuenta_matricula_usuario, container, false);
 
-        txtCorreoActual = (EditText) vista.findViewById(R.id.txtCorreoAntiguoModificarCorreoMatricula);
+     //   txtCorreoActual = (EditText) vista.findViewById(R.id.txtCorreoAntiguoModificarCorreoMatricula);
 
-        String correoACambiar = "prueba";
-                correoACambiar =mParam1.getCorreoUsuario().toString();
-        txtCorreoActual.setText(correoACambiar);
+      //  String correoACambiar = "prueba";
+//                correoACambiar =mParam1.getCorreoUsuario().toString();
+     //   txtCorreoActual.setText(correoACambiar);
 
         return vista;
     }

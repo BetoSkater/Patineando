@@ -15,12 +15,17 @@
             android:id="@+id/lblFragmentoGestionarPermisos"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/fragmento_gestionar_permisos" />
+            android:gravity="center"
+            android:text="@string/fragmento_gestionar_permisos"
+            android:textColor="@color/principalPurpura"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/lblFragmentoGestionPermisosBuscar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:padding="5dp"
             android:text="@string/fragmento_gestionar_permisos_buscar" />
 
         <EditText
