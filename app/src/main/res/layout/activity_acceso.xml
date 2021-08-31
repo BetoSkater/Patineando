@@ -11,8 +11,8 @@
     <ImageView
         android:id="@+id/imgLogoAcceso"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/ic_menu_happy" />
+        android:layout_height="240dp"
+        app:srcCompat="@drawable/icono_patineando" />
 
     <TextView
         android:id="@+id/lblAccede"

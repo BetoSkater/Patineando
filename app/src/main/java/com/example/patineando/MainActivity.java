@@ -11,6 +11,7 @@ import android.os.Bundle;
 import androidx.appcompat.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Base64;
 import android.view.View;
 
@@ -27,22 +28,32 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         //actionbar.hide(); //TODO casca
 
-
+        irAAcceso();
     }//Fin onCreate()------------
 
 
-    //Método para poder ir al menú principal:
-    public  void pruebaMenuPrincipal(View view){
-        Intent intent = new Intent(this, MenuPrincipal.class);
 
-        startActivity(intent);
-    }//Fin método pruebaMenuPrincipal(View view)
+    //Metodo para ir a acceso tras unos segundos
+    //https://stackoverflow.com/questions/9959666/making-a-screen-switch-after-a-few-seconds-thread-intent-android
+    public void irAAcceso(){
+        int tiempoEspera = 3000; //En ms
 
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Intent intent = new Intent(MainActivity.this,Acceso.class);
+                startActivity(intent);
+            }
+        },tiempoEspera);
+    }
+
+/*
     //Método para poder acceder al acceso:
     public void pruebaAcceso(View view){
         Intent intent = new Intent(this,Acceso.class);
         startActivity(intent);
     }
-
+*/
 
 }

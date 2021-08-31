@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -15,6 +16,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+
+import org.jetbrains.annotations.NotNull;
 
 public class Registro extends AppCompatActivity {
 
@@ -107,7 +110,18 @@ public class Registro extends AppCompatActivity {
                     if(task.isSuccessful()){
                         Toast.makeText(Registro.this, getResources().getString(R.string.toastRegistroExitoso),Toast.LENGTH_SHORT).show();
                             //Nota, el contexto tiene que ser Nombre.this, si se pone solo this, salta un error de que ese contexto no puede ser ejecutado o algo así.
-
+                            Intent intent = new Intent(Registro.this, Acceso.class);
+                            startActivity(intent);
+                            //-----------------------
+                        //Esto que se me ha ocurrido, hace que el usuario tenga que poner sus credenciales tras el registro
+                            firebaseAuth.signOut();
+                            firebaseAuth.removeAuthStateListener(new FirebaseAuth.AuthStateListener() {
+                                @Override
+                                public void onAuthStateChanged(@NonNull @NotNull FirebaseAuth firebaseAuth) {
+                                    firebaseAuth.signOut();
+                                }
+                            });
+                            //_--------
                     }else{
                         Toast.makeText(Registro.this,getResources().getString(R.string.toastRegistroFallido),Toast.LENGTH_SHORT).show();
 

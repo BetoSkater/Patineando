@@ -14,12 +14,14 @@
             <menu>
                 <item
                     android:id="@+id/nav_menu_principal"
-                    android:icon="@drawable/ic_menu_camera"
-                    android:title="@string/menuNavigatorDrawer"
-                    android:menuCategory="secondary"/>
+                    android:icon="@android:drawable/ic_menu_directions"
+                    android:iconTint="@color/principalPurpura"
+                    android:menuCategory="secondary"
+                    android:title="@string/menuNavigatorDrawer" />
                 <item
                     android:id="@+id/nav_opciones"
-                    android:icon="@drawable/ic_menu_gallery"
+                    android:icon="@android:drawable/ic_menu_directions"
+                    android:iconTint="@color/principalPurpura"
                     android:title="@string/opcionesNavigatorDrawer"
                     android:menuCategory="secondary"/>
 
@@ -34,7 +36,8 @@
                 <!--Profesores-->
                 <item
                     android:id="@+id/nav_admin_cursos"
-                    android:icon="@drawable/ic_menu_slideshow"
+                    android:icon="@android:drawable/ic_menu_directions"
+                    android:iconTint="@color/principalPurpura"
                     android:title="@string/gestionarCursosNavigatorDrawer"
                     android:menuCategory="secondary"/>
 
@@ -48,22 +51,26 @@
                 <!--Administración-->
                 <item
                     android:id="@+id/nav_admin_noticias"
-                    android:icon="@drawable/ic_menu_slideshow"
+                    android:icon="@android:drawable/ic_menu_directions"
+                    android:iconTint="@color/principalPurpura"
                     android:title="@string/gestionarNoticiasNavigatorDrawer"
                     android:menuCategory="secondary"/>
                 <item
                     android:id="@+id/nav_admin_rutas"
-                    android:icon="@drawable/ic_menu_slideshow"
+                    android:icon="@android:drawable/ic_menu_directions"
+                    android:iconTint="@color/principalPurpura"
                     android:title="@string/gestionarRutasNavigatorDrawer"
                     android:menuCategory="secondary"/>
                 <item
                     android:id="@+id/nav_admin_permisos"
-                    android:icon="@drawable/ic_menu_slideshow"
+                    android:icon="@android:drawable/ic_menu_directions"
+                    android:iconTint="@color/principalPurpura"
                     android:title="@string/gestionarPermisosNavigatorDrawer"
                     android:menuCategory="secondary"/>
                 <item
                     android:id="@+id/nav_admin_escuela"
-                    android:icon="@drawable/ic_menu_slideshow"
+                    android:icon="@android:drawable/ic_menu_directions"
+                    android:iconTint="@color/principalPurpura"
                     android:title="@string/gestionarEscuelaNavigatorDrawer"
                     android:menuCategory="secondary"/>
 

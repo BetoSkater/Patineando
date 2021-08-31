@@ -4,10 +4,12 @@ package com.example.patineando;
 
 
 import android.app.FragmentTransaction;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.Menu;
 
+import com.bumptech.glide.Glide;
 import com.example.patineando.FragmentsND.FragmentGestionarCursos;
 import com.example.patineando.FragmentsND.FragmentGestionarEscuela;
 import com.example.patineando.FragmentsND.FragmentGestionarNoticias;
@@ -41,6 +43,8 @@ import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import org.jetbrains.annotations.NotNull;
+
+import javax.microedition.khronos.opengles.GL;
 
 /*public enum TipoUsurio
 {
@@ -251,8 +255,10 @@ public class MenuNavigatorDrawer extends AppCompatActivity {
                 //-------------------
         //TODO comprobar que funciona
                    String imagenObtenida = snapshot.child("imagenUsuario").getValue().toString();
-               Picasso.get().load(imagenObtenida).into(imagenNavigatorDrawer);
-
+                    Uri imagenObtenidaUri = Uri.parse(imagenObtenida);
+                //imagenNavigatorDrawer.setImageURI(imagenObtenidaUri);
+               //Picasso.get().load(imagenObtenida).into(imagenNavigatorDrawer);
+                Glide.with(getApplicationContext()).load(imagenObtenida).into(imagenNavigatorDrawer); //TODO parece que va mejor, pero aun asi no carga las cosas del todo
                 String nombre = snapshot.child("nombreUsuario").getValue().toString();
                 String apellido = snapshot.child("apellidosUsuario").getValue().toString();
                 String nombreCompleto = nombre + " " + apellido;

@@ -9,10 +9,13 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_margin="3dp"
         android:orientation="vertical">
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="80dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
             android:orientation="horizontal"
             android:padding="5dp">
 
@@ -22,43 +25,52 @@
 
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_margin="3dp"
                 android:layout_weight="1"
                 android:background="@color/transparente"
-                android:src="@drawable/ic_menu_gear" />
+                android:padding="6dp"
+                android:src="@drawable/opciones" />
 
             <ImageButton
                 android:id="@+id/imbTiempoMPND"
 
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_margin="3dp"
                 android:layout_weight="1"
-                android:background="@color/transparente"
 
-                android:src="@drawable/ic_menu_sun" />
+                android:background="@color/transparente"
+                android:padding="6dp"
+                android:src="@drawable/sol" />
 
             <ImageButton
                 android:id="@+id/imbRutasMPND"
 
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="105dp"
+                android:layout_height="112dp"
+                android:layout_margin="3dp"
                 android:layout_weight="1"
                 android:background="@color/transparente"
-                android:src="@drawable/ic_menu_planet" />
+                android:padding="6dp"
+                android:src="@drawable/patin" />
 
             <ImageButton
                 android:id="@+id/imbCursosMPND"
 
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="112dp"
+                android:layout_margin="3dp"
                 android:layout_weight="1"
-                android:background="@color/transparente"
 
-                android:src="@drawable/ic_menu_picasa" />
+                android:background="@color/transparente"
+                android:padding="6dp"
+                android:src="@drawable/patinador" />
         </LinearLayout>
 
         <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/vpgViewPager2"
             android:layout_width="match_parent"
-            android:layout_height="464dp">
+            android:layout_height="520dp">
 
         </androidx.viewpager2.widget.ViewPager2>
 

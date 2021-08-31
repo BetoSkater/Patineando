@@ -1,6 +1,8 @@
 package com.example.patineando.FragmentsND;
 
 import android.app.FragmentTransaction;
+import android.graphics.Color;
+import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 
 import android.app.Fragment;
@@ -10,6 +12,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
+
+import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.patineando.R;
 
@@ -23,6 +27,7 @@ public class FragmentMenuPrincipal extends Fragment {
 
     ImageButton btnOpciones,btnClima, btnRutas, btnCursos;
     Button btnMisCursos, btnMiPerfil;
+    ViewPager2 viewPager2;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -70,6 +75,7 @@ public class FragmentMenuPrincipal extends Fragment {
         View vista = inflater.inflate(R.layout.fragment_menu_principal, container, false);
 
         btnOpciones = (ImageButton) vista.findViewById(R.id.imbOpcionesMPND);
+        btnOpciones.setBackgroundDrawable(ponerBordeMorado());
         btnOpciones.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -80,6 +86,7 @@ public class FragmentMenuPrincipal extends Fragment {
 
 
         btnClima = (ImageButton) vista.findViewById(R.id.imbTiempoMPND);
+        btnClima.setBackgroundDrawable(ponerBordeMorado());
         btnClima.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -88,6 +95,7 @@ public class FragmentMenuPrincipal extends Fragment {
         });
 
         btnRutas = (ImageButton) vista.findViewById(R.id.imbRutasMPND);
+        btnRutas.setBackgroundDrawable(ponerBordeMorado());
         btnRutas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -96,12 +104,17 @@ public class FragmentMenuPrincipal extends Fragment {
         });
 
         btnCursos = (ImageButton) vista.findViewById(R.id.imbCursosMPND);
+        btnCursos.setBackgroundDrawable(ponerBordeMorado());
         btnCursos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 verCursos();
             }
         });
+
+
+        viewPager2 = (ViewPager2) vista.findViewById(R.id.vpgViewPager2);
+        viewPager2.setBackgroundDrawable(ponerBordeMorado());
 
         btnMisCursos = (Button) vista.findViewById(R.id.btnMisCursosMPND);
         btnMisCursos.setOnClickListener(new View.OnClickListener() {
@@ -142,7 +155,7 @@ public class FragmentMenuPrincipal extends Fragment {
     }
 
     public void verRutas(){
-        Fragment fragmento = new FragmentVerRutas();
+        Fragment fragmento = new FragmentListadoRutas();
         FragmentTransaction transaccion = getFragmentManager().beginTransaction();
         transaccion.replace(R.id.contenedor_fragments_ND,fragmento);
         transaccion.addToBackStack(null);
@@ -171,5 +184,13 @@ public class FragmentMenuPrincipal extends Fragment {
         transaccion.replace(R.id.contenedor_fragments_ND,fragmento);
         transaccion.addToBackStack(null);
         transaccion.commit();
+    }
+
+    //Metodo para poner borde a los botones:
+    public GradientDrawable ponerBordeMorado(){
+        GradientDrawable borde = new GradientDrawable();
+        borde.setColor(Color.argb(0,255,255,255));
+        borde.setStroke(15,Color.argb(255,41,19,42));
+        return borde;
     }
 }

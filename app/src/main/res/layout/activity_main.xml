@@ -4,21 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center"
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <Button
-        android:id="@+id/pruebas1"
+    <ImageView
+        android:id="@+id/imageView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="pruebaMenuPrincipal"
-        android:text="Ver Clima" />
+        app:srcCompat="@drawable/icono_patineando" />
 
-    <Button
-        android:id="@+id/pruebaAcceso"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="pruebaAcceso"
-        android:text="ir a acceso" />
 
 </LinearLayout>

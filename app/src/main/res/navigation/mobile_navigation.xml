@@ -20,10 +20,7 @@
         android:name="com.example.patineando.FragmentsND.FragmentInformacionClimatica"
         tools:layout="@layout/fragment_informacion_climatica" />
 
-    <fragment
-        android:id="@+id/fragmento_ver_rutas"
-        android:name="com.example.patineando.FragmentsND.FragmentVerRutas"
-        tools:layout="@layout/fragment_ver_rutas" />
+
 
     <fragment
         android:id="@+id/fragmento_cursos_impartidos"
@@ -110,4 +107,13 @@
         android:id="@+id/fragmento_eliminar_recursos_curso"
         android:name="com.example.patineando.FragmentsND.FragmentEliminarRecursos"
         tools:layout="@layout/fragment_eliminar_recursos" />
+
+    <fragment
+        android:id="@+id/fragmento_listado_rutas"
+        android:name="com.example.patineando.FragmentsND.FragmentListadoRutas"
+        tools:layout="@layout/fragment_listado_rutas" />
+    <fragment
+        android:id="@+id/fragmento_mapa_ruta"
+        android:name="com.example.patineando.FragmentsND.FragmentMapaRuta"
+        tools:layout="@layout/fragment_mapa_ruta" />
 </navigation>

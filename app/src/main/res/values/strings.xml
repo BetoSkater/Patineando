@@ -88,8 +88,6 @@
     <string name="menu_slideshow">Slideshow</string>
 
 
-
-
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
@@ -243,7 +241,6 @@
     <string name="toast_matricula_realizada_con_exito">Matricula realizada con éxito.</string>
 
 
-
     <!--Fragment Subir Recursos -->
 
     <string name="lbl_disciplina_subir_recursos">Selecciona la disciplina:</string>
@@ -270,4 +267,19 @@
     <string name="alert_mensaje_criteriobusqueda">Criterio de búsqueda: </string>
     <string name="alert_confirmar">Confirmar</string>
     <string name="alert_cancelar">Cancelar</string>
+
+
+    <!-- Fragment gestionar rutas -->
+    <string name="lbl_nombre_ruta_gr">Nombre de la ruta</string>
+    <string name="lbl_localizacion_ruta_gr">Localización de la ruta</string>
+    <string name="lbl_dificultad_ruta_gr">Dificultad de la ruta</string>
+    <string name="lbl_imagen_ruta_gr">Selecciona el mapa de la ruta</string>
+    <string name="btn_publicar_ruta_gr">Publicar Ruta</string>
+    <string name="toast_fallo_al_subir_el_mapa">Error al subir el mapa</string>
+    <string name="toast_no_has_seleccionado_mapa">Debes seleccionar un mapa</string>
+    <string name="toast_ruta_subida_exito">La ruta se ha subido con éxito.</string>
+
+
+    <!--Fragment listado rutas -->
+    <string name="lbl_Listado_de_rutas">Rutas </string>
 </resources>
