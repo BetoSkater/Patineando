@@ -28,7 +28,16 @@ I love inline skating, so I dicided to create this app to a fictional inline ska
 
 
 ## 🛠 Functionality 
-- **Sign up / Log in**:</br>
+
+- **Sign up & Sign in**: </br>
+After the loading screen, the authentication window is shown.
+
+<p align="center">
+  <img src="./acceso.jpg" alt="acceso" height="720">
+</p>
+
+ In order to use the app, the users needs to register eaither from scrath or using Google Sign in. 
+
 
 
 <p align="center">
