@@ -28,7 +28,7 @@ I love inline skating, so I dicided to create this app to a fictional inline ska
 
 
 ## 🛠 Functionality 
-
+In this section, some of the app key parts are going to be explained.
 - **Sign up & Sign in**: </br>
 After the loading screen, the authentication window is shown.
 
@@ -38,45 +38,72 @@ After the loading screen, the authentication window is shown.
 
  In order to use the app, the users needs to register eaither from scrath or using Google Sign in. 
 
-
-
 <p align="center">
-  <img src="./seleccion.gif" alt="seleccion" height="720">
+  <img src="./registro.jpg" alt="registro" height="720">
+ <img src="./accesoGoogle.jpg" alt="accesoGoogle" height="720">
 </p>
+
 
 
 
 - **Dynamic NavigatorDrawer Menu**:
-
+Once a user has sing in, the type of user is fetched from the database in order to build a dynamic navigator drawer menu.
+## Note: poner lo de las imagenes de thispersondoesnotexit 
 
 <p align="center">
-  <img src="./bucle.gif" alt="bucle" height="720">
+  <img src="./alumnaMenu.jpg" alt="alumna" height="720">
+  <img src="./profesorMenu.jpg" alt="profesor" height="720">
+  <img src="./administracionMenu.jpg" alt="administracion" height="720">
 </p>
+
+
+
 
 - **Create a course**
+In order to create a new course, some information must be provided. Aiming to minimize user input errors and test diferent ways of adding data several elements have been used in the "Create course" form. 
+
+
+| Element       | Use / acction           |
+| ------------- | ------------------------------ |
+| [Spinner](https://developer.android.com/guide/topics/ui/controls/spinner)     | Select type of course       |
+| [RadioGroup](https://developer.android.com/reference/kotlin/android/widget/RadioGroup?hl=en)   | Select difficulty level     |
+| [Chips](https://material.io/components/chips/android#using-chips)     | Select day of the week       |
+| [Associated RadioGroups](https://developer.android.com/reference/kotlin/android/widget/RadioGroup?hl=en)   | Select hour     |
+| [RadioGroup](https://developer.android.com/reference/kotlin/android/widget/RadioGroup?hl=en)     | Select minute       |
+| [Toggle Button](https://developer.android.com/guide/topics/ui/controls/togglebutton)   | Select am/pm     |
+| [Spinner](https://developer.android.com/guide/topics/ui/controls/spinner)     | Select location       |
+| [Spinner](https://developer.android.com/guide/topics/ui/controls/spinner)     | Select teacher       |
+
+
+<p align="center">
+  <img src="./CrearCursoUno.gif" alt="crearUno" height="720">
+  <img src="./CrearCursoDos.gif" alt="crearDos" height="720">
+</p>
+
+
 
 - **Upload resources**
-
-- **Search a course**:
-
+As a way of increasing the learning experience, some resources related to the cource can be updated by the admins. The resources are mainly videos. Once a video has been preselected, it is displayed in a [VideoView](https://developer.android.com/reference/android/widget/VideoView). Once all the fields are filled and the user click in upload("Subir"), an alert dialog is shown. This alert warns the user about how the key data to locate the video are going to be stored which is important due to the non relational nature of the database. As soon as the user press confirm, the upload begin. During this process a [ProgressBar](https://developer.android.com/reference/android/widget/ProgressBar) informs the user that the process is still running. When it does finish, a toast displays a message indicating if it was successfull, or not.
 
 <p align="center">
- <img src="./correcto.gif" alt="correcto" height="720">
+ <img src="./SubirVideoUno.gif" alt="subirUno" height="720">
+ <img src="./SubirVideoDos.gif" alt="subirDos" height="720">
 </p>
 
 
 
-- **Course subscription**:
+- **Watch resources**:
+Users can watch the videos associated with their subscribed courses. This videos retrieved from the database are displayed in an [ExoPlayer](https://developer.android.com/guide/topics/media/exoplayer) instance.
+
 <p align="center">
- <img src="./error.gif" alt="error" height="720">
+ <img src="./VerVideo.gif" alt="correcto" height="720">
 </p>
 
 
-- **End Game**:
-The game ends whenever the user answer all the questions or when the timer reaches zero. At this moment, the score is calculated. If it is among the top 10, an alert dialog with a textbox is shown, in which the user can input a text, like a name or nickname. Afterwards the top 10 score view is shown. If the score is not among the top 10, an average alerdialog is show and then, the top 10 scores.
 
-<p align="center">
- <img src="./puntuaciones.gif" alt="puntuaciones" height="720">
-</p>
+
+
+
+
 
 
